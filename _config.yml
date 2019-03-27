@@ -44,4 +44,4 @@ highlighter: rouge
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-remote_theme: ankitsultana/researcher@gem
+#remote_theme: ankitsultana/researcher@gem
