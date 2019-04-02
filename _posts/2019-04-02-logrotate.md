@@ -10,8 +10,11 @@ categories: jekyll update
 
 상황 : 아파치 로그 파일을 주기적으로(하루 단위로 rotation) 압축하여 일 별 관리하고 싶을 경우
 
-기존 아파치 설정  httpd.conf
+기존 아파치 설정  
+
+#### httpd.conf
 CustomLog    "|/program/httpd-2.2.20/bin/rotatelogs -l /program/httpd-2.2.20/logs/%y%m%d.sample.activity_log 86400" combined env=!nolog
+
 ErrorLog     "|/program/httpd-2.2.20/bin/rotatelogs -l /program/httpd-2.2.20/logs/%y%m%d.sample.error_log 86400"
 
 * 하루 단위로 rotation 하고 있었지만 압축 저장하고 있지 않음.
