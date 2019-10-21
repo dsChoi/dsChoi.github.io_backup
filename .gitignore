@@ -2,8 +2,8 @@
 *.DS_Store
 .bundle
 .sass-cache
-node_modules
-package.json
+#node_modules
+#package.json
 
 ## Jekyll stuff
 /_site/
