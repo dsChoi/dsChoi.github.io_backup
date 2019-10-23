@@ -62,10 +62,10 @@
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023225916783.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023225931530.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/4_component_principle/image-20191023225931530.png">
-<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/14_5.png">
-<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/14_6.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231323243.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231412985.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/14_13.jpg">
-<meta property="og:updated_time" content="2019-10-23T14:08:20.195Z">
+<meta property="og:updated_time" content="2019-10-23T14:14:44.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4부 컴포넌트 원칙">
 <meta name="twitter:description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2019-10-23 23:08:20" itemprop="dateModified" datetime="2019-10-23T23:08:20+09:00">2019-10-23</time>
+                <time title="Updated at: 2019-10-23 23:14:44" itemprop="dateModified" datetime="2019-10-23T23:14:44+09:00">2019-10-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,8 +359,9 @@
 <li>SDP가 적용된 패키지는 쉽게 변화도록 설계가 되어 있어서 <strong>변경되리라 예상할 수 있다.</strong></li>
 </ul>
 <h5 id="안정성"><a href="#안정성" class="headerlink" title="안정성"></a>안정성</h5><p>안정성은 변화를 만들기 위해 필요한 작업량</p>
-<h6 id="안정된-컴포넌트"><a href="#안정된-컴포넌트" class="headerlink" title="안정된 컴포넌트"></a>안정된 컴포넌트</h6><p><img src="14_5.png" alt="안정된 컴포넌트"><br>X는 안정적이다. 세 컴포넌트가 X에 의존하며 , 따라서 X는 변경하지 말아야 할 이유가 세가지나 되지 때문이다. 이 경우 X는 세 컴포넌트를 책임진다(responsible)라고 말한다. 반대로 X는 어디에도 의존하지 않으므로 X는 독립적이다.(independent)라고 말한다.</p>
-<h6 id="불안정한-컴포넌트"><a href="#불안정한-컴포넌트" class="headerlink" title="불안정한 컴포넌트"></a>불안정한 컴포넌트</h6><p><img src="14_6.png" alt="불안정한 컴포넌트"></p>
+<h6 id="안정된-컴포넌트"><a href="#안정된-컴포넌트" class="headerlink" title="안정된 컴포넌트"></a>안정된 컴포넌트</h6><p><img src="image-20191023231323243.png" alt="안정된컴포넌트"></p>
+<p>X는 안정적이다. 세 컴포넌트가 X에 의존하며 , 따라서 X는 변경하지 말아야 할 이유가 세가지나 되지 때문이다. 이 경우 X는 세 컴포넌트를 책임진다(responsible)라고 말한다. 반대로 X는 어디에도 의존하지 않으므로 X는 독립적이다.(independent)라고 말한다.</p>
+<h6 id="불안정한-컴포넌트"><a href="#불안정한-컴포넌트" class="headerlink" title="불안정한 컴포넌트"></a>불안정한 컴포넌트</h6><p><img src="image-20191023231412985.png" alt="불안정한 컴포넌트"></p>
 <ul>
 <li><p>Y는 3개의 컴포넌트에 의존하므로 변경이 발생할 수 있는 외부요인이 3가지다. </p>
 </li>
