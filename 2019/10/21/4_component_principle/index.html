@@ -63,8 +63,8 @@
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023225931530.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231323243.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231412985.png">
-<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/14_13.jpg">
-<meta property="og:updated_time" content="2019-10-23T14:34:07.912Z">
+<meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023233656788.png">
+<meta property="og:updated_time" content="2019-10-23T14:44:24.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4부 컴포넌트 원칙">
 <meta name="twitter:description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
@@ -233,7 +233,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2019-10-23 23:34:07" itemprop="dateModified" datetime="2019-10-23T23:34:07+09:00">2019-10-23</time>
+                <time title="Updated at: 2019-10-23 23:44:24" itemprop="dateModified" datetime="2019-10-23T23:44:24+09:00">2019-10-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -322,7 +322,8 @@
 <li>연관성이 낮으면 같이 묶지 않는다</li>
 </ul>
 <h4 id="ISP와의-관계"><a href="#ISP와의-관계" class="headerlink" title="ISP와의 관계"></a>ISP와의 관계</h4><p>CRP는 인터페이스 분리원칙의 포괄적인 버전이다.<br><code>필요하지 않은 것에 의존하지 말라.</code></p>
-<h3 id="컴포넌트-응집도에-대한-균형-다이어그램"><a href="#컴포넌트-응집도에-대한-균형-다이어그램" class="headerlink" title="컴포넌트 응집도에 대한 균형 다이어그램"></a>컴포넌트 응집도에 대한 균형 다이어그램</h3><p><img src="13_1.png" alt="13.1결합도 원칙들의 균형 다이어그램"></p>
+<h3 id="컴포넌트-응집도에-대한-균형-다이어그램"><a href="#컴포넌트-응집도에-대한-균형-다이어그램" class="headerlink" title="컴포넌트 응집도에 대한 균형 다이어그램"></a>컴포넌트 응집도에 대한 균형 다이어그램</h3><img src="/2019/10/21/4_component_principle/13_1.png" alt="13.1결합도 원칙들의 균형 다이어그램" style="zoom:20%;">
+
 <h3 id="CCP-vs-CRP"><a href="#CCP-vs-CRP" class="headerlink" title="CCP vs CRP"></a>CCP vs CRP</h3><ul>
 <li>CCP를 확대하면 CRP가 축소 : 전체 패키지 수가 줄어듬 : 개발 용이성</li>
 <li>CRP를 확대하면 CCP가 축소 : 전체 패키지 수가 늘어남 : 재사용성</li>
@@ -343,11 +344,14 @@
 </li>
 </ul>
 <h3 id="순환-의존성-제거하기"><a href="#순환-의존성-제거하기" class="headerlink" title="순환 의존성 제거하기"></a>순환 의존성 제거하기</h3><h5 id="해결책"><a href="#해결책" class="headerlink" title="해결책"></a>해결책</h5><p>개발 환경을 릴리즈 가능한 컴포넌트 단위로 분리하는 것. </p>
-<p><img src="image-20191023225916783.png" alt></p>
+<img src="/2019/10/21/4_component_principle/image-20191023225916783.png" style="zoom:50%;">
+
 <p>위 구조는 비순환 방향 그래프</p>
 <p>마지막 빌드 과정 </p>
 <p>Entities -&gt; Database , Interactors -&gt; Presenters, View, Controllers, Authorizer -&gt; main</p>
-<h4 id="순환이-컴포넌트-의존성-그래프에-미치는-영향"><a href="#순환이-컴포넌트-의존성-그래프에-미치는-영향" class="headerlink" title="순환이 컴포넌트 의존성 그래프에 미치는 영향"></a>순환이 컴포넌트 의존성 그래프에 미치는 영향</h4><p><img src="image-20191023225931530.png" alt></p>
+<h4 id="순환이-컴포넌트-의존성-그래프에-미치는-영향"><a href="#순환이-컴포넌트-의존성-그래프에-미치는-영향" class="headerlink" title="순환이 컴포넌트 의존성 그래프에 미치는 영향"></a>순환이 컴포넌트 의존성 그래프에 미치는 영향</h4><img src="/2019/10/21/4_component_principle/image-20191023225931530.png" style="zoom:50%;">
+
+
 <ul>
 <li>Database -&gt; Entities -&gt; Authorizer -&gt; Interactor 순으로 순환고리가 이어져 하나의 거대한 컴포넌트가 되어짐.</li>
 </ul>
@@ -368,9 +372,11 @@
 <li>SDP가 적용된 패키지는 쉽게 변화도록 설계가 되어 있어서 <strong>변경되리라 예상할 수 있다.</strong></li>
 </ul>
 <h5 id="안정성"><a href="#안정성" class="headerlink" title="안정성"></a>안정성</h5><p>안정성은 변화를 만들기 위해 필요한 작업량</p>
-<h6 id="안정된-컴포넌트"><a href="#안정된-컴포넌트" class="headerlink" title="안정된 컴포넌트"></a>안정된 컴포넌트</h6><p><img src="image-20191023231323243.png" alt="안정된컴포넌트"></p>
+<h6 id="안정된-컴포넌트"><a href="#안정된-컴포넌트" class="headerlink" title="안정된 컴포넌트"></a>안정된 컴포넌트</h6><img src="/2019/10/21/4_component_principle/image-20191023231323243.png" alt="안정된컴포넌트" style="zoom:50%;">
+
 <p>X는 안정적이다. 세 컴포넌트가 X에 의존하며 , 따라서 X는 변경하지 말아야 할 이유가 세가지나 되지 때문이다. 이 경우 X는 세 컴포넌트를 책임진다(responsible)라고 말한다. 반대로 X는 어디에도 의존하지 않으므로 X는 독립적이다.(independent)라고 말한다.</p>
-<h6 id="불안정한-컴포넌트"><a href="#불안정한-컴포넌트" class="headerlink" title="불안정한 컴포넌트"></a>불안정한 컴포넌트</h6><p><img src="image-20191023231412985.png" alt="불안정한 컴포넌트"></p>
+<h6 id="불안정한-컴포넌트"><a href="#불안정한-컴포넌트" class="headerlink" title="불안정한 컴포넌트"></a>불안정한 컴포넌트</h6><img src="/2019/10/21/4_component_principle/image-20191023231412985.png" alt="불안정한 컴포넌트" style="zoom:50%;">
+
 <ul>
 <li><p>Y는 3개의 컴포넌트에 의존하므로 변경이 발생할 수 있는 외부요인이 3가지다. </p>
 </li>
@@ -392,7 +398,8 @@
 <li>A: 추상화 정도</li>
 <li>I: 불안정성</li>
 </ul>
-<p><img src="14_13.jpg" alt="배제 구역"></p>
+<img src="/2019/10/21/4_component_principle/image-20191023233656788.png" alt="image-20191023233656788" style="zoom:30%;">
+
 <ul>
 <li>0,0 : 안정적이고 구체적</li>
 <li>1,1: 의존성이 없고(불안정적)추상적 : 쓸모없는 구역</li>
