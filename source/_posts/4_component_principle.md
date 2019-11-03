@@ -136,7 +136,8 @@ CRP는 인터페이스 분리원칙의 포괄적인 버전이다.
 
 ### 컴포넌트 응집도에 대한 균형 다이어그램
 
-![13.1결합도 원칙들의 균형 다이어그램](13_1.png)
+<img src="./4_component_principle/13_1.png" alt="13.1결합도 원칙들의 균형 다이어그램" style="zoom:20%;" />
+
 ### CCP vs CRP
 
 - CCP를 확대하면 CRP가 축소 : 전체 패키지 수가 줄어듬 : 개발 용이성
@@ -172,7 +173,7 @@ CRP는 인터페이스 분리원칙의 포괄적인 버전이다.
 
 
 
-![](image-20191023225916783.png)
+<img src="./4_component_principle/image-20191023225916783.png" style="zoom:50%;" />
 
 위 구조는 비순환 방향 그래프
 
@@ -186,8 +187,7 @@ Entities -> Database , Interactors -> Presenters, View, Controllers, Authorizer 
 
 #### 순환이 컴포넌트 의존성 그래프에 미치는 영향
 
-
-![](image-20191023225931530.png)
+<img src="./4_component_principle/image-20191023225931530.png" style="zoom:50%;" />
 
 
 * Database -> Entities -> Authorizer -> Interactor 순으로 순환고리가 이어져 하나의 거대한 컴포넌트가 되어짐.
@@ -227,12 +227,12 @@ Entities -> Database , Interactors -> Presenters, View, Controllers, Authorizer 
 
 
 ###### 안정된 컴포넌트
-![안정된컴포넌트](image-20191023231323243.png)
+<img src="./4_component_principle/image-20191023231323243.png" alt="안정된컴포넌트" style="zoom:50%;" />
 
 X는 안정적이다. 세 컴포넌트가 X에 의존하며 , 따라서 X는 변경하지 말아야 할 이유가 세가지나 되지 때문이다. 이 경우 X는 세 컴포넌트를 책임진다(responsible)라고 말한다. 반대로 X는 어디에도 의존하지 않으므로 X는 독립적이다.(independent)라고 말한다.
 
 ###### 불안정한 컴포넌트
-![불안정한 컴포넌트](image-20191023231412985.png)
+<img src="./4_component_principle/image-20191023231412985.png" alt="불안정한 컴포넌트" style="zoom:50%;" />
 
 * Y는 3개의 컴포넌트에 의존하므로 변경이 발생할 수 있는 외부요인이 3가지다. 
 * Y는 의존적이다.
@@ -265,7 +265,9 @@ SAP와 SDP 를 결합하면 컴포넌트에 대한 DIP 와 비슷하다.
 * A: 추상화 정도
 * I: 불안정성
 
-![배제 구역](14_13.jpg)
+
+
+<img src="./4_component_principle/image-20191023233656788.png" alt="image-20191023233656788" style="zoom:30%;" />
 
 * 0,0 : 안정적이고 구체적
 * 1,1: 의존성이 없고(불안정적)추상적 : 쓸모없는 구역
