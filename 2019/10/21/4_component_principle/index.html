@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231323243.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231412985.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023233656788.png">
-<meta property="og:updated_time" content="2019-10-23T14:44:24.560Z">
+<meta property="og:updated_time" content="2019-11-03T12:34:11.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4부 컴포넌트 원칙">
 <meta name="twitter:description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
@@ -233,7 +233,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2019-10-23 23:44:24" itemprop="dateModified" datetime="2019-10-23T23:44:24+09:00">2019-10-23</time>
+                <time title="Updated at: 2019-11-03 21:34:11" itemprop="dateModified" datetime="2019-11-03T21:34:11+09:00">2019-11-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,20 +272,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="12-컴포넌트"><a href="#12-컴포넌트" class="headerlink" title="12. 컴포넌트"></a>12. 컴포넌트</h1><h4 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h4><ul>
+        <h1 id="12-컴포넌트"><a href="#12-컴포넌트" class="headerlink" title="12. 컴포넌트"></a>12. 컴포넌트</h1><p><strong>정의</strong></p><ul>
 <li>컴포넌트는 배포단위</li>
 <li>시스템의 구성 요소로 배포할 수 있는 가장 작은 단위</li>
 <li>Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어 </li>
 </ul><h2 id="컴포넌트의-간략한-역사"><a href="#컴포넌트의-간략한-역사" class="headerlink" title="컴포넌트의 간략한 역사"></a>컴포넌트의 간략한 역사</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">					* 200</span><br><span class="line">					TLS</span><br><span class="line">  START, 	CLA</span><br><span class="line">  				TAD BUFR</span><br><span class="line">  				JMS GETSTR</span><br><span class="line">  				CLA</span><br><span class="line">  				TAD BUFR</span><br><span class="line">  				JMS, </span><br><span class="line">  				....</span><br><span class="line">K177,			177</span><br><span class="line">MCR, 			-15</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
+
 <p> <code>*200</code> 명령어는 메모리 주소 200에 로드할 코드를 생성하라고 컴파일러에 알려준다.</p>
-<h2 id="재배치성"><a href="#재배치성" class="headerlink" title="재배치성"></a>재배치성</h2><p>재배치가 가능한 바이너리(<code>relocatable binary</code>)</p>
+<h3 id="재배치성"><a href="#재배치성" class="headerlink" title="재배치성"></a>재배치성</h3><p>재배치가 가능한 바이너리(<code>relocatable binary</code>)</p>
 <p>로더를 사용하여 메모리에 재배치할 수 있는 형태의 바이너리를 생성하도록 컴파일러를 수정하자.</p>
 <p><u>링킹로더 : 프로그램을 로드하는 동시에 링크까지 수행하는 로더</u></p>
-<h2 id="링커"><a href="#링커" class="headerlink" title="링커"></a>링커</h2><p><strong>1960 ~ 70년대 이후</strong></p>
+<h3 id="링커"><a href="#링커" class="headerlink" title="링커"></a>링커</h3><p><strong>1960 ~ 70년대 이후</strong></p>
 <p> 프로그램에 더욱 많은 기능을 넣어 프로그램이 커지자  <strong>링킹로더</strong>가 너무 느려진다. </p>
-<h4 id="로드-링커-두단계로-분리"><a href="#로드-링커-두단계로-분리" class="headerlink" title="로드, 링커 두단계로 분리"></a><code>로드</code>, <code>링커</code> 두단계로 분리</h4><p>프로그래머가 느린 부분, 링크 과정을 맡어, Linker 라는 별도의 애플리케이션으로 이 작업을 처리하도록 만들었다.</p>
+<p><strong><em><code>로드</code>, <code>링커</code> 두단계로 분리</em></strong></p>
+<p>프로그래머가 느린 부분, 링크 과정을 맡어, Linker 라는 별도의 애플리케이션으로 이 작업을 처리하도록 만들었다.</p>
 <p>링커는 링크가 완료된 재배치 코드를 만들어 주었고 , 그 덕분에 로더의 로딩 과정이 아주 빨라짐.</p>
 <p><strong>1980년대</strong>  </p>
 <p>c 와 다른 고수준 언어의 프로그램 사이즈거 더욱 커졌다.</p>
@@ -312,7 +314,7 @@
 <p>코드가 변경이 되어야 한다면 여러 포인트의 컴퍼넌트에서 변경이 되는 것보다는 단일 컴포넌트에서 발생하는 것이 낫다. 변경을 단일 컴포넌트로 제한할 수 있다면 <strong>해당 컴포넌트</strong>만 재배포할수 있다.</p>
 <p>CCP 는 같은 이유로 변경될 가능성이 있는 클래스는 모두 한곳으로 묶을것을 권장</p>
 <p>위 원칙은 OCP(개방폐쇄원칙) 과도 밀접하게 관련되어있다. </p>
-<h4 id="SRP와의-유사성"><a href="#SRP와의-유사성" class="headerlink" title="SRP와의 유사성"></a>SRP와의 유사성</h4><p><code>동일한 시점에 동일한 이유로 변경되는 것들을 한데 묶어라. 서로 다른 시점에 다른 이유로 변경되는 것들은 서로 분리하라.</code></p>
+<p><strong>SRP와의 유사성</strong><br><code>동일한 시점에 동일한 이유로 변경되는 것들을 한데 묶어라. 서로 다른 시점에 다른 이유로 변경되는 것들은 서로 분리하라.</code></p>
 <h2 id="CRP-공통-재사용-원칙"><a href="#CRP-공통-재사용-원칙" class="headerlink" title="CRP: 공통 재사용 원칙"></a>CRP: 공통 재사용 원칙</h2><p><code>컴포넌트 사용자들을 필요하지 않는 것에 의존하게 강요하지 말라.</code></p>
 <blockquote>
 <p>패키지 안의 클래스들은 함께 재사용되어야 한다. 어떤 패키지의 클래스 하나를 재사용한다면 나머지도 재사용해야한다.</p>
@@ -321,7 +323,8 @@
 <li><strong>연관된 클래스들 끼리 묶어서 군집(패키지)을 이루게 한다.</strong></li>
 <li>연관성이 낮으면 같이 묶지 않는다</li>
 </ul>
-<h4 id="ISP와의-관계"><a href="#ISP와의-관계" class="headerlink" title="ISP와의 관계"></a>ISP와의 관계</h4><p>CRP는 인터페이스 분리원칙의 포괄적인 버전이다.<br><code>필요하지 않은 것에 의존하지 말라.</code></p>
+<p><strong>ISP와의 관계</strong></p>
+<p>CRP는 인터페이스 분리원칙의 포괄적인 버전이다.<br><code>필요하지 않은 것에 의존하지 말라.</code></p>
 <h3 id="컴포넌트-응집도에-대한-균형-다이어그램"><a href="#컴포넌트-응집도에-대한-균형-다이어그램" class="headerlink" title="컴포넌트 응집도에 대한 균형 다이어그램"></a>컴포넌트 응집도에 대한 균형 다이어그램</h3><img src="/2019/10/21/4_component_principle/13_1.png" alt="13.1결합도 원칙들의 균형 다이어그램" style="zoom:20%;">
 
 <h3 id="CCP-vs-CRP"><a href="#CCP-vs-CRP" class="headerlink" title="CCP vs CRP"></a>CCP vs CRP</h3><ul>
@@ -361,22 +364,20 @@
 </ol>
 <h4 id="흐트러짐-Jitters"><a href="#흐트러짐-Jitters" class="headerlink" title="흐트러짐(Jitters)"></a>흐트러짐(Jitters)</h4><p>요구사항이 변경되면 컴포넌트 구조도 변경될수 있다는 사실.</p>
 <p>어플리케이션이 성장함에 따라 의존성 구조는 점점 흐트러지고 성장한다. 따라서 의존성 구조에 순환이 발생하는지를 항상 관찰해야한다. 순환이 발생하면 어떤 식으로든 끊어야 한다. </p>
-<h3 id="하향식설계-top-down"><a href="#하향식설계-top-down" class="headerlink" title="하향식설계(top-down)"></a>하향식설계(top-down)</h3><ul>
+<h2 id="하향식설계-top-down"><a href="#하향식설계-top-down" class="headerlink" title="하향식설계(top-down)"></a>하향식설계(top-down)</h2><ul>
 <li>패키지 구조를 먼저 설계하면 실패할 가능성이 크다.</li>
 <li>패키지 의존 관계 구조는 시스템의 논리적 설계와 함께 진화해야 한다</li>
 </ul>
-<h3 id="SDP-안정된-의존성-원칙-Stable-Dependencies-Principle"><a href="#SDP-안정된-의존성-원칙-Stable-Dependencies-Principle" class="headerlink" title="SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)"></a>SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</h3><blockquote>
+<h2 id="SDP-안정된-의존성-원칙-Stable-Dependencies-Principle"><a href="#SDP-안정된-의존성-원칙-Stable-Dependencies-Principle" class="headerlink" title="SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)"></a>SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</h2><blockquote>
 <p>안정성의 방향으로(더 안정된 쪽에) 의존하라.</p>
 </blockquote>
 <ul>
 <li>SDP가 적용된 패키지는 쉽게 변화도록 설계가 되어 있어서 <strong>변경되리라 예상할 수 있다.</strong></li>
 </ul>
-<h5 id="안정성"><a href="#안정성" class="headerlink" title="안정성"></a>안정성</h5><p>안정성은 변화를 만들기 위해 필요한 작업량</p>
-<h6 id="안정된-컴포넌트"><a href="#안정된-컴포넌트" class="headerlink" title="안정된 컴포넌트"></a>안정된 컴포넌트</h6><img src="/2019/10/21/4_component_principle/image-20191023231323243.png" alt="안정된컴포넌트" style="zoom:50%;">
-
+<h3 id="안정성"><a href="#안정성" class="headerlink" title="안정성"></a>안정성</h3><p>안정성은 변화를 만들기 위해 필요한 작업량</p>
+<p><strong>안정된 컴포넌트</strong><br><img src="/2019/10/21/4_component_principle/image-20191023231323243.png" alt="안정된컴포넌트" style="zoom:50%;"></p>
 <p>X는 안정적이다. 세 컴포넌트가 X에 의존하며 , 따라서 X는 변경하지 말아야 할 이유가 세가지나 되지 때문이다. 이 경우 X는 세 컴포넌트를 책임진다(responsible)라고 말한다. 반대로 X는 어디에도 의존하지 않으므로 X는 독립적이다.(independent)라고 말한다.</p>
-<h6 id="불안정한-컴포넌트"><a href="#불안정한-컴포넌트" class="headerlink" title="불안정한 컴포넌트"></a>불안정한 컴포넌트</h6><img src="/2019/10/21/4_component_principle/image-20191023231412985.png" alt="불안정한 컴포넌트" style="zoom:50%;">
-
+<p> <strong>불안정한 컴포넌트</strong><br><img src="/2019/10/21/4_component_principle/image-20191023231412985.png" alt="불안정한 컴포넌트" style="zoom:50%;"></p>
 <ul>
 <li><p>Y는 3개의 컴포넌트에 의존하므로 변경이 발생할 수 있는 외부요인이 3가지다. </p>
 </li>
@@ -390,7 +391,7 @@
 </li>
 </ul>
 <h3 id="모든-컴퍼넌트가-안정적이어야-하는-것은-아니다"><a href="#모든-컴퍼넌트가-안정적이어야-하는-것은-아니다" class="headerlink" title="모든 컴퍼넌트가 안정적이어야 하는 것은 아니다."></a>모든 컴퍼넌트가 안정적이어야 하는 것은 아니다.</h3><p>만약 모든 패키지가 안정적이라면 시스템은 변경할 수 없게 될 것이다.<br>공통패키지를 이용 불안정성을 유지해서 확장가능하게 한다.</p>
-<h3 id="SAP-안정된-추상화-원칙-Stable-Abstractions-Principle"><a href="#SAP-안정된-추상화-원칙-Stable-Abstractions-Principle" class="headerlink" title="SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)"></a>SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</h3><p><code>컴포넌트는 안정된 정도만큼만 추상화되어야한다.</code></p>
+<h2 id="SAP-안정된-추상화-원칙-Stable-Abstractions-Principle"><a href="#SAP-안정된-추상화-원칙-Stable-Abstractions-Principle" class="headerlink" title="SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)"></a>SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</h2><p><code>컴포넌트는 안정된 정도만큼만 추상화되어야한다.</code></p>
 <p>안정성과 추상성 사이의 관계를 정한다.</p>
 <p>추상클래스(인터페이스)를 통해서 추상성과 안정성 사이의 균형을 확보<br>패키지의 성격에 따라 적절한 추상성을 확보해야한다.</p>
 <p>SAP와 SDP 를 결합하면 컴포넌트에 대한 DIP 와 비슷하다.<br>컴포넌트는 어느 부분은 추상적이면서 다른 부분은 안정적일 수 있다. </p>
@@ -481,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#12-컴포넌트"><span class="nav-number">1.</span> <span class="nav-text">12. 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#정의"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">정의</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#컴포넌트의-간략한-역사"><span class="nav-number">1.1.</span> <span class="nav-text">컴포넌트의 간략한 역사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#재배치성"><span class="nav-number">1.2.</span> <span class="nav-text">재배치성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#링커"><span class="nav-number">1.3.</span> <span class="nav-text">링커</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#로드-링커-두단계로-분리"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">로드, 링커 두단계로 분리</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#프로그램-크기와-관련된-머피의-법칙"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">프로그램 크기와 관련된 머피의 법칙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론"><span class="nav-number">1.3.1.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13장-컴포넌트-응집도"><span class="nav-number">2.</span> <span class="nav-text">13장. 컴포넌트 응집도</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#REP-재사용-릴리즈-등가-원칙"><span class="nav-number">2.1.</span> <span class="nav-text">REP: 재사용/릴리즈 등가 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCP-공통-폐쇄-원칙"><span class="nav-number">2.2.</span> <span class="nav-text">CCP: 공통 폐쇄 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SRP와의-유사성"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">SRP와의 유사성</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRP-공통-재사용-원칙"><span class="nav-number">2.3.</span> <span class="nav-text">CRP: 공통 재사용 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ISP와의-관계"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">ISP와의 관계</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#컴포넌트-응집도에-대한-균형-다이어그램"><span class="nav-number">2.3.1.</span> <span class="nav-text">컴포넌트 응집도에 대한 균형 다이어그램</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CCP-vs-CRP"><span class="nav-number">2.3.2.</span> <span class="nav-text">CCP vs CRP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-컴포넌트-결합"><span class="nav-number">3.</span> <span class="nav-text">14. 컴포넌트 결합</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ADP-의존성-비순환-원칙-Acycleic-Dependencies-Principle"><span class="nav-number">3.1.</span> <span class="nav-text">ADP : 의존성 비순환 원칙(Acycleic-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#주간-빌드"><span class="nav-number">3.1.1.</span> <span class="nav-text">주간 빌드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순환-의존성-제거하기"><span class="nav-number">3.1.2.</span> <span class="nav-text">순환 의존성 제거하기</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#해결책"><span class="nav-number">3.1.2.0.1.</span> <span class="nav-text">해결책</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환이-컴포넌트-의존성-그래프에-미치는-영향"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">순환이 컴포넌트 의존성 그래프에 미치는 영향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환-끊기"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">순환 끊기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#흐트러짐-Jitters"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">흐트러짐(Jitters)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#하향식설계-top-down"><span class="nav-number">3.1.3.</span> <span class="nav-text">하향식설계(top-down)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDP-안정된-의존성-원칙-Stable-Dependencies-Principle"><span class="nav-number">3.1.4.</span> <span class="nav-text">SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#안정성"><span class="nav-number">3.1.4.0.1.</span> <span class="nav-text">안정성</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#안정된-컴포넌트"><span class="nav-number">3.1.4.0.1.1.</span> <span class="nav-text">안정된 컴포넌트</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#불안정한-컴포넌트"><span class="nav-number">3.1.4.0.1.2.</span> <span class="nav-text">불안정한 컴포넌트</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#안정성-지표"><span class="nav-number">3.1.5.</span> <span class="nav-text">안정성 지표</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#모든-컴퍼넌트가-안정적이어야-하는-것은-아니다"><span class="nav-number">3.1.6.</span> <span class="nav-text">모든 컴퍼넌트가 안정적이어야 하는 것은 아니다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAP-안정된-추상화-원칙-Stable-Abstractions-Principle"><span class="nav-number">3.1.7.</span> <span class="nav-text">SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#주계열"><span class="nav-number">3.1.7.1.</span> <span class="nav-text">주계열</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#12-컴포넌트"><span class="nav-number">1.</span> <span class="nav-text">12. 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#컴포넌트의-간략한-역사"><span class="nav-number">1.1.</span> <span class="nav-text">컴포넌트의 간략한 역사</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#재배치성"><span class="nav-number">1.1.1.</span> <span class="nav-text">재배치성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#링커"><span class="nav-number">1.1.2.</span> <span class="nav-text">링커</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#프로그램-크기와-관련된-머피의-법칙"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">프로그램 크기와 관련된 머피의 법칙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론"><span class="nav-number">1.1.3.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13장-컴포넌트-응집도"><span class="nav-number">2.</span> <span class="nav-text">13장. 컴포넌트 응집도</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#REP-재사용-릴리즈-등가-원칙"><span class="nav-number">2.1.</span> <span class="nav-text">REP: 재사용/릴리즈 등가 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCP-공통-폐쇄-원칙"><span class="nav-number">2.2.</span> <span class="nav-text">CCP: 공통 폐쇄 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRP-공통-재사용-원칙"><span class="nav-number">2.3.</span> <span class="nav-text">CRP: 공통 재사용 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#컴포넌트-응집도에-대한-균형-다이어그램"><span class="nav-number">2.3.1.</span> <span class="nav-text">컴포넌트 응집도에 대한 균형 다이어그램</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CCP-vs-CRP"><span class="nav-number">2.3.2.</span> <span class="nav-text">CCP vs CRP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-컴포넌트-결합"><span class="nav-number">3.</span> <span class="nav-text">14. 컴포넌트 결합</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ADP-의존성-비순환-원칙-Acycleic-Dependencies-Principle"><span class="nav-number">3.1.</span> <span class="nav-text">ADP : 의존성 비순환 원칙(Acycleic-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#주간-빌드"><span class="nav-number">3.1.1.</span> <span class="nav-text">주간 빌드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순환-의존성-제거하기"><span class="nav-number">3.1.2.</span> <span class="nav-text">순환 의존성 제거하기</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#해결책"><span class="nav-number">3.1.2.0.1.</span> <span class="nav-text">해결책</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환이-컴포넌트-의존성-그래프에-미치는-영향"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">순환이 컴포넌트 의존성 그래프에 미치는 영향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환-끊기"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">순환 끊기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#흐트러짐-Jitters"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">흐트러짐(Jitters)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#하향식설계-top-down"><span class="nav-number">3.2.</span> <span class="nav-text">하향식설계(top-down)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDP-안정된-의존성-원칙-Stable-Dependencies-Principle"><span class="nav-number">3.3.</span> <span class="nav-text">SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#안정성"><span class="nav-number">3.3.1.</span> <span class="nav-text">안정성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#안정성-지표"><span class="nav-number">3.3.2.</span> <span class="nav-text">안정성 지표</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#모든-컴퍼넌트가-안정적이어야-하는-것은-아니다"><span class="nav-number">3.3.3.</span> <span class="nav-text">모든 컴퍼넌트가 안정적이어야 하는 것은 아니다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAP-안정된-추상화-원칙-Stable-Abstractions-Principle"><span class="nav-number">3.4.</span> <span class="nav-text">SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#주계열"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">주계열</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
