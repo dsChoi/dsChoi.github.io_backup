@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="22장 클린아키텍처시스템 아키텍처와 관련된 여러가지 아이디어 육각형 아키텍처 (Hexagonal Architecture) DCI(Data Context and Interaction) BCE (Boundary-Control-Entity) 위 아키텍처의 목표? 관심사의 분리 소프트웨어를 계층으로 분리함으로써 관심사의 분리 목표를 달성 최소한 업무 규칙을 위한">
+<meta name="keywords" content="clean architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5부 아키텍처 22장 ~ 25장">
+<meta property="og:url" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="22장 클린아키텍처시스템 아키텍처와 관련된 여러가지 아이디어 육각형 아키텍처 (Hexagonal Architecture) DCI(Data Context and Interaction) BCE (Boundary-Control-Entity) 위 아키텍처의 목표? 관심사의 분리 소프트웨어를 계층으로 분리함으로써 관심사의 분리 목표를 달성 최소한 업무 규칙을 위한">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/the-clean-architecture.jpg">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191111224420543.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191111230636691.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073603255.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073455909.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114074620616.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114074640787.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073656634.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073732060.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073752080.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073825274.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/image-20191114073913551.png">
+<meta property="og:updated_time" content="2019-11-17T13:09:53.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5부 아키텍처 22장 ~ 25장">
+<meta name="twitter:description" content="22장 클린아키텍처시스템 아키텍처와 관련된 여러가지 아이디어 육각형 아키텍처 (Hexagonal Architecture) DCI(Data Context and Interaction) BCE (Boundary-Control-Entity) 위 아키텍처의 목표? 관심사의 분리 소프트웨어를 계층으로 분리함으로써 관심사의 분리 목표를 달성 최소한 업무 규칙을 위한">
+<meta name="twitter:image" content="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/the-clean-architecture.jpg">
+
+<link rel="canonical" href="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>5부 아키텍처 22장 ~ 25장 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          5부 아키텍처 22장 ~ 25장
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-11-11 20:11:19" itemprop="dateCreated datePublished" datetime="2019-11-11T20:11:19+09:00">2019-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2019-11-17 22:09:53" itemprop="dateModified" datetime="2019-11-17T22:09:53+09:00">2019-11-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2019/11/11/clean-architecture-22-25/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="22장-클린아키텍처"><a href="#22장-클린아키텍처" class="headerlink" title="22장 클린아키텍처"></a>22장 클린아키텍처</h1><p><strong>시스템 아키텍처와 관련된 여러가지 아이디어</strong></p><ul>
+<li>육각형 아키텍처 (Hexagonal Architecture)</li>
+<li>DCI(Data Context and Interaction)</li>
+<li>BCE (Boundary-Control-Entity)</li>
+</ul><p><strong>위 아키텍처의 목표?</strong></p><ul>
+<li>관심사의 분리<ul>
+<li>소프트웨어를 계층으로 분리함으로써 관심사의 분리 목표를 달성</li>
+<li>최소한 업무 규칙을 위한 계층과, 사용자와 시스템인터페이스를 위한 또 다른 계층 하나를 포함해야한다.</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+
+
+
+<p><strong>특성</strong></p>
+<ul>
+<li>프레임워크 독립성</li>
+<li>테스트 용이성</li>
+<li>UI 독립성</li>
+<li>데이터베이스 독립성</li>
+<li>모든 외부 에이전시에 대한 독립성</li>
+</ul>
+<img src="/2019/11/11/clean-architecture-22-25/the-clean-architecture.jpg" alt="The Clean Architecture의 다이어그램" style="zoom:67%;">
+
+<ul>
+<li>참고 :    <a href="https://medium.com/@erish/python-django-clean-architecture-연구하기-591d7a555059" target="_blank" rel="noopener">https://medium.com/@erish/python-django-clean-architecture-%EC%97%B0%EA%B5%AC%ED%95%98%EA%B8%B0-591d7a555059</a></li>
+</ul>
+<h2 id="의존성-규칙"><a href="#의존성-규칙" class="headerlink" title="의존성 규칙"></a>의존성 규칙</h2><blockquote>
+<p>소스코드 의존성은 반드시 안쪽으로, 고수준의 정책을 향해야 한다.</p>
+</blockquote>
+<ul>
+<li>내부의 원에 속한 요소는 외부의 원에 속한 어떤 것도 알지 못한다.</li>
+<li>외부의 원에 선언된 데이터 형식도 내부의 원에서 절대로 사용해서는 안된다.</li>
+</ul>
+<h3 id="엔티티"><a href="#엔티티" class="headerlink" title="엔티티"></a>엔티티</h3><blockquote>
+<p>전사적인 핵심 업무 규칙을 캡슐화 한것</p>
+</blockquote>
+<p>메서드를 가지는 객체이거나 데이터 구조와 함수의 집합일수도 있다.</p>
+<p>외부의 무엇인가가 변경되더라도 엔티티가 변경될 가능성은 적다.</p>
+<p>특정 애플리케이션에 무언가 변경이 필요하더라도 엔티티 계층에는 절대로 영향을 주어서는 안된다.</p>
+<h3 id="유스케이스"><a href="#유스케이스" class="headerlink" title="유스케이스"></a>유스케이스</h3><blockquote>
+<p>애플리케이션에 특화된 업무 규칙을 포함</p>
+</blockquote>
+<p>시스템의 모든 유스케이스를 캡슐화 하고 구현</p>
+<p>엔티티로 들어오고 나가는 데이터 흐름을 조정</p>
+<p>유스케이스에서 발생한 변경이 엔티티에 영향을 줘서는 안된다.</p>
+<h3 id="인터페이스-어댑터-Interface-Adaptor"><a href="#인터페이스-어댑터-Interface-Adaptor" class="headerlink" title="인터페이스 어댑터(Interface Adaptor)"></a>인터페이스 어댑터(Interface Adaptor)</h3><p>일련의 어댑터들로 구성</p>
+<p>프레젠터, 뷰, 컨트롤러는 인터페이스 어댑터 계층에 속한다.</p>
+<p>데이터를 엔티티나 유스케이스형식에서 영속성용으로 사용중인 임의의 프레임워크(데이터베이스)가 이용하기 편리한 형식으로 변환한다.</p>
+<p>데이터베이스에 대해 알아서는 안된다. </p>
+<h3 id="프레임워크와-드라이버"><a href="#프레임워크와-드라이버" class="headerlink" title="프레임워크와 드라이버"></a>프레임워크와 드라이버</h3><p>이 계층에서는 안쪽원과 통신하기 위한 접합 코드 외에는 특별히 더 작성할 코드가 많지 않다.</p>
+<p>모든 세부사항이 위치하는 곳</p>
+<p><strong>세부사항</strong></p>
+<ul>
+<li>웹</li>
+<li>데이터베이스</li>
+</ul>
+<blockquote>
+<p> 세부사항을 외부에 위치시켜서 피해를 최소화해야함.</p>
+</blockquote>
+<h3 id="원은-네-개여야만-하나"><a href="#원은-네-개여야만-하나" class="headerlink" title="원은 네 개여야만 하나?"></a>원은 네 개여야만 하나?</h3><p>위 네개의 원은 개념을 설명하기 위한 예시일뿐 더 많은 원이 필요할 수 있다. </p>
+<p>하지만 <code>의존성 규칙</code> 은 적용되어야한다. </p>
+<ul>
+<li><p>소스코드 의존성은 항상 안쪽을 향한다.</p>
+</li>
+<li><p>안족으로 이동할수록 추상화와 정책의 수준은 높아진다. </p>
+</li>
+<li><p>가장 바깥쪽 원은 저수준의 구체적인 세부사항으로 구성된다.</p>
+</li>
+</ul>
+<blockquote>
+<p>안쪽으로 이동할수록 소프트웨어는 점점 추상화되고 더 높은 수준의 정책들을 캡슐화한다.</p>
+</blockquote>
+<p><strong>가장 안쪽 원</strong></p>
+<p>가장 범용적이며 높은 수준을 가진다.</p>
+<h3 id="경계-횡단하기"><a href="#경계-횡단하기" class="headerlink" title="경계 횡단하기"></a>경계 횡단하기</h3><p><img src="/2019/11/11/clean-architecture-22-25/image-20191111224420543.png" alt="image-20191111224420543"></p>
+<p>컨트롤러와 프레젠터가 다음 계층에 속한 유스케이스와 통신하는 예제</p>
+<p><strong>제어 흐름</strong></p>
+<p>컨트롤러 -&gt; 유스케이스 -&gt; 프레젠터</p>
+<p><strong>의존성</strong></p>
+<ul>
+<li><p>컨트롤러 -&gt; 유스케이스</p>
+</li>
+<li><p>프레젠터 -&gt; 유스케이스</p>
+</li>
+</ul>
+<p><strong>의존성 역전원칙</strong></p>
+<p>제어흐름과 의존성의 방향이 반대여야하나는 경우</p>
+<p><strong>아키텍처 경계횡단시</strong></p>
+<p>동적 다형성을 이용하여 소스 코드 의존성을 제어흐름과는 반대로 만들수 있고, 이를 통해 제어흐름이 어느 방향으로 흐르더라도 의존성 규칙을 준수할 수 있다.</p>
+<h3 id="경계를-횡단하는-데이터는-어떤-모습인가"><a href="#경계를-횡단하는-데이터는-어떤-모습인가" class="headerlink" title="경계를 횡단하는 데이터는 어떤 모습인가?"></a>경계를 횡단하는 데이터는 어떤 모습인가?</h3><ul>
+<li>기본적인 구조체</li>
+<li>데이터 전송 객체(Data Transfer Object)</li>
+<li>간단한 인자</li>
+<li>해시맵</li>
+</ul>
+<p><strong>중요한 점</strong></p>
+<p>격리되어 있는 데이터 구조가 경계를 가로질러 전달된다는 점</p>
+<p>경계를 가로질러 데이터를 전달할 때, 데이터는 항상 내부의 원에서 사용하기에 가장 편리한 형태를 가져야한다.</p>
+<h2 id="전형적인-시나리오"><a href="#전형적인-시나리오" class="headerlink" title="전형적인 시나리오"></a>전형적인 시나리오</h2><p><img src="/2019/11/11/clean-architecture-22-25/image-20191111230636691.png" alt="image-20191111230636691"></p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>소프트웨어를 계층으로 분리하고 의존성 규칙을 준수한다면 본질적으로 테스트하기 쉬운 시스템을 만들게 될 것이며, 그에 따른 이점을 누릴 수 있다. 데이터베이스나 웹 프레임워크와 같은 시스템의 외부 요소가 구식이 되더라도, 이들 요소를 야단스럽지 않게 교체할수 있다.</p>
+<h1 id="23장-프레전터와-험블-객체"><a href="#23장-프레전터와-험블-객체" class="headerlink" title="23장 프레전터와 험블 객체"></a>23장 프레전터와 험블 객체</h1><h2 id="험블객체-패턴"><a href="#험블객체-패턴" class="headerlink" title="험블객체 패턴"></a>험블객체 패턴</h2><blockquote>
+<p>테스트 하기 어려운 행위와 테스트하기 쉬운 행위를 단위 테스트 작성자가 분리하기 쉽게 하는 방법</p>
+</blockquote>
+<p><strong>험블 객체 패턴</strong> </p>
+<ol>
+<li><p>행위들을 두 개의 모듈로 분리.</p>
+</li>
+<li><p>둘 중 하나가 험블이다. </p>
+</li>
+<li><p>가장 기본적인 본질은 남기고 테스트하기 어려운 행위를 모두 험블 객체로 옮긴다.</p>
+</li>
+</ol>
+<h2 id="프레젠터와-뷰"><a href="#프레젠터와-뷰" class="headerlink" title="프레젠터와 뷰"></a>프레젠터와 뷰</h2><p><strong>뷰</strong></p>
+<blockquote>
+<p>험블 객체이고 테스트하기 어렵다.</p>
+</blockquote>
+<p><strong>프레젠터</strong></p>
+<blockquote>
+<p> 애플리케이션으로부터 데이터를 받아 화면에 표시할 수 있는 포맷으로 만드는 것 </p>
+</blockquote>
+<h2 id="테스트와-아키텍처"><a href="#테스트와-아키텍처" class="headerlink" title="테스트와 아키텍처"></a>테스트와 아키텍처</h2><p>테스트 용이성은 좋은 아키텍처가 지녀야 할 속성.</p>
+<p>험블 객체 패턴이 좋은 예</p>
+<p>행위를 테스트하기 쉬운 부분과 테스트하기 어려운 부분으로 분리하면 아키텍처 경계가 정의되기 때문이다.</p>
+<p>프레젠터와 뷰 사이의 경계가 이러한 경계중 하나이다. </p>
+<h2 id="데이터베이스-게이트웨이"><a href="#데이터베이스-게이트웨이" class="headerlink" title="데이터베이스 게이트웨이"></a>데이터베이스 게이트웨이</h2><p>유스케이스 계층과 데ㅣ터베이스 사이에 데이터 베이스 게이트웨이가 존재.</p>
+<p>데이터베이스 게이트웨이트</p>
+<ul>
+<li>다형적 인터페이스</li>
+<li>애플리케이션이 데이터 베이스에 수행하는 생성, 조회, 갱신, 삭제 작업과 관련된 모든 메서드를 포함.</li>
+</ul>
+<p>데이터베이스 게이트웨이 인터페이스 구현체 는 데이터베이스 계층에 위치하고 이 구현체는 험블객체이다.</p>
+<h2 id="데이터-매퍼"><a href="#데이터-매퍼" class="headerlink" title="데이터 매퍼"></a>데이터 매퍼</h2><p>객체 관계매퍼는 존재하지 않는다.</p>
+<p>객체는 단순히 오퍼레이션의 집합이다.</p>
+<p>ORM 보다는 데이터 매퍼라 부른게 맞다.</p>
+<p>ORM은 게이트웨이 인터페이스와 데이터베이스 사이에서 일종의 험블 객체 경계를 형성한다.</p>
+<h2 id="서비스-리스너"><a href="#서비스-리스너" class="headerlink" title="서비스 리스너"></a>서비스 리스너</h2><p>서비스 리스너는 서비스 인터페이스로부터 데이터를 수신하고, 데이터를 애플리케이션에서 사용할수 있게 간단한 데이터 구조로 포맷을 변경한다. 그 후 데이터 구조는 서비스 경계를 가로질러서 내부로 전달된다.</p>
+<h2 id="결론-1"><a href="#결론-1" class="headerlink" title="결론"></a>결론</h2><p>각 아키텍처 경계마다 경계 가까이 있는 험블 객체 패턴을 발견할수 있었다.</p>
+<ul>
+<li>프레젠터</li>
+<li>데이터베이스 게이트웨이 인터페이스 구현체</li>
+<li>ORM</li>
+</ul>
+<p>아키텍처 경계에서 험블 객체 패턴을 사용하면 전체 시스템의 테스트 용이성을 크게 높일수 있다.</p>
+<h1 id="24장-부분적-경계"><a href="#24장-부분적-경계" class="headerlink" title="24장 부분적 경계"></a>24장 부분적 경계</h1><p><strong>YAGNI</strong> (You Aren’t Going to Need It)</p>
+<blockquote>
+<p>너는 그게 필요하지 않아!  -&gt;&gt; “필요한 작업만 해라”</p>
+</blockquote>
+<p>##부분적 경계</p>
+<h3 id="마지막-단계를-건너뛰기"><a href="#마지막-단계를-건너뛰기" class="headerlink" title="마지막 단계를 건너뛰기"></a>마지막 단계를 건너뛰기</h3><p>독립적으로 컴파일하고 배포할 수 있는 컴포넌트를 만들기 위한 작업은 모두 수행 후, 단일 컴포넌트로 모아만 두는 것.</p>
+<p><strong>장점</strong></p>
+<ul>
+<li>다수의 컴포넌트를 관리하는 작업이 필요없다.</li>
+<li>버전 번호도 필요없다.</li>
+<li>배포 관리 부담도 없다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<blockquote>
+<p>완벽한 경계를 만들 때 만큼의 코드량과 사전 설계가 필요하다.</p>
+</blockquote>
+<h3 id="일차원-경계"><a href="#일차원-경계" class="headerlink" title="일차원 경계"></a>일차원 경계</h3><p>전략패턴</p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073603255.png" alt="image-20191114073603255" style="zoom:50%;">
+
+<h3 id="퍼사드"><a href="#퍼사드" class="headerlink" title="퍼사드"></a>퍼사드</h3><p>퍼사드 패턴</p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073455909.png" alt="image-20191114073455909" style="zoom:50%;">
+
+<h2 id="결론-2"><a href="#결론-2" class="headerlink" title="결론"></a>결론</h2><p>부분적 경계 세가지 방법들은 나름의 비용과 장점을 지닌다.</p>
+<p>각 접근법은 완벽한 형태의 경계를 담기 위한 공간으로써, 적절하게 사용할 수 있는 상황이 서로 다르다..</p>
+<p>아키텍처 경계가 언제, 어디에 존재해야 할지 , 그리고 그 경계를 완벽하게 구현할지 아니면 부분적으로 구현할지를 결정하는 일 또한 아키텍트의 역활이다.</p>
+<h1 id="25장-계층과-경계"><a href="#25장-계층과-경계" class="headerlink" title="25장 계층과 경계"></a>25장 계층과 경계</h1><h2 id="움퍼스-사냥-게임"><a href="#움퍼스-사냥-게임" class="headerlink" title="움퍼스 사냥 게임"></a>움퍼스 사냥 게임</h2><img src="/2019/11/11/clean-architecture-22-25/image-20191114074620616.png" alt="image-20191114074620616" style="zoom:50%;">
+
+
+
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114074640787.png" alt="image-20191114074640787" style="zoom:50%;">
+
+
+
+<h2 id="클린-아키텍처"><a href="#클린-아키텍처" class="headerlink" title="클린 아키텍처?"></a>클린 아키텍처?</h2><p><strong>개선된 다이어그램</strong></p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073656634.png" alt="image-20191114073656634" style="zoom:50%;">
+
+
+
+
+
+<p><strong>단순화된 다이어그램</strong></p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073732060.png" alt="image-20191114073732060" style="zoom:50%;">
+
+
+
+<h2 id="흐름-횡단하기"><a href="#흐름-횡단하기" class="headerlink" title="흐름 횡단하기"></a>흐름 횡단하기</h2><p><strong>흐름 횡단하기</strong></p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073752080.png" alt="image-20191114073752080" style="zoom:50%;">
+
+
+
+<h2 id="흐름-분리하기"><a href="#흐름-분리하기" class="headerlink" title="흐름 분리하기"></a>흐름 분리하기</h2><img src="/2019/11/11/clean-architecture-22-25/image-20191114073825274.png" alt="image-20191114073825274" style="zoom:50%;">
+
+
+
+<p><strong>마이크로서비스 api 추가하기</strong></p>
+<img src="/2019/11/11/clean-architecture-22-25/image-20191114073913551.png" alt="image-20191114073913551" style="zoom:50%;">
+
+
+
+<h2 id="결론-3"><a href="#결론-3" class="headerlink" title="결론"></a>결론</h2><p>아키텍처 경계는 어디에나 존재한다.</p>
+<p>경계를 제대로 구현하려면 비용이 많이든다.</p>
+<p>경계가 무시되고 나중에 다시 추가하려면 추가비용이 크다.</p>
+<p>추상화가 필요하다고 미리 예측해서는 안된다. (YAGNI)</p>
+<p><code>오버 엔지니어링이 언더 엔지니어링보다 나쁠때가 훨씬 많다.</code></p>
+<p><strong>목표</strong></p>
+<p>경계의 구현 비용이 그걸 무시해서 생기는 비용보다 적어지는 바로 그 변곡점에서 경계를 구현하는 것</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/clean-architecture/" rel="tag"><i class="fa fa-tag"></i> clean architecture</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/03/clean-architecture-18-20/" rel="next" title="5부 아키텍처 18장 ~ 21장">
+                  <i class="fa fa-chevron-left"></i> 5부 아키텍처 18장 ~ 21장
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/17/clean-architecture-26-27/" rel="prev" title="clean-architecture-26-27">
+                  clean-architecture-26-27 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2019/11/11/clean-architecture-22-25/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#22장-클린아키텍처"><span class="nav-number">1.</span> <span class="nav-text">22장 클린아키텍처</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#의존성-규칙"><span class="nav-number">1.1.</span> <span class="nav-text">의존성 규칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#엔티티"><span class="nav-number">1.1.1.</span> <span class="nav-text">엔티티</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#유스케이스"><span class="nav-number">1.1.2.</span> <span class="nav-text">유스케이스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#인터페이스-어댑터-Interface-Adaptor"><span class="nav-number">1.1.3.</span> <span class="nav-text">인터페이스 어댑터(Interface Adaptor)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#프레임워크와-드라이버"><span class="nav-number">1.1.4.</span> <span class="nav-text">프레임워크와 드라이버</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#원은-네-개여야만-하나"><span class="nav-number">1.1.5.</span> <span class="nav-text">원은 네 개여야만 하나?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#경계-횡단하기"><span class="nav-number">1.1.6.</span> <span class="nav-text">경계 횡단하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#경계를-횡단하는-데이터는-어떤-모습인가"><span class="nav-number">1.1.7.</span> <span class="nav-text">경계를 횡단하는 데이터는 어떤 모습인가?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#전형적인-시나리오"><span class="nav-number">1.2.</span> <span class="nav-text">전형적인 시나리오</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">1.3.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23장-프레전터와-험블-객체"><span class="nav-number">2.</span> <span class="nav-text">23장 프레전터와 험블 객체</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#험블객체-패턴"><span class="nav-number">2.1.</span> <span class="nav-text">험블객체 패턴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#프레젠터와-뷰"><span class="nav-number">2.2.</span> <span class="nav-text">프레젠터와 뷰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#테스트와-아키텍처"><span class="nav-number">2.3.</span> <span class="nav-text">테스트와 아키텍처</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#데이터베이스-게이트웨이"><span class="nav-number">2.4.</span> <span class="nav-text">데이터베이스 게이트웨이</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#데이터-매퍼"><span class="nav-number">2.5.</span> <span class="nav-text">데이터 매퍼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-리스너"><span class="nav-number">2.6.</span> <span class="nav-text">서비스 리스너</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-1"><span class="nav-number">2.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24장-부분적-경계"><span class="nav-number">3.</span> <span class="nav-text">24장 부분적 경계</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#마지막-단계를-건너뛰기"><span class="nav-number">3.0.1.</span> <span class="nav-text">마지막 단계를 건너뛰기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#일차원-경계"><span class="nav-number">3.0.2.</span> <span class="nav-text">일차원 경계</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#퍼사드"><span class="nav-number">3.0.3.</span> <span class="nav-text">퍼사드</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-2"><span class="nav-number">3.1.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25장-계층과-경계"><span class="nav-number">4.</span> <span class="nav-text">25장 계층과 경계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#움퍼스-사냥-게임"><span class="nav-number">4.1.</span> <span class="nav-text">움퍼스 사냥 게임</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#클린-아키텍처"><span class="nav-number">4.2.</span> <span class="nav-text">클린 아키텍처?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#흐름-횡단하기"><span class="nav-number">4.3.</span> <span class="nav-text">흐름 횡단하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#흐름-분리하기"><span class="nav-number">4.4.</span> <span class="nav-text">흐름 분리하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-3"><span class="nav-number">4.5.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

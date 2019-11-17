@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+<meta name="keywords" content="clean architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="clean-architecture-26-27">
+<meta property="og:url" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231103861.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231028826.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117230927372.png">
+<meta property="og:updated_time" content="2019-11-17T14:22:59.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="clean-architecture-26-27">
+<meta name="twitter:description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+<meta name="twitter:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
+
+<link rel="canonical" href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>clean-architecture-26-27 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          clean-architecture-26-27
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2019-11-17 22:10:29 / Updated at: 23:22:59" itemprop="dateCreated datePublished" datetime="2019-11-17T22:10:29+09:00">2019-11-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2019/11/17/clean-architecture-26-27/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><h1 id="27-‘크고-작은-모든’-서비스들"><a href="#27-‘크고-작은-모든’-서비스들" class="headerlink" title="27 ‘크고 작은 모든’ 서비스들"></a>27 ‘크고 작은 모든’ 서비스들</h1><h2 id="서비스-아키텍처"><a href="#서비스-아키텍처" class="headerlink" title="서비스 아키텍처?"></a>서비스 아키텍처?</h2><p>서비스는?</p><blockquote>
+<p>프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다.</p>
+</blockquote><h2 id="서비스의-이점"><a href="#서비스의-이점" class="headerlink" title="서비스의 이점?"></a>서비스의 이점?</h2><p><strong>시스템을 서비스로 분리함으로 얻게되는 이점</strong></p><ol>
+<li>서비스 사이의 결합이 확실히 분리된다.</li>
+<li>전담팀이 서비스를 소유하고 운영한다.</li>
+</ol><a id="more"></a>
+
+
+
+<h3 id="결합-분리의-오류"><a href="#결합-분리의-오류" class="headerlink" title="결합 분리의 오류"></a>결합 분리의 오류</h3><blockquote>
+<p> 서비스 사이의 결합이 분리된다는 점</p>
+</blockquote>
+<p><strong>정말일까?</strong></p>
+<p>서비스 사이를 오가는 데이터 레코드에 새로운 필드를 추가한다면, 이 서비스를 사용하는 모든 서비스는 반드시 변경되어야한다.</p>
+<p>서비스들은 이 데이터 레코드에 강하게 결합되고, 서비스들 사이는 서로 간접적으로 결합되어 버린다.</p>
+<h3 id="개발-및-배포-독립성의-오류"><a href="#개발-및-배포-독립성의-오류" class="headerlink" title="개발 및 배포 독립성의 오류"></a>개발 및 배포 독립성의 오류</h3><blockquote>
+<p>전담팀이 서비스를 소유하고 운영한다?</p>
+</blockquote>
+<p>전담팀이 각 서비스를 작성하고, 유지보수하며, 운영하는 책임을 진다.</p>
+<p>개발 및 배포 독립성은 확장 가능한것으로 간주돈다.</p>
+<ul>
+<li>대규모 엔터프라이즈 시스템은 서비스 기반 시스템 이외에도, 모노리틱 시스템이나 컴포넌트 기반 시스템으로도 구축할 수 있다는 사실이다.</li>
+<li>서비스라고 항상 독립적으로 개발 하고, 배포하며, 운영할수 있는 것은 아니다. 데이터나 행위에서 어느정도 결합되어 있다면 결합정도에 맞게 , 개발, 배포, 운영을 조정해야한다.</li>
+</ul>
+<h2 id="야옹이-문제"><a href="#야옹이-문제" class="headerlink" title="야옹이 문제"></a>야옹이 문제</h2><img src="/2019/11/17/clean-architecture-26-27/image-20191117231451657.png" alt="image-20191117231451657" style="zoom:50%;">
+
+<p>Micro service</p>
+<ul>
+<li>Taxi UI : 고객 서비스 담당</li>
+<li>Taxi Finder : TaxiSupplier의 현황을 검토하여 사용자에게 적합한 택시 후보들을 선별</li>
+<li>TaxiSelector : 사용자가 지정한 비용, 시간, 고급 여부 등의 조건을 기초로 후보 택시중 적합한 택시를 선택</li>
+<li>TaxiDisplatcher : 해당 택시에 배차 지시</li>
+</ul>
+<p>고양이를 배달해달라니 !!!</p>
+<p>고양이를 배달하려면 위 서비스들 다 변경해야한다.</p>
+<p>횡단 관심사가 지닌 문제다.</p>
+<h2 id="객체가-구출하다"><a href="#객체가-구출하다" class="headerlink" title="객체가 구출하다"></a>객체가 구출하다</h2><img src="/2019/11/17/clean-architecture-26-27/image-20191117231103861.png" alt="image-20191117231103861" style="zoom:50%;">
+
+<h2 id="컴포넌트-기반-서비스"><a href="#컴포넌트-기반-서비스" class="headerlink" title="컴포넌트 기반 서비스"></a>컴포넌트 기반 서비스</h2><img src="/2019/11/17/clean-architecture-26-27/image-20191117231028826.png" alt="image-20191117231028826" style="zoom:50%;">
+
+<h2 id="횡단-관심사"><a href="#횡단-관심사" class="headerlink" title="횡단 관심사"></a>횡단 관심사</h2><p>아키텍처 경계가 서비스 사이에 있지 않다는 사실.</p>
+<p>서비스를 관통하며 , 서비스를 컴포넌트 단위로 분할한다.</p>
+<p>모든 시스템이 직면하는 횡단관심사를 처리하려면 </p>
+<p><strong>서비스 내부는 의존성 규칙도 준수하는 컴포넌트 아키텍처로 설계해야 한다.</strong></p>
+<img src="/2019/11/17/clean-architecture-26-27/image-20191117230927372.png" alt="image-20191117230927372" style="zoom:50%;">
+
+<h2 id="결론-1"><a href="#결론-1" class="headerlink" title="결론"></a>결론</h2><p>서비스는 시스템의 확장성과 개발 가능성 측면에서 유용하지만, 그 자체로는 아키텍처적으로 그리 중요한 요소는 아니다.</p>
+<p>시스템의 아키텍처는 시스템 내부에 그어진 경계와 경계를 넘나드는 의존성에 의해 정의된다.</p>
+<p>서비스는 단 하나의 아키텍처 경계로 둘러싸인 단일 컴포넌트로 만들수있다.</p>
+<p>서비스는 여러 아키텍처 경계로 분리된 다수의 컴포넌트로 구성할 수 있다.</p>
+<p>서비스는 클라이언트와 서비스가 강하게 결합되어 아키텍처적으로 아무런 의미가 없을때도 있다.</p>
+<h1 id="28-테스트-경계"><a href="#28-테스트-경계" class="headerlink" title="28. 테스트 경계"></a>28. 테스트 경계</h1><h2 id="시스템-컴포넌트의-테스트"><a href="#시스템-컴포넌트의-테스트" class="headerlink" title="시스템 컴포넌트의 테스트"></a>시스템 컴포넌트의 테스트</h2><ul>
+<li>인수테스트</li>
+<li>기능테스트</li>
+<li>cucumber 테스트</li>
+<li>TDD 테스트</li>
+<li>BDD 테스트</li>
+<li>컴포넌트 테스트</li>
+</ul>
+<p><strong>Test ?</strong></p>
+<ul>
+<li>의존성 규칙을 따른다.</li>
+<li>세부적이며 구체적인 것으로 의존성은 항상 테스트 대상이 되는 코드를 향한다.</li>
+<li>아키텍처에서 가장 바깥쪽 원이다.</li>
+<li>테스트는 독립적으로 배포가능하다.</li>
+<li>시스템 컴포넌트 중 가장 고립되어있다.</li>
+</ul>
+<h2 id="테스트를-고려한-설계"><a href="#테스트를-고려한-설계" class="headerlink" title="테스트를 고려한 설계"></a>테스트를 고려한 설계</h2><p>테스트가 지닌 고립성이 테스트는 대체로 배포하지 않는 다는 사실과 어우러지며, 테스트가 시스템의 설계 범위 밖에 있다고 여겨지나 이 관점은 치명적인 오류가 있다.</p>
+<p>테스트와 시스템이 잘 통합되지 않으면 </p>
+<ul>
+<li>테스트는 깨지기 쉽다.</li>
+<li>시스템은 뻣뻣해져 변경하기 어려워진다.</li>
+</ul>
+<p><strong>결합</strong></p>
+<p>시스템에 강력한 결합된 테스트가 변경</p>
+<ul>
+<li>시스템 공통 컴포넌트가 변경되면 수백, 수천개의 테스트가 망가진다.</li>
+<li>깨지기 쉬운 테스트 문제(Fragile Tests Problem)</li>
+</ul>
+<p><strong>문제 해결 방법</strong></p>
+<p>테스트를 고려해서 설계해야함.</p>
+<ul>
+<li>변동성이 있는 것에 의존하지 말라. GUI 는 변동성이 크다.</li>
+<li>GUI를 사용하지 않고 업무 규칙을 테스트 할 수 있게 해야한다.</li>
+</ul>
+<h2 id="테스트-API"><a href="#테스트-API" class="headerlink" title="테스트 API"></a>테스트 API</h2><p>테스트가 모든 업무 규칙을 검증하는데 사용할 수 있도록 특화된 API 를 만들면 된다. </p>
+<p>이러한 API 는 보안 제약사항을 무시할 수 있고, 값비싼 자원은 건너뛰고, 시스템을 테스트 가능한 특정 상태로 갖에하는 강력한 힘들 지녀야만 한다. 이 API는 사용자 인터페이스가 사용하는 인터렉터 와 인터페이스 어댑터들의 상위 집합이 될 것이다,</p>
+<p>테스트 API 는 테스트를 애플리케이션으로부터 분리할 목적으로 사용한다.</p>
+<p>단순히 테스트를 UI에서 분리하는 것이 아닌, 애플리케이션 구조로부터 결합을 분리하는게 목표다.</p>
+<p><strong>구조적 결합</strong></p>
+<blockquote>
+<p> 테스트 결합 중 가장 강하며, 가장 은밀하게 퍼져 나가는 유형</p>
+</blockquote>
+<p><strong>보안</strong></p>
+<blockquote>
+<p> 테스트 api 를 운영에 배포하면 위험에 처할 수 있다. </p>
+</blockquote>
+<p>위험을 피하기 위해 테스트 API 자체와 테스트 API 중 위험한 부분의 구현부는 독립적으로 배포할수 있는 컴포넌트로 분리해야한다.</p>
+<h2 id="결론-2"><a href="#결론-2" class="headerlink" title="결론"></a>결론</h2><blockquote>
+<p> 테스트는 시스템 외부에 있지 않고 시스템의 일부이다.</p>
+</blockquote>
+<p>테스트를 시스템의 일부로 설계하지 않으면 테스트는 깨지기 쉽고 유지보수하기 어려워지는 경향이 있다.</p>
+<p>이러한 테스트는 유지보수하기 어렵기에 결국 버려지게 된다.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/clean-architecture/" rel="tag"><i class="fa fa-tag"></i> clean architecture</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/11/clean-architecture-22-25/" rel="next" title="5부 아키텍처 22장 ~ 25장">
+                  <i class="fa fa-chevron-left"></i> 5부 아키텍처 22장 ~ 25장
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#26-메인-컴포넌트"><span class="nav-number">1.</span> <span class="nav-text">26 메인 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#궁극전인-세부사항"><span class="nav-number">1.1.</span> <span class="nav-text">궁극전인 세부사항</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">1.2.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-‘크고-작은-모든’-서비스들"><span class="nav-number">2.</span> <span class="nav-text">27 ‘크고 작은 모든’ 서비스들</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-아키텍처"><span class="nav-number">2.1.</span> <span class="nav-text">서비스 아키텍처?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스의-이점"><span class="nav-number">2.2.</span> <span class="nav-text">서비스의 이점?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#결합-분리의-오류"><span class="nav-number">2.2.1.</span> <span class="nav-text">결합 분리의 오류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#개발-및-배포-독립성의-오류"><span class="nav-number">2.2.2.</span> <span class="nav-text">개발 및 배포 독립성의 오류</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#야옹이-문제"><span class="nav-number">2.3.</span> <span class="nav-text">야옹이 문제</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체가-구출하다"><span class="nav-number">2.4.</span> <span class="nav-text">객체가 구출하다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#컴포넌트-기반-서비스"><span class="nav-number">2.5.</span> <span class="nav-text">컴포넌트 기반 서비스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#횡단-관심사"><span class="nav-number">2.6.</span> <span class="nav-text">횡단 관심사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-1"><span class="nav-number">2.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-테스트-경계"><span class="nav-number">3.</span> <span class="nav-text">28. 테스트 경계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#시스템-컴포넌트의-테스트"><span class="nav-number">3.1.</span> <span class="nav-text">시스템 컴포넌트의 테스트</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#테스트를-고려한-설계"><span class="nav-number">3.2.</span> <span class="nav-text">테스트를 고려한 설계</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#테스트-API"><span class="nav-number">3.3.</span> <span class="nav-text">테스트 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-2"><span class="nav-number">3.4.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
