@@ -50,22 +50,22 @@
   };
 </script>
 
-  <meta name="description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+  <meta name="description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
 <meta name="keywords" content="clean architecture">
 <meta property="og:type" content="article">
-<meta property="og:title" content="clean-architecture-26-27">
+<meta property="og:title" content="clean-architecture-26-28">
 <meta property="og:url" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+<meta property="og:description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231103861.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231028826.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117230927372.png">
-<meta property="og:updated_time" content="2019-11-17T14:22:59.307Z">
+<meta property="og:updated_time" content="2019-11-19T13:32:10.102Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="clean-architecture-26-27">
-<meta name="twitter:description" content="26 메인 컴포넌트궁극전인 세부사항결론27 ‘크고 작은 모든’ 서비스들서비스 아키텍처?서비스는? 프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다. 서비스의 이점?시스템을 서비스로 분리함으로 얻게되는 이점 서비스 사이의 결합이 확실히 분리된다. 전담팀이 서비스를 소유하고 운영한다.">
+<meta name="twitter:title" content="clean-architecture-26-28">
+<meta name="twitter:description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
 <meta name="twitter:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>clean-architecture-26-27 | Object Oriented Programmer</title>
+  <title>clean-architecture-26-28 | Object Oriented Programmer</title>
   
 
 
@@ -214,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          clean-architecture-26-27
+          clean-architecture-26-28
         </h1>
 
         <div class="post-meta">
@@ -223,10 +223,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2019-11-17 22:10:29 / Updated at: 23:22:59" itemprop="dateCreated datePublished" datetime="2019-11-17T22:10:29+09:00">2019-11-17</time>
+              <time title="Post created: 2019-11-17 22:10:29" itemprop="dateCreated datePublished" datetime="2019-11-17T22:10:29+09:00">2019-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2019-11-19 22:32:10" itemprop="dateModified" datetime="2019-11-19T22:32:10+09:00">2019-11-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -264,15 +270,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><h1 id="27-‘크고-작은-모든’-서비스들"><a href="#27-‘크고-작은-모든’-서비스들" class="headerlink" title="27 ‘크고 작은 모든’ 서비스들"></a>27 ‘크고 작은 모든’ 서비스들</h1><h2 id="서비스-아키텍처"><a href="#서비스-아키텍처" class="headerlink" title="서비스 아키텍처?"></a>서비스 아키텍처?</h2><p>서비스는?</p><blockquote>
+        <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><p><strong>문자열 초기화</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mian</span> <span class="keyword">implements</span> <span class="title">HtwMessageReceiver</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> HuntTheWumpus game;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> hitPoints = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; caverns = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] environments = <span class="keyword">new</span> String[] &#123;<span class="string">"bright"</span>, <span class="string">"humid"</span>, <span class="string">"dry"</span>, <span class="string">"creepy"</span>, <span class="string">"ugly"</span>, <span class="string">"foggy"</span>, <span class="string">"hot"</span>, <span class="string">"cold"</span>, <span class="string">"drafty"</span>, <span class="string">"dreadful"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] shapes = <span class="keyword">new</span> String[] &#123;<span class="string">"round"</span>, <span class="string">"square"</span>, <span class="string">"oval"</span>, <span class="string">"irregualar"</span>, <span class="string">"long"</span>, <span class="string">"craggy"</span>, <span class="string">"rough"</span>, <span class="string">"tall"</span>, <span class="string">"narrow"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] cavernTypes = <span class="keyword">new</span> String[] &#123;<span class="string">"cavern"</span>, <span class="string">"room"</span>, <span class="string">"chamber"</span>. <span class="string">"catacomb"</span>, <span class="string">"crevasse"</span>, <span class="string">"cell"</span>, <span class="string">"tunnel"</span>, <span class="string">"passageway"</span>, <span class="string">"hall"</span>, <span class="string">"expanse"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] adornments = <span class="keyword">new</span> String[] &#123;<span class="string">"smelling of sulfur"</span>, <span class="string">"with engravings on the walls"</span>, <span class="string">""</span>, <span class="string">"littered with garbage"</span> ... &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>*<em>Factory를 사용하여 게임을 생성 *</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	game = HtwFactory.makeGame(<span class="string">"htw.game.HuntTheWumpusFacade"</span>, <span class="keyword">new</span> Main()); <span class="comment">//factory 로 main 생성</span></span><br><span class="line">  </span><br><span class="line">  createMap(); <span class="comment">//지도 생성</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    </span><br><span class="line">    HuntTheWumps.Command c = game.makeRestCommand(); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    	동서남북 등 키 를 받아스  행위 맵핑</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    c.execute(); <span class="comment">// 실행</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>맵 생성</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createMap</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> nCaverns = (<span class="keyword">int</span>) (Math.random() * <span class="number">30.0</span> + <span class="number">10.0</span>);</span><br><span class="line">  <span class="keyword">while</span>(nCaverns-- &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    caverns.add(makeName());</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ....</span><br><span class="line">    </span><br><span class="line">  game.addPitCavern(...);</span><br><span class="line">  game.setQuiver(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>메인은 클린 아키텍처의 가장 바깥 원이다.</strong></p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>메인을 플러그인 컴포넌트로 여기고 , 아키텍처 경계 바깥에 위치하나다고 보면 설정 관련 문제를 쉽게 해결 할 수 있다.</p>
+<h1 id="27-‘크고-작은-모든’-서비스들"><a href="#27-‘크고-작은-모든’-서비스들" class="headerlink" title="27 ‘크고 작은 모든’ 서비스들"></a>27 ‘크고 작은 모든’ 서비스들</h1><h2 id="서비스-아키텍처"><a href="#서비스-아키텍처" class="headerlink" title="서비스 아키텍처?"></a>서비스 아키텍처?</h2><p>서비스는?</p>
+<blockquote>
 <p>프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다.</p>
-</blockquote><h2 id="서비스의-이점"><a href="#서비스의-이점" class="headerlink" title="서비스의 이점?"></a>서비스의 이점?</h2><p><strong>시스템을 서비스로 분리함으로 얻게되는 이점</strong></p><ol>
+</blockquote>
+<p>서비스를 사용하는 것이 아키텍처인가?</p>
+<ul>
+<li>아키텍처는 의존성 규칙을 준수하며 고수준의 정채을 저수준의 세부사항으로부터 분리하는 경계에 의해 정의된다.</li>
+</ul>
+<p>행위를 분리할 뿐인 서비스라면 값비싼 함수호출에 불과하며, 아키텍처관점에서 중요하다고 볼수 없다.</p>
+<h2 id="서비스의-이점"><a href="#서비스의-이점" class="headerlink" title="서비스의 이점?"></a>서비스의 이점?</h2><p><strong>시스템을 서비스로 분리함으로 얻게되는 이점</strong></p>
+<ol>
 <li>서비스 사이의 결합이 확실히 분리된다.</li>
 <li>전담팀이 서비스를 소유하고 운영한다.</li>
-</ol><a id="more"></a>
-
-
-
+</ol>
 <h3 id="결합-분리의-오류"><a href="#결합-분리의-오류" class="headerlink" title="결합 분리의 오류"></a>결합 분리의 오류</h3><blockquote>
 <p> 서비스 사이의 결합이 분리된다는 점</p>
 </blockquote>
@@ -300,9 +322,24 @@
 <p>고양이를 배달해달라니 !!!</p>
 <p>고양이를 배달하려면 위 서비스들 다 변경해야한다.</p>
 <p>횡단 관심사가 지닌 문제다.</p>
-<h2 id="객체가-구출하다"><a href="#객체가-구출하다" class="headerlink" title="객체가 구출하다"></a>객체가 구출하다</h2><img src="/2019/11/17/clean-architecture-26-27/image-20191117231103861.png" alt="image-20191117231103861" style="zoom:50%;">
+<h2 id="객체가-구출하다"><a href="#객체가-구출하다" class="headerlink" title="객체가 구출하다"></a>객체가 구출하다</h2><p>다형적으로 확장할 수 있는 클래스 집합을 생성해 새로운 기능을 처리하도록 함.</p>
+<ul>
+<li>배차에 특화된 로직은 Rides</li>
+<li>야옹이에 대한 신규 기능은 Kittens</li>
+</ul>
+<p>위 두 컴포넌트는 기존 컴포넌트들에 있는 추상 기반 클래스를 템플릿 메소드나 전략 패턴등을 이용해서 오버라이드한다.</p>
+<p>Rides 와 Kittens 가 의존성 규칙을 준수한다는 점을 주목하자.</p>
+<img src="/2019/11/17/clean-architecture-26-27/image-20191117231103861.png" alt="image-20191117231103861" style="zoom:50%;">
 
-<h2 id="컴포넌트-기반-서비스"><a href="#컴포넌트-기반-서비스" class="headerlink" title="컴포넌트 기반 서비스"></a>컴포넌트 기반 서비스</h2><img src="/2019/11/17/clean-architecture-26-27/image-20191117231028826.png" alt="image-20191117231028826" style="zoom:50%;">
+<h2 id="컴포넌트-기반-서비스"><a href="#컴포넌트-기반-서비스" class="headerlink" title="컴포넌트 기반 서비스"></a>컴포넌트 기반 서비스</h2><p><strong>자바의 경우</strong></p>
+<p>서비스를 하나이상의 jar 파일에 포함되는 추상 클래스들의 집합이라고 보면,  </p>
+<ol>
+<li>새로운 기능 추가 혹은 기능 확장은 새로운 jar 파일로 만든다. </li>
+<li>이때 새로운 jar 파일을 구성하는 클래스들은 기존 jar 파일에 정의된 추상 클래스들을 확장해서 만들어진다. </li>
+<li>그러면 새로운 기능 배포는 서비스를 재배포하는 문제가 아니라, 서비스를 로드하는 경로에 새로운 jar 파일만 추가하면 된다.</li>
+<li>새로운 기능 추가는 개방 폐쇄 원칙을 준수하게 된다.</li>
+</ol>
+<img src="/2019/11/17/clean-architecture-26-27/image-20191117231028826.png" alt="image-20191117231028826" style="zoom:50%;">
 
 <h2 id="횡단-관심사"><a href="#횡단-관심사" class="headerlink" title="횡단 관심사"></a>횡단 관심사</h2><p>아키텍처 경계가 서비스 사이에 있지 않다는 사실.</p>
 <p>서비스를 관통하며 , 서비스를 컴포넌트 단위로 분할한다.</p>
@@ -318,9 +355,15 @@
 <h1 id="28-테스트-경계"><a href="#28-테스트-경계" class="headerlink" title="28. 테스트 경계"></a>28. 테스트 경계</h1><h2 id="시스템-컴포넌트의-테스트"><a href="#시스템-컴포넌트의-테스트" class="headerlink" title="시스템 컴포넌트의 테스트"></a>시스템 컴포넌트의 테스트</h2><ul>
 <li>인수테스트</li>
 <li>기능테스트</li>
-<li>cucumber 테스트</li>
-<li>TDD 테스트</li>
-<li>BDD 테스트</li>
+<li>cucumber 테스트<ul>
+<li><a href="https://velog.io/@clarekang/cucumber-kr-login" target="_blank" rel="noopener">https://velog.io/@clarekang/cucumber-kr-login</a></li>
+</ul>
+</li>
+<li>TDD 테스트 (Test Driven Development)</li>
+<li>BDD 테스트 (Behavior-Driven Development)<ul>
+<li><a href="https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/" target="_blank" rel="noopener">https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/</a></li>
+</ul>
+</li>
 <li>컴포넌트 테스트</li>
 </ul>
 <p><strong>Test ?</strong></p>

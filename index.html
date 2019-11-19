@@ -205,7 +205,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/17/clean-architecture-26-27/" class="post-title-link" itemprop="url">clean-architecture-26-27</a>
+            <a href="/2019/11/17/clean-architecture-26-27/" class="post-title-link" itemprop="url">clean-architecture-26-28</a>
         </h1>
 
         <div class="post-meta">
@@ -214,10 +214,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2019-11-17 22:10:29 / Updated at: 23:22:59" itemprop="dateCreated datePublished" datetime="2019-11-17T22:10:29+09:00">2019-11-17</time>
+              <time title="Post created: 2019-11-17 22:10:29" itemprop="dateCreated datePublished" datetime="2019-11-17T22:10:29+09:00">2019-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2019-11-19 22:32:10" itemprop="dateModified" datetime="2019-11-19T22:32:10+09:00">2019-11-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -255,12 +261,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><h1 id="27-‘크고-작은-모든’-서비스들"><a href="#27-‘크고-작은-모든’-서비스들" class="headerlink" title="27 ‘크고 작은 모든’ 서비스들"></a>27 ‘크고 작은 모든’ 서비스들</h1><h2 id="서비스-아키텍처"><a href="#서비스-아키텍처" class="headerlink" title="서비스 아키텍처?"></a>서비스 아키텍처?</h2><p>서비스는?</p><blockquote>
-<p>프로세스나 플랫폼 경계를 가로지르는 함수 호출에 지나지 않는다.</p>
-</blockquote><h2 id="서비스의-이점"><a href="#서비스의-이점" class="headerlink" title="서비스의 이점?"></a>서비스의 이점?</h2><p><strong>시스템을 서비스로 분리함으로 얻게되는 이점</strong></p><ol>
-<li>서비스 사이의 결합이 확실히 분리된다.</li>
-<li>전담팀이 서비스를 소유하고 운영한다.</li>
-</ol>
+          <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><p><strong>문자열 초기화</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mian</span> <span class="keyword">implements</span> <span class="title">HtwMessageReceiver</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> HuntTheWumpus game;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> hitPoints = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; caverns = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] environments = <span class="keyword">new</span> String[] &#123;<span class="string">"bright"</span>, <span class="string">"humid"</span>, <span class="string">"dry"</span>, <span class="string">"creepy"</span>, <span class="string">"ugly"</span>, <span class="string">"foggy"</span>, <span class="string">"hot"</span>, <span class="string">"cold"</span>, <span class="string">"drafty"</span>, <span class="string">"dreadful"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] shapes = <span class="keyword">new</span> String[] &#123;<span class="string">"round"</span>, <span class="string">"square"</span>, <span class="string">"oval"</span>, <span class="string">"irregualar"</span>, <span class="string">"long"</span>, <span class="string">"craggy"</span>, <span class="string">"rough"</span>, <span class="string">"tall"</span>, <span class="string">"narrow"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] cavernTypes = <span class="keyword">new</span> String[] &#123;<span class="string">"cavern"</span>, <span class="string">"room"</span>, <span class="string">"chamber"</span>. <span class="string">"catacomb"</span>, <span class="string">"crevasse"</span>, <span class="string">"cell"</span>, <span class="string">"tunnel"</span>, <span class="string">"passageway"</span>, <span class="string">"hall"</span>, <span class="string">"expanse"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] adornments = <span class="keyword">new</span> String[] &#123;<span class="string">"smelling of sulfur"</span>, <span class="string">"with engravings on the walls"</span>, <span class="string">""</span>, <span class="string">"littered with garbage"</span> ... &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/17/clean-architecture-26-27/#more" rel="contents">
