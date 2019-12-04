@@ -64,9 +64,11 @@
 <meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191201162828175.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191201170220959.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191201162856361.png">
-<meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191201165751555.png">
+<meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191205000723342.png">
+<meta property="og:image" content="https://dschoi.github.io/Users/setin82/git/dsChoi/source/_posts/clean-architecture-30-34/image-20191205001011499.png">
+<meta property="og:image" content="https://dschoi.github.io/Users/setin82/git/dsChoi/source/_posts/clean-architecture-30-34/image-20191205001228418.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/30/clean-architecture-30-34/image-20191201164609967.png">
-<meta property="og:updated_time" content="2019-12-02T12:49:52.273Z">
+<meta property="og:updated_time" content="2019-12-04T15:25:40.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="6부 세부사항 30장 ~ 34장">
 <meta name="twitter:description" content="30장 데이터베이스는 세부사항이다. 아키텍처 관점에서 볼때 데이터베이스는 엔티티가 아니다. -&amp;gt; 데이터 베이스는 세부사항이다. 관계형 데이터베이스에드거 커드는 1970년에  관계형 데이터 베이스의 원칙을 정의했다. 관계형 데이터베이스의 기술이 얼마나 뛰어나든, 유용하든 , 결국 기술이다.       데이터 베이스는 세부사항이다.   많은 데이터 접근">
@@ -235,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2019-12-02 21:49:52" itemprop="dateModified" datetime="2019-12-02T21:49:52+09:00">2019-12-02</time>
+                <time title="Updated at: 2019-12-05 00:25:40" itemprop="dateModified" datetime="2019-12-05T00:25:40+09:00">2019-12-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -471,7 +473,21 @@
 <p>아래 그림을 보면 이전과 같지만, 하나의 패키지에 속하게 된다.</p>
 <img src="/2019/11/30/clean-architecture-30-34/image-20191201162856361.png" alt="image-20191201162856361" style="zoom:50%;">
 
-<h2 id="포트와-어댑터"><a href="#포트와-어댑터" class="headerlink" title="포트와 어댑터"></a>포트와 어댑터</h2><h2 id="컴포넌트-기반-패키지"><a href="#컴포넌트-기반-패키지" class="headerlink" title="컴포넌트 기반 패키지"></a>컴포넌트 기반 패키지</h2><p>엉클 밥의 컴포넌트 정의</p>
+<h2 id="포트와-어댑터"><a href="#포트와-어댑터" class="headerlink" title="포트와 어댑터"></a>포트와 어댑터</h2><p>엉클 밥에 따르면</p>
+<blockquote>
+<p>포트와 어댑터, 육각형 아키텍처, 경계, 컨트롤러, 엔티티BCE 등의 방식의 접근의 이유는</p>
+<p>업무/도메인에 초점을 둔 코드가 프레임워크나 데이터베이스 같은 기술적인 세부 구현과 독립적이며 분리된 아키텍처를 만들기 위해서이다.</p>
+</blockquote>
+<p>domain 패키지가 ‘내부’, 나머지 패키지는 ‘외부’</p>
+<p>OrderRepository가 Orders로 변환됨.</p>
+<p>이는 도메인주도설계에서 비롯됨.</p>
+<img src="/2019/11/30/clean-architecture-30-34/image-20191205000723342.png" alt="image-20191205000723342" style="zoom:50%;">
+
+
+
+
+
+<h2 id="컴포넌트-기반-패키지"><a href="#컴포넌트-기반-패키지" class="headerlink" title="컴포넌트 기반 패키지"></a>컴포넌트 기반 패키지</h2><p>엉클 밥의 컴포넌트 정의</p>
 <ul>
 <li>배포 단위이다.</li>
 <li>시스템의 구성요소로, 배포할수 있는 가장 작은 단위</li>
@@ -484,15 +500,49 @@
 <li><p>애플리케이션 내부에 존재한다.</p>
 </li>
 </ul>
-<img src="/2019/11/30/clean-architecture-30-34/image-20191201165751555.png" alt="image-20191201165751555" style="zoom:50%;">
+<img src="/Users/setin82/git/dsChoi/source/_posts/clean-architecture-30-34/image-20191205001011499.png" alt="image-20191205001011499" style="zoom:50%;">
 
 
 
-<h2 id="구현-세부사항엔-항상-문제가-있다"><a href="#구현-세부사항엔-항상-문제가-있다" class="headerlink" title="구현 세부사항엔 항상 문제가 있다."></a>구현 세부사항엔 항상 문제가 있다.</h2><p>세부사항을 잘못 구현하면 문제가 있다.</p>
-<p>Controller -&gt; Repository 호출 하는 경우. </p>
+
+
+<p><strong>컴포넌트 기반 패키지를 도입해야 하는 이유</strong></p>
+<p>서비스 중심적인 시각으로 소프트웨어 시스템을 바라보며, 마이크로서비스 아키텍처가 가진 시각과 동일.</p>
+<p>컴포넌트 기반 패키지에서는 사용자 인터페이스를 큰 단위의 컴포넌트로부터 분리해서 유지.</p>
+<p>컴포넌트 기반 패키지 접근법의 주된 이점은 주문관련 코딩을 해야할때는 OrdersComponet 만 보면 된다는것.</p>
+<img src="/Users/setin82/git/dsChoi/source/_posts/clean-architecture-30-34/image-20191205001228418.png" alt="image-20191205001228418" style="zoom:50%;">
+
+<h2 id="구현-세부사항엔-항상-문제가-있다"><a href="#구현-세부사항엔-항상-문제가-있다" class="headerlink" title="구현 세부사항엔 항상 문제가 있다."></a>구현 세부사항엔 항상 문제가 있다.</h2><ul>
+<li>계층기반 패키지</li>
+<li>기능 기반 패키지</li>
+<li>포트와 어댑터</li>
+<li>컴포넌트 기반 패키지</li>
+</ul>
+<p>위 접근법을 이용해 코딩하면 좋지만. 세부사항을 잘못 구현하면 문제가 있다.</p>
+<p>Public 접근자를 방반하게 사용한다면 결국 흐트러지게 될것이다.</p>
 <h2 id="조직화-vs-캡슐화"><a href="#조직화-vs-캡슐화" class="headerlink" title="조직화 vs. 캡슐화"></a>조직화 vs. 캡슐화</h2><p><strong>그림 34.8. 회색 처리한 타입은 더 제한적인 접근 지시자를 사용할 수 있다.</strong></p>
 <p><img src="/2019/11/30/clean-architecture-30-34/image-20191201164609967.png" alt="image-20191201164609967"></p>
-<h2 id="다른-결합-분리-모드"><a href="#다른-결합-분리-모드" class="headerlink" title="다른 결합 분리 모드"></a>다른 결합 분리 모드</h2><h2 id="결론-빠져-있는-조언"><a href="#결론-빠져-있는-조언" class="headerlink" title="결론: 빠져 있는 조언"></a>결론: 빠져 있는 조언</h2><p>최적의 설계를 했더라도. 구현 전략에 얽힌 복잡함을 구려하지 않으면 설계가 순식간에 망가질 수 있다는 사실을 강조하는데 그 목적이 있다.</p>
+<h2 id="다른-결합-분리-모드"><a href="#다른-결합-분리-모드" class="headerlink" title="다른 결합 분리 모드"></a>다른 결합 분리 모드</h2><p>자바9 모듈 시스템</p>
+<p><strong>Module이란?</strong></p>
+<p>모듈은 다음과 같은 설명의 모음이다.</p>
+<ul>
+<li>code : type을 포함하고 있는 packages. ( Java class들, Interface들 )</li>
+<li>data : resources와 다른 종류의 정적정보.</li>
+</ul>
+<p><strong>요약하자면</strong></p>
+<ul>
+<li>Class는 field와 method를 포함한다.</li>
+<li>Package는 Class와 Enum, Interface, 설정파일들을 포함한다.</li>
+<li>Module은 Package와 다른 데이터 자원을 포함한다.</li>
+</ul>
+<p>Module 시스템 메커니즘은 Module이 다른 Module을 읽고 다른 Module에서 접근할 수 있는 방법을 제어하는 가독성과 접근성을 제공한다. Module에는 세 종류가 있다.</p>
+<ul>
+<li>named module</li>
+<li>unnamed module</li>
+<li>automatic module</li>
+</ul>
+<p>Java는 runtime시점에 classpath를 검색하여 서비스 공급자를 찾을 수 있는 java.util.ServiceLoader 클래스를 가지고 있다.</p>
+<h2 id="결론-빠져-있는-조언"><a href="#결론-빠져-있는-조언" class="headerlink" title="결론: 빠져 있는 조언"></a>결론: 빠져 있는 조언</h2><p>최적의 설계를 했더라도. 구현 전략에 얽힌 복잡함을 구려하지 않으면 설계가 순식간에 망가질 수 있다는 사실을 강조하는데 그 목적이 있다.</p>
 <p>선택된 아키텍처 스타일을 강제하는데 컴파일러의 도움을 받을수 있을지를 고미ㄴ하며, 데이터 모델과 다른 영역에 결합되지 않도록 주의하라. </p>
 <p><strong>구현 세부사항에는 항상 문제가 있다는 점을 잊지 말자.</strong></p>
 
