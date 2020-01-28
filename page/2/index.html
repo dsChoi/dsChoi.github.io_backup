@@ -191,6 +191,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/04/01/2019-04-02-logrotate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/01/2019-04-02-logrotate/" class="post-title-link" itemprop="url">logrotate를 활용한 로그관리(compress, lotate)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-04-01 10:00:50" itemprop="dateCreated datePublished" datetime="2019-04-01T10:00:50+09:00">2019-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-01-20 23:59:20" itemprop="dateModified" datetime="2020-01-20T23:59:20+09:00">2020-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/운영/" itemprop="url" rel="index">
+                    <span itemprop="name">운영</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2019/04/01/2019-04-02-logrotate/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/04/01/2019-04-02-logrotate/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="logrotate를-활용한-로그-관리-compress-lotate"><a href="#logrotate를-활용한-로그-관리-compress-lotate" class="headerlink" title="logrotate를 활용한 로그 관리 (compress, lotate)"></a>logrotate를 활용한 로그 관리 (compress, lotate)</h1><p>상황 : 아파치 로그 파일을 주기적으로(하루 단위로 rotation) 압축하여 일 별 관리하고 싶을 경우</p>
+<p>기존 아파치 설정  </p>
+<h4 id="httpd-conf"><a href="#httpd-conf" class="headerlink" title="httpd.conf"></a>httpd.conf</h4><p>CustomLog    “|/program/httpd-2.2.20/bin/rotatelogs -l /program/httpd-2.2.20/logs/%y%m%d.sample.activity_log 86400” combined env=!nolog</p>
+<p>ErrorLog     “|/program/httpd-2.2.20/bin/rotatelogs -l /program/httpd-2.2.20/logs/%y%m%d.sample.error_log 86400”</p>
+<ul>
+<li>하루 단위로 rotation 하고 있었지만 압축 저장하고 있지 않음.</li>
+</ul>
+<p>해결방법 : 리눅스 기본 logrotate 활용!</p>
+<hr>
+<p>* logrotate란? </p>
+<p>로그 파일(시스템 로그)을 rotates, compresses, and mails 을 할 수 있다.<br>설정 파일을 변경해도 관련 프로세스를 새로 시작할 필요 없이 cron 데몬이 주기적으로 실행 시켜준다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vi /etc/cron.daily</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/04/01/2019-04-02-logrotate/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/03/28/2019-03-28-software-master/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,7 +330,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2019-10-23 21:24:50" itemprop="dateModified" datetime="2019-10-23T21:24:50+09:00">2019-10-23</time>
+                <time title="Updated at: 2020-01-20 23:59:20" itemprop="dateModified" datetime="2020-01-20T23:59:20+09:00">2020-01-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -365,7 +473,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -378,7 +486,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
@@ -411,7 +519,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
