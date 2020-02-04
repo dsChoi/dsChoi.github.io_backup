@@ -67,7 +67,7 @@
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128224905609.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128225638397.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128225532157.png">
-<meta property="og:updated_time" content="2020-02-04T14:11:46.624Z">
+<meta property="og:updated_time" content="2020-02-04T14:18:34.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chapter 01. 객체 , 설계">
 <meta name="twitter:description" content="chapter 01. 객체 , 설계티켓 판매 애플리케이션 구현하기애플리케이션의 핵심 클래스무엇이 문제인가로버트 마틴은 클린 소프트웨어에서 소프트웨어 모듈이 가져야 하는 세가지 기능에 관해 설명한다.  모든 소프트웨어 모듈에는 세 가지의 목적이 있다. 첫번째 목적은 실행 중에 제대로 동작하는 것이다. 이것은 모듈의 존재 이유. 두번째 목적은 변경을 위해 존재">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-02-04 23:11:46" itemprop="dateModified" datetime="2020-02-04T23:11:46+09:00">2020-02-04</time>
+                <time title="Updated at: 2020-02-04 23:18:34" itemprop="dateModified" datetime="2020-02-04T23:18:34+09:00">2020-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -308,35 +308,16 @@
 <h3 id="어떻게-한-것인가"><a href="#어떻게-한-것인가" class="headerlink" title="어떻게 한 것인가?"></a>어떻게 한 것인가?</h3><p>판매자가 티켓을 판매하기 위해 TiketOffice를 사용하는 모든 부분을 TicketSeller로 옮기고, 관람객이 티켓을 구매하기 위해 Bag을 사용하는 부분을Audice 내부로 옮겼다. </p>
 <p>자기 자신의 문제를 스스로 해결하도록 코드를 변경한 것. </p>
 <ol>
-<li>변환전 </li>
+<li><p>변환전 </p>
+<img src="/2020/01/27/objects-01/image-20200128223045864.png" alt="image-20200128223045864" style="zoom:40%;">
+</li>
+<li><p>변환 후 </p>
+<img src="/2020/01/27/objects-01/image-20200128223120756.png" alt="image-20200128223120756" style="zoom:50%; ">
+
+
+
+</li>
 </ol>
-<img src="/2020/01/27/objects-01/image-20200128223045864.png" alt="image-20200128223045864" style="zoom:40%;float:left">    
-
-
-
-
-
-
-
-
-
-<ol start="2">
-<li>변환 후 </li>
-</ol>
-<img src="/2020/01/27/objects-01/image-20200128223120756.png" alt="image-20200128223120756" style="zoom:50%; float:left;">
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3 id="캡슐화와-응집도"><a href="#캡슐화와-응집도" class="headerlink" title="캡슐화와 응집도"></a>캡슐화와 응집도</h3><p>핵심!</p>
 <p>객체 내부의 상태를 캡슐화하고 객체 간의 메시지를 통해서만 상호작용하도록 만드는 것.</p>
 <p>밀접하게 연관된 작업만을 수행하고 연관성 없는 작업은 다른 객체에게 위임하는 객체를 가리켜 <strong>응집도(cohesion)</strong> 가 높다고 할수 있다.  자신의 데이터를 스스로 처리하는 자율적인 객체를 만들면 결합도를 낮출수 있을뿐더러 응집도를 높을수 있다.</p>

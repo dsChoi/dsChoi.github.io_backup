@@ -59,12 +59,12 @@
 <meta property="og:description" content="chapter 02. 객체지향 프로그래밍01. 영화 예매 시스템요구사항 영화 상영 할인 규칙 할인 조건 순서 조건 기간 조건   할인 정책 금액 할인 정책 비율 할인 정책     02. 객체지향 프로그래밍을 향해협력, 객체, 클래스 진정한 객체지향 패러다임으로서의 전환은 클래스가 아닌 객체에 초점을 맞출때 얻을수 있다.">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127163753490.png">
-<meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/objects-02/image-20200127164105171.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127164105171.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127180628959.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127220926117.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127222013233.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-02/image-20200127224059949.png">
-<meta property="og:updated_time" content="2020-02-04T14:09:53.682Z">
+<meta property="og:updated_time" content="2020-02-04T14:16:35.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chapter 02. 객체지향 프로그래밍">
 <meta name="twitter:description" content="chapter 02. 객체지향 프로그래밍01. 영화 예매 시스템요구사항 영화 상영 할인 규칙 할인 조건 순서 조건 기간 조건   할인 정책 금액 할인 정책 비율 할인 정책     02. 객체지향 프로그래밍을 향해협력, 객체, 클래스 진정한 객체지향 패러다임으로서의 전환은 클래스가 아닌 객체에 초점을 맞출때 얻을수 있다.">
@@ -233,7 +233,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-02-04 23:09:53" itemprop="dateModified" datetime="2020-02-04T23:09:53+09:00">2020-02-04</time>
+                <time title="Updated at: 2020-02-04 23:16:35" itemprop="dateModified" datetime="2020-02-04T23:16:35+09:00">2020-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,7 +306,12 @@
 
 
 
-<p><img src="/2020/01/27/objects-02/objects-02/image-20200127164105171.png" alt="image-20200127164105171"></p>
+<img src="/2020/01/27/objects-02/image-20200127164105171.png" alt="image-20200127164105171" style="zoom:50%;">
+
+
+
+
+
 <h3 id="클래스-구현하기"><a href="#클래스-구현하기" class="headerlink" title="클래스 구현하기"></a>클래스 구현하기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Screening</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Movie movie;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sequence;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime localDateTime;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Screening</span><span class="params">(Movie movie, <span class="keyword">int</span> sequence, LocalDateTime localDateTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.movie = movie;</span><br><span class="line">        <span class="keyword">this</span>.sequence = sequence;</span><br><span class="line">        <span class="keyword">this</span>.localDateTime = localDateTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Movie <span class="title">getMovie</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> movie;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSequence</span><span class="params">(<span class="keyword">int</span> sequence)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.sequence == sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Money <span class="title">getMovieFee</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> movie.getFee();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="자율적인-객체"><a href="#자율적인-객체" class="headerlink" title="자율적인 객체"></a>자율적인 객체</h4><ol>
