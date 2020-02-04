@@ -51,7 +51,9 @@ categories: 도서
 
 
 
-![image-20200127164105171](./_posts/objects-02/image-20200127164105171.png)
+<img src="./objects-02/image-20200127164105171.png" alt="image-20200127164105171" style="zoom:50%;"/>
+
+
 
 
 
