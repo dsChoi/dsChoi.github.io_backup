@@ -1,8 +1,8 @@
 ---
-title: objects-01
+title: chapter 01. 객체 , 설계 
 date: 2020-01-27 16:17:36
 tags:
-  - objects
+  - object
 categories: 도서
 
 ---
@@ -16,8 +16,6 @@ categories: 도서
 ![image-20200127225843873](./objects-01/image-20200127225843873.png)
 
 애플리케이션의 핵심 클래스
-
-
 
 
 
@@ -132,7 +130,21 @@ Audience 와 TicketSeller의 내부구현을 변경하더라도 Theater를 함�
 
 자기 자신의 문제를 스스로 해결하도록 코드를 변경한 것. 
 
-<img src="./objects-01/image-20200128223045864.png" alt="image-20200128223045864" style="zoom:40%;float:left" />    `-- ` <img src="./objects-01/image-20200128223120756.png" alt="image-20200128223120756" style="zoom:50%; float:right;" />
+1. 변환전 
+
+<img src="./objects-01/image-20200128223045864.png" alt="image-20200128223045864" style="zoom:40%;float:left" />    
+
+
+
+
+
+
+
+
+
+2. 변환 후 
+
+<img src="./objects-01/image-20200128223120756.png" alt="image-20200128223120756" style="zoom:50%; float:left;" />
 
 
 

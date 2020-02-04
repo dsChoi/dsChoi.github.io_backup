@@ -1,8 +1,8 @@
 ---
-title: objects-01
+title: chapter 02. 객체지향 프로그래밍
 date: 2020-01-27 16:19:36
 tags:
-  - objects
+  - object
 categories: 도서
 ---
 
@@ -51,7 +51,7 @@ categories: 도서
 
 
 
-![image-20200127164105171](/Users/setin82/git/dsChoi/source/_posts/objects-02/image-20200127164105171.png)
+![image-20200127164105171](./_posts/objects-02/image-20200127164105171.png)
 
 
 

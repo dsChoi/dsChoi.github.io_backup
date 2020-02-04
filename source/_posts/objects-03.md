@@ -3,7 +3,7 @@
 title: chapter 03. 역할, 책임, 협력
 date: 2020-01-28 23:09:06
 tags:
-  - objects
+  - object
 categories: 도서
 ---
 
