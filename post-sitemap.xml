@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://dschoi.github.io/2020/02/10/object-04/</loc>
+        <lastmod>2020-02-09T16:09:59.420Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://dschoi.github.io/2020/01/28/objects-03/</loc>
         <lastmod>2020-02-04T14:20:01.859Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,7 +80,7 @@
     </url>
 
     <url>
-        <loc>https://dschoi.github.io/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/</loc>
+        <loc>https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/</loc>
         <lastmod>2020-01-20T14:59:20.134Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/</loc>
+        <loc>https://dschoi.github.io/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/</loc>
         <lastmod>2020-01-20T14:59:20.134Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

@@ -6,7 +6,7 @@
   <link href="/feed.xml" rel="self"/>
   
   <link href="https://dschoi.github.io/"/>
-  <updated>2020-02-04T14:20:01.859Z</updated>
+  <updated>2020-02-09T16:09:59.420Z</updated>
   <id>https://dschoi.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>chapter 04. 설계 품질과 트레이드오프</title>
+    <link href="https://dschoi.github.io/2020/02/10/object-04/"/>
+    <id>https://dschoi.github.io/2020/02/10/object-04/</id>
+    <published>2020-02-09T16:05:07.000Z</published>
+    <updated>2020-02-09T16:09:59.420Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="chapter-04-설계-품질과-트레이드오프"><a href="#chapter-04-설계-품질과-트레이드오프" class="headerlink" title="chapter 04. 설계 품질과 트레이드오프"></a>chapter 04. 설계 품질과 트레이드오프</h1><h2 id="01-데이터-중심의-영화-예매-시스템"><a href="#01-데이터-중심의-영화-예매-시스템" class="headerlink" title="01 . 데이터 중심의 영화 예매 시스템"></a>01 . 데이터 중심의 영화 예매 시스템</h2><h3 id="데이터를-준비하자"><a href="#데이터를-준비하자" class="headerlink" title="데이터를 준비하자"></a>데이터를 준비하자</h3><h3 id="영화를-예매하자"><a href="#영화를-예매하자" class="headerlink" title="영화를 예매하자"></a>영화를 예매하자</h3><h2 id="02-설계-트레이드오프"><a href="#02-설계-트레이드오프" class="headerlink" title="02. 설계 트레이드오프"></a>02. 설계 트레이드오프</h2><h3 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h3><h3 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h3><h2 id="03-데이터-중심의-영화-예매-시스템의-문제점"><a href="#03-데이터-중심의-영화-예매-시스템의-문제점" class="headerlink" title="03. 데이터 중심의 영화 예매 시스템의 문제점"></a>03. 데이터 중심의 영화 예매 시스템의 문제점</h2><h3 id="캡슐화-위반"><a href="#캡슐화-위반" class="headerlink" title="캡슐화 위반"></a>캡슐화 위반</h3><h3 id="높은-결합도"><a href="#높은-결합도" class="headerlink" title="높은 결합도"></a>높은 결합도</h3><h3 id="낮은-응집도"><a href="#낮은-응집도" class="headerlink" title="낮은 응집도"></a>낮은 응집도</h3><h2 id="04-자율적인-객체를-향해"><a href="#04-자율적인-객체를-향해" class="headerlink" title="04. 자율적인 객체를 향해"></a>04. 자율적인 객체를 향해</h2><h3 id="캡슐화를-지켜라"><a href="#캡슐화를-지켜라" class="headerlink" title="캡슐화를 지켜라"></a>캡슐화를 지켜라</h3><a id="more"></a><h3 id="스스로-자신의-데이터를-책임지는-객체"><a href="#스스로-자신의-데이터를-책임지는-객체" class="headerlink" title="스스로 자신의 데이터를 책임지는 객체"></a>스스로 자신의 데이터를 책임지는 객체</h3><h2 id="05-하지만-여전히-부족하다"><a href="#05-하지만-여전히-부족하다" class="headerlink" title="05. 하지만 여전히 부족하다"></a>05. 하지만 여전히 부족하다</h2><h3 id="캡슐화-위반-1"><a href="#캡슐화-위반-1" class="headerlink" title="캡슐화 위반"></a>캡슐화 위반</h3><h3 id="높은-결합도-1"><a href="#높은-결합도-1" class="headerlink" title="높은 결합도"></a>높은 결합도</h3><h3 id="낮은-응집도-1"><a href="#낮은-응집도-1" class="headerlink" title="낮은 응집도"></a>낮은 응집도</h3><h2 id="06-데이터-중심-설계의-문제점"><a href="#06-데이터-중심-설계의-문제점" class="headerlink" title="06. 데이터 중심 설계의 문제점"></a>06. 데이터 중심 설계의 문제점</h2><h3 id="데이터-중심-설계는-객체의-행동보다는-상태에-초점을-맞춘다"><a href="#데이터-중심-설계는-객체의-행동보다는-상태에-초점을-맞춘다" class="headerlink" title="데이터 중심 설계는 객체의 행동보다는 상태에 초점을 맞춘다."></a>데이터 중심 설계는 객체의 행동보다는 상태에 초점을 맞춘다.</h3><h3 id="데이터-중심-설계는-객체를-고립시킨-채-오퍼레이션을-정의하도록-만든다"><a href="#데이터-중심-설계는-객체를-고립시킨-채-오퍼레이션을-정의하도록-만든다" class="headerlink" title="데이터 중심 설계는 객체를 고립시킨 채 오퍼레이션을 정의하도록 만든다."></a>데이터 중심 설계는 객체를 고립시킨 채 오퍼레이션을 정의하도록 만든다.</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;chapter-04-설계-품질과-트레이드오프&quot;&gt;&lt;a href=&quot;#chapter-04-설계-품질과-트레이드오프&quot; class=&quot;headerlink&quot; title=&quot;chapter 04. 설계 품질과 트레이드오프&quot;&gt;&lt;/a&gt;chapter 04. 설계 품질과 트레이드오프&lt;/h1&gt;&lt;h2 id=&quot;01-데이터-중심의-영화-예매-시스템&quot;&gt;&lt;a href=&quot;#01-데이터-중심의-영화-예매-시스템&quot; class=&quot;headerlink&quot; title=&quot;01 . 데이터 중심의 영화 예매 시스템&quot;&gt;&lt;/a&gt;01 . 데이터 중심의 영화 예매 시스템&lt;/h2&gt;&lt;h3 id=&quot;데이터를-준비하자&quot;&gt;&lt;a href=&quot;#데이터를-준비하자&quot; class=&quot;headerlink&quot; title=&quot;데이터를 준비하자&quot;&gt;&lt;/a&gt;데이터를 준비하자&lt;/h3&gt;&lt;h3 id=&quot;영화를-예매하자&quot;&gt;&lt;a href=&quot;#영화를-예매하자&quot; class=&quot;headerlink&quot; title=&quot;영화를 예매하자&quot;&gt;&lt;/a&gt;영화를 예매하자&lt;/h3&gt;&lt;h2 id=&quot;02-설계-트레이드오프&quot;&gt;&lt;a href=&quot;#02-설계-트레이드오프&quot; class=&quot;headerlink&quot; title=&quot;02. 설계 트레이드오프&quot;&gt;&lt;/a&gt;02. 설계 트레이드오프&lt;/h2&gt;&lt;h3 id=&quot;캡슐화&quot;&gt;&lt;a href=&quot;#캡슐화&quot; class=&quot;headerlink&quot; title=&quot;캡슐화&quot;&gt;&lt;/a&gt;캡슐화&lt;/h3&gt;&lt;h3 id=&quot;응집도와-결합도&quot;&gt;&lt;a href=&quot;#응집도와-결합도&quot; class=&quot;headerlink&quot; title=&quot;응집도와 결합도&quot;&gt;&lt;/a&gt;응집도와 결합도&lt;/h3&gt;&lt;h2 id=&quot;03-데이터-중심의-영화-예매-시스템의-문제점&quot;&gt;&lt;a href=&quot;#03-데이터-중심의-영화-예매-시스템의-문제점&quot; class=&quot;headerlink&quot; title=&quot;03. 데이터 중심의 영화 예매 시스템의 문제점&quot;&gt;&lt;/a&gt;03. 데이터 중심의 영화 예매 시스템의 문제점&lt;/h2&gt;&lt;h3 id=&quot;캡슐화-위반&quot;&gt;&lt;a href=&quot;#캡슐화-위반&quot; class=&quot;headerlink&quot; title=&quot;캡슐화 위반&quot;&gt;&lt;/a&gt;캡슐화 위반&lt;/h3&gt;&lt;h3 id=&quot;높은-결합도&quot;&gt;&lt;a href=&quot;#높은-결합도&quot; class=&quot;headerlink&quot; title=&quot;높은 결합도&quot;&gt;&lt;/a&gt;높은 결합도&lt;/h3&gt;&lt;h3 id=&quot;낮은-응집도&quot;&gt;&lt;a href=&quot;#낮은-응집도&quot; class=&quot;headerlink&quot; title=&quot;낮은 응집도&quot;&gt;&lt;/a&gt;낮은 응집도&lt;/h3&gt;&lt;h2 id=&quot;04-자율적인-객체를-향해&quot;&gt;&lt;a href=&quot;#04-자율적인-객체를-향해&quot; class=&quot;headerlink&quot; title=&quot;04. 자율적인 객체를 향해&quot;&gt;&lt;/a&gt;04. 자율적인 객체를 향해&lt;/h2&gt;&lt;h3 id=&quot;캡슐화를-지켜라&quot;&gt;&lt;a href=&quot;#캡슐화를-지켜라&quot; class=&quot;headerlink&quot; title=&quot;캡슐화를 지켜라&quot;&gt;&lt;/a&gt;캡슐화를 지켜라&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="도서" scheme="https://dschoi.github.io/categories/%EB%8F%84%EC%84%9C/"/>
+    
+    
+      <category term="object" scheme="https://dschoi.github.io/tags/object/"/>
+    
+  </entry>
   
   <entry>
     <title>chapter 03. 역할, 책임, 협력</title>

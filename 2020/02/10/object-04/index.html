@@ -50,20 +50,20 @@
   };
 </script>
 
-  <meta name="description" content="1. 객체 , 설계책임의 이동(Shift of responsibility)절차 지향책임이 Theater에 집중되어 있는 것.객체지향 설계제어의 흐름이 각 객체에 적절하게 분산. 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다. 그 결과가 변경에 취약한 설계.">
-<meta name="keywords" content="objects,오브젝트">
+  <meta name="description" content="chapter 04. 설계 품질과 트레이드오프01 . 데이터 중심의 영화 예매 시스템데이터를 준비하자영화를 예매하자02. 설계 트레이드오프캡슐화응집도와 결합도03. 데이터 중심의 영화 예매 시스템의 문제점캡슐화 위반높은 결합도낮은 응집도04. 자율적인 객체를 향해캡슐화를 지켜라">
+<meta name="keywords" content="object">
 <meta property="og:type" content="article">
-<meta property="og:title" content="객체, 설계">
-<meta property="og:url" content="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/index.html">
+<meta property="og:title" content="chapter 04. 설계 품질과 트레이드오프">
+<meta property="og:url" content="https://dschoi.github.io/2020/02/10/object-04/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:description" content="1. 객체 , 설계책임의 이동(Shift of responsibility)절차 지향책임이 Theater에 집중되어 있는 것.객체지향 설계제어의 흐름이 각 객체에 적절하게 분산. 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다. 그 결과가 변경에 취약한 설계.">
+<meta property="og:description" content="chapter 04. 설계 품질과 트레이드오프01 . 데이터 중심의 영화 예매 시스템데이터를 준비하자영화를 예매하자02. 설계 트레이드오프캡슐화응집도와 결합도03. 데이터 중심의 영화 예매 시스템의 문제점캡슐화 위반높은 결합도낮은 응집도04. 자율적인 객체를 향해캡슐화를 지켜라">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2020-01-20T14:59:20.134Z">
+<meta property="og:updated_time" content="2020-02-09T16:09:59.420Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="객체, 설계">
-<meta name="twitter:description" content="1. 객체 , 설계책임의 이동(Shift of responsibility)절차 지향책임이 Theater에 집중되어 있는 것.객체지향 설계제어의 흐름이 각 객체에 적절하게 분산. 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다. 그 결과가 변경에 취약한 설계.">
+<meta name="twitter:title" content="chapter 04. 설계 품질과 트레이드오프">
+<meta name="twitter:description" content="chapter 04. 설계 품질과 트레이드오프01 . 데이터 중심의 영화 예매 시스템데이터를 준비하자영화를 예매하자02. 설계 트레이드오프캡슐화응집도와 결합도03. 데이터 중심의 영화 예매 시스템의 문제점캡슐화 위반높은 결합도낮은 응집도04. 자율적인 객체를 향해캡슐화를 지켜라">
 
-<link rel="canonical" href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/">
+<link rel="canonical" href="https://dschoi.github.io/2020/02/10/object-04/">
 
 
 <script id="page-configurations">
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title>객체, 설계 | Object Oriented Programmer</title>
+  <title>chapter 04. 설계 품질과 트레이드오프 | Object Oriented Programmer</title>
   
 
 
@@ -196,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/02/10/object-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -209,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          객체, 설계
+          chapter 04. 설계 품질과 트레이드오프
         </h1>
 
         <div class="post-meta">
@@ -218,16 +218,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
+              
 
-              <time title="Post created: 2019-08-18 22:00:50" itemprop="dateCreated datePublished" datetime="2019-08-18T22:00:50+09:00">2019-08-18</time>
+              <time title="Post created: 2020-02-10 01:05:07 / Updated at: 01:09:59" itemprop="dateCreated datePublished" datetime="2020-02-10T01:05:07+09:00">2020-02-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-01-20 23:59:20" itemprop="dateModified" datetime="2020-01-20T23:59:20+09:00">2020-01-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -249,8 +243,8 @@
       </span>
       <span class="post-meta-item-text">Facebook: </span>
     
-    <a title="facebook comments" href="/2019/08/18/2019-08-18-objects-01/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/" itemprop="commentCount">0</span>
+    <a title="facebook comments" href="/2020/02/10/object-04/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/02/10/object-04/" itemprop="commentCount">0</span>
     </a>
   </span>
   
@@ -265,22 +259,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-객체-설계"><a href="#1-객체-설계" class="headerlink" title="1. 객체 , 설계"></a>1. 객체 , 설계</h1><h3 id="책임의-이동-Shift-of-responsibility"><a href="#책임의-이동-Shift-of-responsibility" class="headerlink" title="책임의 이동(Shift of responsibility)"></a>책임의 이동(Shift of responsibility)</h3><h4 id="절차-지향"><a href="#절차-지향" class="headerlink" title="절차 지향"></a>절차 지향</h4><p><strong>책임이 Theater에 집중되어 있는 것.</strong></p><h4 id="객체지향-설계"><a href="#객체지향-설계" class="headerlink" title="객체지향 설계"></a>객체지향 설계</h4><p>제어의 흐름이 각 객체에 적절하게 분산.</p><p> 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다.<br> 그 결과가 변경에 취약한 설계.</p><a id="more"></a>
-
-
-<p> 개선된 코드에서는 각 객체에 책임이 분산되고 더욱 중요한 점은 코드를 이해하기가 더 <strong>쉬워짐</strong>.</p>
-<p>설계를 어렵게 만드는 것은 <strong>의존성</strong></p>
-<p>의존성을 제거하여 객체 사이의 <strong>결합도</strong>를 낮춰야함. </p>
-<h3 id="객체지향-설계-1"><a href="#객체지향-설계-1" class="headerlink" title="객체지향 설계"></a>객체지향 설계</h3><p>좋은 설계란 무엇인가?</p>
-<ul>
-<li>좋은 설계란 오늘 요구하는 기능을 온전히 수행하면서 내일의 변경을 매끄럽게 수용할 수 있는 설계.</li>
-</ul>
-<p>변경을 수용할 수 있는 설계가 중요한 이유?</p>
-<ul>
-<li>요구사항이 항상 변경되기 때문이다.</li>
-</ul>
-<p>우리가 진정으로 원하는 것은 변경에 유연하게 대응할 수 있는 코드.</p>
-<h1 id="2-객체-지향-프로그래밍"><a href="#2-객체-지향-프로그래밍" class="headerlink" title="2. 객체 지향 프로그래밍"></a>2. 객체 지향 프로그래밍</h1>
+        <h1 id="chapter-04-설계-품질과-트레이드오프"><a href="#chapter-04-설계-품질과-트레이드오프" class="headerlink" title="chapter 04. 설계 품질과 트레이드오프"></a>chapter 04. 설계 품질과 트레이드오프</h1><h2 id="01-데이터-중심의-영화-예매-시스템"><a href="#01-데이터-중심의-영화-예매-시스템" class="headerlink" title="01 . 데이터 중심의 영화 예매 시스템"></a>01 . 데이터 중심의 영화 예매 시스템</h2><h3 id="데이터를-준비하자"><a href="#데이터를-준비하자" class="headerlink" title="데이터를 준비하자"></a>데이터를 준비하자</h3><h3 id="영화를-예매하자"><a href="#영화를-예매하자" class="headerlink" title="영화를 예매하자"></a>영화를 예매하자</h3><h2 id="02-설계-트레이드오프"><a href="#02-설계-트레이드오프" class="headerlink" title="02. 설계 트레이드오프"></a>02. 설계 트레이드오프</h2><h3 id="캡슐화"><a href="#캡슐화" class="headerlink" title="캡슐화"></a>캡슐화</h3><h3 id="응집도와-결합도"><a href="#응집도와-결합도" class="headerlink" title="응집도와 결합도"></a>응집도와 결합도</h3><h2 id="03-데이터-중심의-영화-예매-시스템의-문제점"><a href="#03-데이터-중심의-영화-예매-시스템의-문제점" class="headerlink" title="03. 데이터 중심의 영화 예매 시스템의 문제점"></a>03. 데이터 중심의 영화 예매 시스템의 문제점</h2><h3 id="캡슐화-위반"><a href="#캡슐화-위반" class="headerlink" title="캡슐화 위반"></a>캡슐화 위반</h3><h3 id="높은-결합도"><a href="#높은-결합도" class="headerlink" title="높은 결합도"></a>높은 결합도</h3><h3 id="낮은-응집도"><a href="#낮은-응집도" class="headerlink" title="낮은 응집도"></a>낮은 응집도</h3><h2 id="04-자율적인-객체를-향해"><a href="#04-자율적인-객체를-향해" class="headerlink" title="04. 자율적인 객체를 향해"></a>04. 자율적인 객체를 향해</h2><h3 id="캡슐화를-지켜라"><a href="#캡슐화를-지켜라" class="headerlink" title="캡슐화를 지켜라"></a>캡슐화를 지켜라</h3><a id="more"></a><h3 id="스스로-자신의-데이터를-책임지는-객체"><a href="#스스로-자신의-데이터를-책임지는-객체" class="headerlink" title="스스로 자신의 데이터를 책임지는 객체"></a>스스로 자신의 데이터를 책임지는 객체</h3><h2 id="05-하지만-여전히-부족하다"><a href="#05-하지만-여전히-부족하다" class="headerlink" title="05. 하지만 여전히 부족하다"></a>05. 하지만 여전히 부족하다</h2><h3 id="캡슐화-위반-1"><a href="#캡슐화-위반-1" class="headerlink" title="캡슐화 위반"></a>캡슐화 위반</h3><h3 id="높은-결합도-1"><a href="#높은-결합도-1" class="headerlink" title="높은 결합도"></a>높은 결합도</h3><h3 id="낮은-응집도-1"><a href="#낮은-응집도-1" class="headerlink" title="낮은 응집도"></a>낮은 응집도</h3><h2 id="06-데이터-중심-설계의-문제점"><a href="#06-데이터-중심-설계의-문제점" class="headerlink" title="06. 데이터 중심 설계의 문제점"></a>06. 데이터 중심 설계의 문제점</h2><h3 id="데이터-중심-설계는-객체의-행동보다는-상태에-초점을-맞춘다"><a href="#데이터-중심-설계는-객체의-행동보다는-상태에-초점을-맞춘다" class="headerlink" title="데이터 중심 설계는 객체의 행동보다는 상태에 초점을 맞춘다."></a>데이터 중심 설계는 객체의 행동보다는 상태에 초점을 맞춘다.</h3><h3 id="데이터-중심-설계는-객체를-고립시킨-채-오퍼레이션을-정의하도록-만든다"><a href="#데이터-중심-설계는-객체를-고립시킨-채-오퍼레이션을-정의하도록-만든다" class="headerlink" title="데이터 중심 설계는 객체를 고립시킨 채 오퍼레이션을 정의하도록 만든다."></a>데이터 중심 설계는 객체를 고립시킨 채 오퍼레이션을 정의하도록 만든다.</h3>
     </div>
 
     
@@ -290,25 +269,21 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/objects/" rel="tag"><i class="fa fa-tag"></i> objects</a>
-              <a href="/tags/오브젝트/" rel="tag"><i class="fa fa-tag"></i> 오브젝트</a>
+              <a href="/tags/object/" rel="tag"><i class="fa fa-tag"></i> object</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/04/01/2019-04-02-logrotate/" rel="next" title="logrotate를 활용한 로그관리(compress, lotate)">
-                  <i class="fa fa-chevron-left"></i> logrotate를 활용한 로그관리(compress, lotate)
+                <a href="/2020/01/28/objects-03/" rel="next" title="chapter 03. 역할, 책임, 협력">
+                  <i class="fa fa-chevron-left"></i> chapter 03. 역할, 책임, 협력
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/10/08/2019-10-08-클린아키텍처_목차/" rel="prev" title="클린아키텍처 1부 목차">
-                  클린아키텍처 1부 목차 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -326,7 +301,7 @@
     
   <div class="comments" id="comments">
     <div class="fb-comments"
-       data-href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/"
+       data-href="https://dschoi.github.io/2020/02/10/object-04/"
        data-numposts="10"
        data-width="100%"
        data-colorscheme="light">
@@ -357,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-객체-설계"><span class="nav-number">1.</span> <span class="nav-text">1. 객체 , 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#책임의-이동-Shift-of-responsibility"><span class="nav-number">1.0.1.</span> <span class="nav-text">책임의 이동(Shift of responsibility)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#절차-지향"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">절차 지향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#객체지향-설계"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#객체지향-설계-1"><span class="nav-number">1.0.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-객체-지향-프로그래밍"><span class="nav-number">2.</span> <span class="nav-text">2. 객체 지향 프로그래밍</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-04-설계-품질과-트레이드오프"><span class="nav-number">1.</span> <span class="nav-text">chapter 04. 설계 품질과 트레이드오프</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-데이터-중심의-영화-예매-시스템"><span class="nav-number">1.1.</span> <span class="nav-text">01 . 데이터 중심의 영화 예매 시스템</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#데이터를-준비하자"><span class="nav-number">1.1.1.</span> <span class="nav-text">데이터를 준비하자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#영화를-예매하자"><span class="nav-number">1.1.2.</span> <span class="nav-text">영화를 예매하자</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-설계-트레이드오프"><span class="nav-number">1.2.</span> <span class="nav-text">02. 설계 트레이드오프</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#캡슐화"><span class="nav-number">1.2.1.</span> <span class="nav-text">캡슐화</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#응집도와-결합도"><span class="nav-number">1.2.2.</span> <span class="nav-text">응집도와 결합도</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-데이터-중심의-영화-예매-시스템의-문제점"><span class="nav-number">1.3.</span> <span class="nav-text">03. 데이터 중심의 영화 예매 시스템의 문제점</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#캡슐화-위반"><span class="nav-number">1.3.1.</span> <span class="nav-text">캡슐화 위반</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#높은-결합도"><span class="nav-number">1.3.2.</span> <span class="nav-text">높은 결합도</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#낮은-응집도"><span class="nav-number">1.3.3.</span> <span class="nav-text">낮은 응집도</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-자율적인-객체를-향해"><span class="nav-number">1.4.</span> <span class="nav-text">04. 자율적인 객체를 향해</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#캡슐화를-지켜라"><span class="nav-number">1.4.1.</span> <span class="nav-text">캡슐화를 지켜라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#스스로-자신의-데이터를-책임지는-객체"><span class="nav-number">1.4.2.</span> <span class="nav-text">스스로 자신의 데이터를 책임지는 객체</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-하지만-여전히-부족하다"><span class="nav-number">1.5.</span> <span class="nav-text">05. 하지만 여전히 부족하다</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#캡슐화-위반-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">캡슐화 위반</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#높은-결합도-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">높은 결합도</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#낮은-응집도-1"><span class="nav-number">1.5.3.</span> <span class="nav-text">낮은 응집도</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-데이터-중심-설계의-문제점"><span class="nav-number">1.6.</span> <span class="nav-text">06. 데이터 중심 설계의 문제점</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#데이터-중심-설계는-객체의-행동보다는-상태에-초점을-맞춘다"><span class="nav-number">1.6.1.</span> <span class="nav-text">데이터 중심 설계는 객체의 행동보다는 상태에 초점을 맞춘다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#데이터-중심-설계는-객체를-고립시킨-채-오퍼레이션을-정의하도록-만든다"><span class="nav-number">1.6.2.</span> <span class="nav-text">데이터 중심 설계는 객체를 고립시킨 채 오퍼레이션을 정의하도록 만든다.</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
