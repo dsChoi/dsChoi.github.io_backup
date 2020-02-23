@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
+<meta name="keywords" content="object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chapter 05. 메시지와 인터페이스">
+<meta property="og:url" content="https://dschoi.github.io/2020/02/18/objects-06/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223211641253.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223212722901.png">
+<meta property="og:updated_time" content="2020-02-23T16:17:32.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chapter 05. 메시지와 인터페이스">
+<meta name="twitter:description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
+<meta name="twitter:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223211641253.png">
+
+<link rel="canonical" href="https://dschoi.github.io/2020/02/18/objects-06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>chapter 05. 메시지와 인터페이스 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/02/18/objects-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chapter 05. 메시지와 인터페이스
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-02-18 22:26:34" itemprop="dateCreated datePublished" datetime="2020-02-18T22:26:34+09:00">2020-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-02-24 01:17:32" itemprop="dateModified" datetime="2020-02-24T01:17:32+09:00">2020-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2020/02/18/objects-06/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/02/18/objects-06/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="chapter-06-메시지와-인터페이스"><a href="#chapter-06-메시지와-인터페이스" class="headerlink" title="chapter 06. 메시지와 인터페이스"></a>chapter 06. 메시지와 인터페이스</h1><p>객체지향 프로그래밍에 대한 가장 흔한 오해 </p><ul>
+<li>애플리케이션은 클래스의 집합으로 구성된다. </li>
+</ul><blockquote>
+<p><code>애플리케이션</code>은 클래스로 구성되지만<code>메시지를 통해 정의</code>된다.</p>
+</blockquote><h2 id="01-협력과-메시지"><a href="#01-협력과-메시지" class="headerlink" title="01. 협력과 메시지"></a>01. 협력과 메시지</h2><h3 id="클라이언트-서버-모델"><a href="#클라이언트-서버-모델" class="headerlink" title="클라이언트-서버 모델"></a>클라이언트-서버 모델</h3><ul>
+<li>협력안에서 메시지를 전송하는 객체를 <strong>클라이언트</strong></li>
+<li>메세지를 수신하는 객체를 <strong>서버</strong></li>
+</ul><a id="more"></a>
+
+
+
+<p><strong>클라이언트와 서버 역할을 동시에 수행하는 Movie</strong></p>
+<img src="/2020/02/18/objects-06/image-20200223211641253.png" alt="image-20200223211641253" style="zoom:50%;">
+
+
+
+
+
+
+
+<p>객체가 독립적으로 수향할 수 있는 것보다 더 큰 책임을 수행하기 위해서는 다른 객체와 협력해야 한다는 것.</p>
+<p>두 객체 사이의 협력을 가능하게 해주는 매개채가 바로 메시지.</p>
+<h3 id="메시지와-메시지-전송"><a href="#메시지와-메시지-전송" class="headerlink" title="메시지와 메시지 전송"></a>메시지와 메시지 전송</h3><p><strong>메세지</strong></p>
+<p>객체들이 협력하기 위해 사용할 수 있는 유일한 교통 수단.</p>
+<ul>
+<li>오퍼레이션 명 + 인자로 구성</li>
+</ul>
+<p><strong>메시지 전송 or 메시지 패싱</strong></p>
+<p>한 객체가 다른 객체에게 도움을 요청하는 것</p>
+<p><strong>메시지 전송자</strong> - 클라이언트</p>
+<p>메시지를 전송하는 객체</p>
+<p><strong>메시지 수신자</strong> - 서버</p>
+<p>메시지를 수신하는 객체</p>
+<p>condition : 수신자</p>
+<p>isSatisfiedBy : 오퍼레이션 명</p>
+<p>screening : 인자</p>
+<p>Ex) condition.isSatisfiedBy(screening);</p>
+<h3 id="메시지와-메서드"><a href="#메시지와-메서드" class="headerlink" title="메시지와 메서드"></a>메시지와 메서드</h3><p><strong>메서드</strong></p>
+<p>메시지를 수신했을 때 실제로 실행되는 함수 또는 프로시저</p>
+<p>ex) 동일한 이름의 변수에게 동일한 메시지를 전송하더라도 객체의 타입에 따라 실행되는 메서드가 달라질 수 있다.</p>
+<p>메시지 전송자와 메시지 수신자는 서로에 대한 상세한 정보를 알지 못한 채 단지 메시지라는 얇고 가는 끈을 통해 연결된다. 실행 시점에 메시지와 메서드를 바인딩 하는 메커니즘은 두 객체 사이의 결합도를 낮춤으로써 유연하고 확장 가능한 코드를 작성할 수 있게 만든다.</p>
+<h3 id="퍼블릭-인터페이스와-오퍼레이션"><a href="#퍼블릭-인터페이스와-오퍼레이션" class="headerlink" title="퍼블릭 인터페이스와 오퍼레이션"></a>퍼블릭 인터페이스와 오퍼레이션</h3><p><strong>퍼블릭 인터페이스</strong></p>
+<p>객체가 의사소통을 위해 외부에 공개하는 메시지의 집합</p>
+<p><strong>오퍼레이션</strong></p>
+<p>퍼블릭 인터페이스에 포함된 메시지</p>
+<p><strong>메서드</strong></p>
+<p>메시지를 수신했을 때 실제로 실행되는 코드</p>
+<blockquote>
+<p>인터페이스의 각 요소는 오퍼레이션이다. 오퍼레이션은 구현이 아닌 추상화다. 반면 UML 의 메서드는 오퍼레이션을 구현한 것이다. </p>
+</blockquote>
+<img src="/2020/02/18/objects-06/image-20200223212722901.png" alt="image-20200223212722901" style="zoom:50%;">
+
+<h3 id="시그니처"><a href="#시그니처" class="headerlink" title="시그니처"></a>시그니처</h3><p><strong>시그니처</strong></p>
+<p>오퍼레이션(또는 메서드)의 이름과 파라미터 목록을 합친 것</p>
+<p><strong>오퍼레이션</strong></p>
+<p>실행 코드 없이 시그니처만 정의한 것</p>
+<p><strong>메서드</strong></p>
+<p>시그니처에 구현을 더한 것</p>
+<hr>
+<blockquote>
+<p>오퍼레이션 관점에서 다형성이란 동일한 오퍼레이션 호출에 대해 서로 다른 메서드들이 실행 되는 것 </p>
+</blockquote>
+<hr>
+<p><strong>용어 정리</strong></p>
+<ul>
+<li>메시지 : 객체가 다른 객체와 협력하기 위해 사용하는 의사소통 메커니즘</li>
+<li>오퍼레이션 : 객체가 다른 객체에게 제공하는 추상적인 서비스.</li>
+<li>메서드 : 메시지에 응답하기 위해 실행되는 코드 블록. 오퍼레이션의 구현. 동일한 오퍼레이션이라고 해도 메서드는 다를 수 있다. </li>
+<li>퍼블릭 인터페이스: 객체가 협력에 참여하기 위해 외부에서 수신할 수 있는 메시지의 묶음.</li>
+<li>시그니처: 오퍼레이션이나 메서드의 명세를 나타낸 것. 이름과 인자의 목록을 포함.</li>
+</ul>
+<h2 id="02-인터페이스와-설계-품질"><a href="#02-인터페이스와-설계-품질" class="headerlink" title="02. 인터페이스와 설계 품질"></a>02. 인터페이스와 설계 품질</h2><p><strong>좋은 인터페이스의 조건</strong></p>
+<ul>
+<li>최소한의 인터페이스</li>
+<li>추상적인 인터페이스</li>
+</ul>
+<h3 id="디미터-법칙"><a href="#디미터-법칙" class="headerlink" title="디미터 법칙"></a>디미터 법칙</h3><blockquote>
+<p>객체의 내부 구조에 강하게 결합되지 않도록 협력 경로를 제한하라.</p>
+<p>“낯선 자에게 말하지 말라” 또는 “오직 인접한 이웃하고만 말하라.”</p>
+</blockquote>
+<p><strong>디미터 법칙을 따르기 위한 조건</strong> </p>
+<ul>
+<li>this 객체</li>
+<li>메서드의 매개변수</li>
+<li>this 의 속성</li>
+<li>this의 속성인 컬렉션의 요소</li>
+<li>메서드 내에서 생성된 지역 객체</li>
+</ul>
+<p><strong>디미터 법칙과 캡슐화</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">screening.getMovie().getDiscountConditions(); <span class="comment">//디미터 법칙을 위반하는 전형적인 코드</span></span><br><span class="line"><span class="comment">// 기차 충돌(train wreck)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  screening.calculateFee(audienceCount); <span class="comment">// 디미터 법칙을 따르도록 코드를 개선하여 메시지 수신자의 내부 구조에 관해 묻지 않게 된다.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="묻지말고-시켜라"><a href="#묻지말고-시켜라" class="headerlink" title="묻지말고 시켜라"></a>묻지말고 시켜라</h3><p>훌륭한 메시지는 객체의 상태에 관해 묻지 말고 원하는 것을 시켜야 한다는 것을 강조한다.</p>
+<blockquote>
+<p> 절차적인 코드는 정보를 얻은 후에 결정한다. 객체지향 코드는 객체에게 그것을 하도록 시킨다.</p>
+</blockquote>
+<ul>
+<li>내부의 상태를 묻는 오퍼레이션을 인터페이스에 포함시키고 있다면 더 나은 방법은 없는지 고민해 보라. </li>
+<li>내부의 상태를 이용해 어떤 결정을 내리는 로직이 객체 외부에 존재한다면 해당 객체가 책임져야하는 행동이 외부로 누수된 것이다.</li>
+<li>상태를 묻는 오퍼레이션을 행동을 요청하는 오퍼레이션으로 대체함으로써 인터페이스를 향상시켜라. </li>
+<li></li>
+</ul>
+<h3 id="의도를-드러내는-인터페이스"><a href="#의도를-드러내는-인터페이스" class="headerlink" title="의도를 드러내는 인터페이스"></a>의도를 드러내는 인터페이스</h3><p><strong>켄트벡의 메서드를 명명하는 두가지 방법</strong> </p>
+<ol>
+<li>메서드가 작업을 어떻게  수행하는지를 나타내도록 이름 짓는 것</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PeriodCondition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfideByPeriod</span><span class="params">(Screening screening)</span> </span>&#123;... &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceCondition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfiedBySequence</span><span class="params">(Screening screening)</span> </span>&#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 스타일이 좋지 않은 이유 두가지 </p>
+<pre><code>1. 메서드에 대해 제대로 커뮤니케이션 하지 못한다. 
+2. 메서드 수준에서 캡슐화를 위반한다</code></pre><ol start="2">
+<li>‘어떻게’ 가 아니라 ‘무엇’을 하는지를 드러내는 것</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PeriodCondition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfiedBy</span><span class="params">(Screening screening)</span> </span>&#123;... &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceCondition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfiedBy</span><span class="params">(Screening screening)</span> </span>&#123; ... &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>어떻게 하느냐가 아니라 무엇을 하느냐에 따라 메서드의 이름을 짓는 패턴을 <code>의도를 드러내는 선택자</code> 라고 한다. </p>
+<p><strong>메서드에 의도를 드러낼수 있는 이름을 붙이기 위한 방법 - 켄트벡</strong></p>
+<blockquote>
+<p>매우 다른 두번째 구현을 상항하라. 그러고 해당 메서드에 동일한 이름을 붙인다고 상상해라. 그렇게 하면 아마도 그 순간에 여러분이 할 수 잇는 가장 추상적인 이름을 메서드에 붙일 것이다.</p>
+</blockquote>
+<p>의도를 드러내는 선택자를 인터페이스 레벨로 확장한 의도를 드러내는 인터페이스를 제시함. - 에릭에반스</p>
+<p><code>객체에게 묻지 말고 시키되 구현 방법이 아닌 클라이언트의 의도를 드러내야 한다.</code></p>
+<h3 id="함께-모으기"><a href="#함께-모으기" class="headerlink" title="함께 모으기"></a>함께 모으기</h3><p><strong>디미터 법칙을 위반하는 티켓 판매 도메인</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Theater</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TicketSeller ticketSeller;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Theater</span><span class="params">(TicketSeller ticketSeller)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ticketSeller = ticketSeller;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Audience audience)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (audience.getBag().hasInvitation()) &#123;</span><br><span class="line">			Ticket ticket = ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			Ticket ticket =ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().minusAmount(ticket.getFee());</span><br><span class="line">			ticketSeller.getTicketOffice().plusAmount(ticket.getFee());</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-원칙의-함정"><a href="#03-원칙의-함정" class="headerlink" title="03. 원칙의 함정"></a>03. 원칙의 함정</h2><h3 id="디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다"><a href="#디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다" class="headerlink" title="디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다."></a>디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다.</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IntStream.of(<span class="number">1</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">3</span>,<span class="number">9</span>).filter(x -&gt; x &gt; <span class="number">10</span>).distinct().count();</span><br></pre></td></tr></table></figure>
+
+<p>디미터의 법칙  “오직 하나의 도트만을 사용해라” 라는 관점에서 위의 코드는 위반되었다고 볼수 있다. </p>
+<p>하지만. of, filter, distinct 메서드는 intStream instance를 반환하기에 디미터 법칙을 위반하지 않는다.</p>
+<p>디미터 법칙은 <code>결합도</code> 와 관련된 것이며 이 결합도가 문제가 되는 것은 객체의 내부 구조가 외부로 노출되는 경우로 한정한다. </p>
+<p>여러 개의 도트를 사용한 코드가 객체의 내부 구조를 노출하고 있는가? 라는 질문을 하기를 바란다.</p>
+<h3 id="결합도와-응집도의-충돌"><a href="#결합도와-응집도의-충돌" class="headerlink" title="결합도와 응집도의 충돌"></a>결합도와 응집도의 충돌</h3><p>묻지 말고 시켜라와 디미터 법칙을 준수하는 것이 항상 긍정적인 결과로만 나타나지 안흔ㄴ다. </p>
+<p>모든 상황에서 위임 메서드를 추가하면 같은 퍼블릭 인터페이스 안에 어울리지 않는 오퍼레이션이 공존하게 된다. </p>
+<p><strong>클래스는 하나의 변경 원인만을 가져야한다.</strong> 서로 상관 없는 책임들이 함께 뭉쳐있는 클래스는 응집도가 낮으며 낮은 변경으로도 쉽게 무너질수 있다. </p>
+<hr>
+<p>디미터 법칙의 위반 여부는 묻는 대상이 객체인지, 자료 구조인지에 달려있다고 설명한다. 객체는 내부 구조를 숨겨야 하므로 디미터 법칙을 따르는 것이 좋지만 자료 구조라면 당연히 내부를 노출해야 하므로 디미터 법칙을 적용할 필요가 없다. </p>
+<p>원칙을 맹신하지 마라. 원칙이 적절한 상황과 부적절한 상황을 판단할 수 있는 안목을 길러라. </p>
+<p>설계는 트레이드오프의 산물이다. 소프트웨어 설계에 존재하는 몇 안되는 법칙중 하나는<code>&quot;경우에 따라 다르다&quot;</code> 라는 사실을 명심하라</p>
+<h2 id="04-명령-쿼리-분리-원칙"><a href="#04-명령-쿼리-분리-원칙" class="headerlink" title="04. 명령-쿼리 분리 원칙"></a>04. 명령-쿼리 분리 원칙</h2><p><strong>루틴(routine)</strong></p>
+<p>어떤 절차를 묶어 호출 가능하도록 이름을 부여한 기능 모듈</p>
+<ul>
+<li>프로시저 : 부수효과를 발생시킬 수 있지만 값을 반환할 수 없다.</li>
+<li>함수 : 값을 반환할 수 있지만 부수효과를 발생시킬수 없다.</li>
+</ul>
+<p><strong>명령(command) 와 쿼리(query)</strong></p>
+<ul>
+<li>객체의 인터페이스 측면에서 프로시저와 함수를 부루는 또다른 이름</li>
+<li>명령 : 객체의 상태를 수정하는 오퍼레이션</li>
+<li>쿼리 : 객체와 관련된 정보를 반환하는 오퍼레이션</li>
+</ul>
+<p><strong>명령-쿼리 분리 원칙</strong></p>
+<ul>
+<li>오퍼레이션은 부수효과를 발생시키는 명령이거나 부수효과를 발생시키지 않는 쿼리여야 한다.</li>
+<li>어떤 오퍼레이션도 명령인 동시에 쿼리여서는 안된다.</li>
+</ul>
+<p><strong>명령과 쿼리를 분리하기 위한 규칙</strong></p>
+<blockquote>
+<ul>
+<li><p>객체의 상태를 변경하는 명령은 반환값을 가질 수 없다.</p>
+</li>
+<li><p>객체의 정보를 반환하는 쿼리는 상태를 변경할 수 없다.</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>명령-쿼리 인터페이스(Command-Query Interface) - 마틴 파울러</strong></p>
+<ul>
+<li>명령-쿼리 분리 원칙에 따라 작성된 객체의 인터페이스</li>
+</ul>
+<hr>
+<h3 id="반복-일정의-명령과-쿼리-분리하기"><a href="#반복-일정의-명령과-쿼리-분리하기" class="headerlink" title="반복 일정의 명령과 쿼리 분리하기"></a>반복 일정의 명령과 쿼리 분리하기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String subject;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime from;</span><br><span class="line">    <span class="keyword">private</span> Duration duration;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String subject, LocalDateTime from, Duration duration)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subject = subject;</span><br><span class="line">        <span class="keyword">this</span>.from = from;</span><br><span class="line">        <span class="keyword">this</span>.duration = duration;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfied</span><span class="params">(RecurringSchedule schedule)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (from.getDayOfWeek() != schedule.getDayOfWeek() ||</span><br><span class="line">                !from.toLocalTime().equals(schedule.getFrom()) ||</span><br><span class="line">                !duration.equals(schedule.getDuration())</span><br><span class="line">        ) &#123;</span><br><span class="line">            reschedule(schedule);</span><br><span class="line">            <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reschedule</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;</span><br><span class="line">        from = LocalDateTime.of</span><br><span class="line">                (from.toLocalDate().plusDays(daysDistance(schedule)), schedule.getFrom());</span><br><span class="line">        duration = schedule.getDuration();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">daysDistance</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> schedule.getDayOfWeek().getValue() - from.getDayOfWeek().getValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfied</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;...&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reschedule</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;  ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">..... </span><br><span class="line">  </span><br><span class="line">  <span class="comment">/** client 호출 **/</span></span><br><span class="line">  <span class="keyword">if</span>(!event.isSatisfied(schedule))&#123;</span><br><span class="line">    event.reschedule(schedule);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>명령과 쿼리를 분리함으로써 예측가능하고 이해하기 쉬우며 디버깅이 용이한 동시에 유지보수가 수월해졌다.</li>
+</ul>
+<h3 id="명령-쿼리-분리와-참조-투명성"><a href="#명령-쿼리-분리와-참조-투명성" class="headerlink" title="명령-쿼리 분리와 참조 투명성"></a>명령-쿼리 분리와 참조 투명성</h3><h3 id="책임에-초점을-맞춰라"><a href="#책임에-초점을-맞춰라" class="headerlink" title="책임에 초점을 맞춰라"></a>책임에 초점을 맞춰라</h3><ul>
+<li>디미터 법칙<ul>
+<li>협력이라는 컨텍스트 안에서 객체보다 메시지를 먼저 결정하면 두 객체 사이의 구조적인 결합도를 나줄 수 있다.</li>
+</ul>
+</li>
+<li>묻지 말고시켜라<ul>
+<li>메시지를 먼저 선택하면 묻지 말고 시켜라 스타일에 따라 협력을 구조화하게 된다. 클라이언트 관점에서 메시지를 선택하기 때문에 필요한 정보를 물을 필요 없이 원하는 것을 표현한 메시지를 전송하면 된다.</li>
+</ul>
+</li>
+<li>의도를 드러내는 인터페이스<ul>
+<li>메시지를 먼저 선택한다는 것은 메시지를 전송하는 클라이언트의 관점에서 메시지의 이름을 정한다는 것. </li>
+</ul>
+</li>
+<li>명령-쿼리 분리 원칙<ul>
+<li>예측가능한 협력을 만들기 위해 명령과 쿼리를 분리</li>
+</ul>
+</li>
+</ul>
+<p><strong>훌륭한 메시지를 얻기 위한 출발점</strong>은 책임 주도  설계 원칙을 따르는 것. </p>
+<p>책임 주도 설계에서는 객체가 메시지를 선택하는 것이 아닌 메시지가 객체를 선택하기 때문에 협력에 적합한 메시지를 결정할 수 있는 확률이 높아진다. </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/object/" rel="tag"><i class="fa fa-tag"></i> object</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/11/objects-05/" rel="next" title="chapter 05. 책임 할당하기.">
+                  <i class="fa fa-chevron-left"></i> chapter 05. 책임 할당하기.
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2020/02/18/objects-06/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-06-메시지와-인터페이스"><span class="nav-number">1.</span> <span class="nav-text">chapter 06. 메시지와 인터페이스</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-협력과-메시지"><span class="nav-number">1.1.</span> <span class="nav-text">01. 협력과 메시지</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#클라이언트-서버-모델"><span class="nav-number">1.1.1.</span> <span class="nav-text">클라이언트-서버 모델</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메시지와-메시지-전송"><span class="nav-number">1.1.2.</span> <span class="nav-text">메시지와 메시지 전송</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메시지와-메서드"><span class="nav-number">1.1.3.</span> <span class="nav-text">메시지와 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#퍼블릭-인터페이스와-오퍼레이션"><span class="nav-number">1.1.4.</span> <span class="nav-text">퍼블릭 인터페이스와 오퍼레이션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#시그니처"><span class="nav-number">1.1.5.</span> <span class="nav-text">시그니처</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-인터페이스와-설계-품질"><span class="nav-number">1.2.</span> <span class="nav-text">02. 인터페이스와 설계 품질</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#디미터-법칙"><span class="nav-number">1.2.1.</span> <span class="nav-text">디미터 법칙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#묻지말고-시켜라"><span class="nav-number">1.2.2.</span> <span class="nav-text">묻지말고 시켜라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#의도를-드러내는-인터페이스"><span class="nav-number">1.2.3.</span> <span class="nav-text">의도를 드러내는 인터페이스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#함께-모으기"><span class="nav-number">1.2.4.</span> <span class="nav-text">함께 모으기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-원칙의-함정"><span class="nav-number">1.3.</span> <span class="nav-text">03. 원칙의 함정</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다"><span class="nav-number">1.3.1.</span> <span class="nav-text">디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결합도와-응집도의-충돌"><span class="nav-number">1.3.2.</span> <span class="nav-text">결합도와 응집도의 충돌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-명령-쿼리-분리-원칙"><span class="nav-number">1.4.</span> <span class="nav-text">04. 명령-쿼리 분리 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#반복-일정의-명령과-쿼리-분리하기"><span class="nav-number">1.4.1.</span> <span class="nav-text">반복 일정의 명령과 쿼리 분리하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#명령-쿼리-분리와-참조-투명성"><span class="nav-number">1.4.2.</span> <span class="nav-text">명령-쿼리 분리와 참조 투명성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#책임에-초점을-맞춰라"><span class="nav-number">1.4.3.</span> <span class="nav-text">책임에 초점을 맞춰라</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
