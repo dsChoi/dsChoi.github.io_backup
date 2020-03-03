@@ -1,5 +1,5 @@
 ---
-title: chapter 05. 메시지와 인터페이스
+title: chapter 06. 메시지와 인터페이스
 tags:
   - object
 categories: 도서
