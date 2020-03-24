@@ -1,5 +1,4 @@
 ---
-
 title: chapter 07. 객체 분해
 tags:
   - object
