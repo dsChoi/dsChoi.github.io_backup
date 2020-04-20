@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="chapter 07. 객체 분해인지과부하(cognitive overload) 문제 해결에 필요한 요소의 수가 단기 기억의 용량을 초과하여 문제 해결 능력이 급격히 떨어지는 현상 추상화 불필요한 정보를 제거학 현재의 문제 해결에 필요한 핵심만 남기는 작업 분해 큰 문제를 해결 가능한 작은 문제로 나누는 작업">
+<meta name="keywords" content="object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chapter 07. 객체 분해">
+<meta property="og:url" content="https://dschoi.github.io/2020/03/03/objects-07/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="chapter 07. 객체 분해인지과부하(cognitive overload) 문제 해결에 필요한 요소의 수가 단기 기억의 용량을 초과하여 문제 해결 능력이 급격히 떨어지는 현상 추상화 불필요한 정보를 제거학 현재의 문제 해결에 필요한 핵심만 남기는 작업 분해 큰 문제를 해결 가능한 작은 문제로 나누는 작업">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/03/objects-07/image-20200304084414089.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/03/objects-07/image-20200304084436480.png">
+<meta property="og:updated_time" content="2020-04-20T12:38:51.090Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chapter 07. 객체 분해">
+<meta name="twitter:description" content="chapter 07. 객체 분해인지과부하(cognitive overload) 문제 해결에 필요한 요소의 수가 단기 기억의 용량을 초과하여 문제 해결 능력이 급격히 떨어지는 현상 추상화 불필요한 정보를 제거학 현재의 문제 해결에 필요한 핵심만 남기는 작업 분해 큰 문제를 해결 가능한 작은 문제로 나누는 작업">
+<meta name="twitter:image" content="https://dschoi.github.io/2020/03/03/objects-07/image-20200304084414089.png">
+
+<link rel="canonical" href="https://dschoi.github.io/2020/03/03/objects-07/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>chapter 07. 객체 분해 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/03/03/objects-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chapter 07. 객체 분해
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-03-03 18:26:34" itemprop="dateCreated datePublished" datetime="2020-03-03T18:26:34+09:00">2020-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-20 21:38:51" itemprop="dateModified" datetime="2020-04-20T21:38:51+09:00">2020-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2020/03/03/objects-07/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/03/03/objects-07/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="chapter-07-객체-분해"><a href="#chapter-07-객체-분해" class="headerlink" title="chapter 07. 객체 분해"></a>chapter 07. 객체 분해</h1><p><strong>인지과부하(cognitive overload)</strong></p><blockquote>
+<p>문제 해결에 필요한 요소의 수가 단기 기억의 용량을 초과하여 문제 해결 능력이 급격히 떨어지는 현상</p>
+</blockquote><p><strong>추상화</strong></p><blockquote>
+<p>불필요한 정보를 제거학 현재의 문제 해결에 필요한 핵심만 남기는 작업</p>
+</blockquote><p><strong>분해</strong></p><blockquote>
+<p>큰 문제를 해결 가능한 작은 문제로 나누는 작업</p>
+</blockquote><a id="more"></a>
+
+
+
+
+
+<h2 id="01-프로시저-추상화와-데이터-추상화"><a href="#01-프로시저-추상화와-데이터-추상화" class="headerlink" title="01. 프로시저 추상화와 데이터 추상화"></a>01. 프로시저 추상화와 데이터 추상화</h2><p><strong>프로시저 추상화</strong></p>
+<blockquote>
+<p>소프트웨어가 무엇을 해야 하는 지를 추상화</p>
+</blockquote>
+<p><strong>데이터 추상화</strong></p>
+<blockquote>
+<p>소프트웨어가 무엇을 알아야 하는지를 추상화</p>
+</blockquote>
+<p><strong>시스템 분해방법</strong></p>
+<ul>
+<li>프로시저 중심의 시스템 분해 -&gt; 기능 분해 (알고리즘 분해)</li>
+<li>데이터 추상화 중심으로 시스템 분해 <ul>
+<li>데이터를 중심으로 타입을 추상화 -&gt; 추상 데이터 타입</li>
+<li>데이터를 중심으로 포로시저를 추상화 -&gt; 객체지향</li>
+</ul>
+</li>
+</ul>
+<h2 id="02-프로시저-추상화와-기능-분해"><a href="#02-프로시저-추상화와-기능-분해" class="headerlink" title="02. 프로시저 추상화와 기능 분해"></a>02. 프로시저 추상화와 기능 분해</h2><h3 id="메인-함수로서의-시스템"><a href="#메인-함수로서의-시스템" class="headerlink" title="메인 함수로서의 시스템"></a>메인 함수로서의 시스템</h3><p><strong>알고리즘 분해 - 기능 분해</strong></p>
+<p>기능 중심의 데이터 분해 </p>
+<p><strong>프로시저</strong></p>
+<ul>
+<li>반복적으로 실행되거나 거의 유사하게 실행되는 작업들을 하나의 장소에 모아놓음으로써 로직을 재사용하고 중복을 방지할 수 있는 추상화 방법</li>
+<li>내부의 상세한 구현 내용을 모르더라도 인터페이스만 알면 프로시저를 사용가능하기에 <strong>추상화</strong>라고 부른다.</li>
+<li>정보은닉의 가능성은 제공하지만 프로시저만으로는 효과적인 정보은닉 체계 구축은 <strong>어렵다.</strong></li>
+</ul>
+<p><strong>전통적인 기능 분해 방법 - 하향식 접근법(top-down approach)</strong></p>
+<ul>
+<li>시스템을 구성하는 최상위 기능을 정의하고 , 최상위 기능을 작은 단계의 하위 기능으로 분해하는 방법</li>
+</ul>
+<h3 id="급여-관리-시스템"><a href="#급여-관리-시스템" class="headerlink" title="급여 관리 시스템"></a>급여 관리 시스템</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">직원의 급여를 계산한다.</span><br><span class="line">	사용자로부터 소득세율을 입력받는다.</span><br><span class="line">		&quot;세율을 입력하세요: &quot; 라는 문장을 화면에 출력한다.</span><br><span class="line">		키보드를 통해 세율을 입력받는다.</span><br><span class="line">  직원의 급여를 계산한다.</span><br><span class="line">  	전역 변수에 저장된 직원의 기본급 정보를 얻는다.</span><br><span class="line">  	급여를 계산한다.</span><br><span class="line"> 	양식에 맞게 결과를 출력한다.</span><br><span class="line"> 		&quot;이름: &#123;직원명&#125;, 급여: &#123;계산된 금액&#125;&quot; 형식에 따라 출력 문자열을 생성한다.</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/03/03/objects-07/image-20200304084414089.png" alt="image-20200304084414089" style="zoom:50%;">
+
+
+
+
+
+<h3 id="급여-관리-시스템-구현"><a href="#급여-관리-시스템-구현" class="headerlink" title="급여 관리 시스템 구현"></a>급여 관리 시스템 구현</h3><img src="/2020/03/03/objects-07/image-20200304084436480.png" alt="image-20200304084436480" style="zoom:50%;">
+
+<h3 id="하향식-기능-분해의-문제점"><a href="#하향식-기능-분해의-문제점" class="headerlink" title="하향식 기능 분해의 문제점"></a>하향식 기능 분해의 문제점</h3><ul>
+<li>시스템은 하나의 메인 함수로 구성돼 있지 않다.</li>
+<li>기능 추가나 요구사항 변경으로 인해 메인 함수를 빈번하게 수정해야 한다.</li>
+<li>비즈니스 로직이 사용자 인터페이스와 강하게 결합된다.</li>
+<li>하향식 분해는 너무 이른 시기에 함수들의 실행 순서를 고정시키기 때문에 유연성과 재사용성이 저하된다.</li>
+<li>데이터 형식이 변경될 경우 파급효과를 예측할수 없다.</li>
+</ul>
+<h4 id="하나의-메인-함수라는-비현실적인-아이디어"><a href="#하나의-메인-함수라는-비현실적인-아이디어" class="headerlink" title="하나의 메인 함수라는 비현실적인 아이디어"></a><strong>하나의 메인 함수라는 비현실적인 아이디어</strong></h4><p>어떤 시스템도 최초에 릴리즈됐던 당시의 모습을 그대로 유지하지 않는다. </p>
+<p>시간이 지나고 사용자를 만족시키기 위한 새로운 요구사항을 도출해나가면서 지속적으로 새로운 기능을 추가하게 된다.</p>
+<p>대부분의 시스템에서는 하나의 메인 기능이란 개념은 존재하지 않는다. </p>
+<p>하향식 접근법은 하나의 알고리즘을 구현하거나 배치 처리를 구현하기에는 적합하지만 현대적인 상호작용 시스템을 개발하는 데는 적합하지 않다. 현대적인 시스템은 동등한 수준의 다양한 기능으로 구성된다. </p>
+<h4 id="메인-함수의-빈번한-재설계"><a href="#메인-함수의-빈번한-재설계" class="headerlink" title="메인 함수의 빈번한 재설계"></a><strong>메인 함수의 빈번한 재설계</strong></h4><h4 id="비즈니스-로직과-사용자-인터페이스의-결합"><a href="#비즈니스-로직과-사용자-인터페이스의-결합" class="headerlink" title="비즈니스 로직과 사용자 인터페이스의 결합"></a><strong>비즈니스 로직과 사용자 인터페이스의 결합</strong></h4><p>하향식 접근법은 비즈니스 로직을 설계하는 초기 단계부터 입력 방법과 출력 양식을 함께 고민하도록 강요한다. </p>
+<p>결과적으로 코드 안에서 비즈니스 로직과 사용자 인터페이스 로직이 밀접하게 결합된다. </p>
+<p>비즈니스 로직과 사용자 인터페이스가 변경되는 빈도가 다른데 탑다운 방식에서는 동일하게 두고 사용하고 있다. </p>
+<p>하향식 접근법은 기능을 분해하는 과정에서 사용자 인터페이스의 관심사와 비즈니스 로직의 관심사를 동시에 고려하도록 강요하기 때문에 “관심사의 분리” 라른 아키텍처 설계의 목적을 달성하기 어렵다.</p>
+<h4 id="성급하게-결정된-실행-순서"><a href="#성급하게-결정된-실행-순서" class="headerlink" title="성급하게 결정된 실행 순서"></a><strong>성급하게 결정된 실행 순서</strong></h4><p>하향식 설계와 관련된 모든 문제의 원인은 <strong>결합도</strong></p>
+<p>함수는 상위 함수가 강요하는 문맥에 강하게 결합되어짐. </p>
+<p>가장 큰 문제는 전체 시스템의 핵심적인 구조를 결정하는 함수들이 데이터와 강하게 결합된다는 점</p>
+<h3 id="언제-하향식-분해가-유용한가"><a href="#언제-하향식-분해가-유용한가" class="headerlink" title="언제 하향식 분해가 유용한가?"></a>언제 하향식 분해가 유용한가?</h3><p>설계가 어느정도 안정화 된 후 설계의 다양한 측면을 논리적으로 설명하고 문서화하기에 용이.</p>
+<h2 id="03-모듈"><a href="#03-모듈" class="headerlink" title="03. 모듈"></a>03. 모듈</h2><h3 id="정보-은닉과-모듈"><a href="#정보-은닉과-모듈" class="headerlink" title="정보 은닉과 모듈"></a>정보 은닉과 모듈</h3><p><strong>정보은닉</strong></p>
+<blockquote>
+<p>시스템을 모듈 단위로 분해하기 위한 기본원리로 시스템에서 자주 변경되는 부분을 상대적으로 덜 변경되는 안정적인 인터페이스 뒤로 감춰야 하는 것 </p>
+</blockquote>
+<p>시스템을 모듈로 분할하는 원칙 - 데이비드 파나스 </p>
+<blockquote>
+<p>모듈은 서브 프로그램이라기 보다는 책임의 할당이다. </p>
+<p>모듈화는 개별적인 모듈에 대한 작업이 시작되기 전에 정해져야 하는 설계 결정들을 포함한다. 분할된 모듈은 다른 모듈에 대해 감춰야 하는 설계 결정에 따라 특징지어진다. 해당 모듈내부의 작업을 가능한 한 적게 노출하는 인터페이스 또는 정의를 선택한다. </p>
+</blockquote>
+<p><strong>모듈은</strong></p>
+<ul>
+<li>변경될 가능성이 있는 비밀을 내부로 감추고, 잘 정의되고 변경되지 않을 퍼블릭 인터페이스를 외부에 제공해서 내부의 비밀에 함부로 접근하지 못하게 한다. </li>
+</ul>
+<p><strong>모듈이 감추어야 할 비밀 두가지</strong></p>
+<ol>
+<li>복잡성 <ul>
+<li>모듈이 너무 복잡한 경우 사용하기 어렵다. 외부에 모듈을 추상화할 수 있는 간단한 인터페이스를 제공해서 모듈의 복잡도를 낮춘다.</li>
+</ul>
+</li>
+<li>변경가능성<ul>
+<li>벽녕 가능한 설계 결정이 외부에 노출될 경우 실제로 변경이 발생했을 때 파급효과가 커진다. 변경 발생 시 하나의 모듈만 수정하면 되도록 변경 가능한 설계 결정을 모듈 내부로 감추고 <code>외부에는 쉽게 변경되지 않을 인터페이스를 제공한다.</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="모듈의-장점과-한계"><a href="#모듈의-장점과-한계" class="headerlink" title="모듈의 장점과 한계"></a>모듈의 장점과 한계</h3><p><strong>모듈의 장점</strong> </p>
+<ol>
+<li>모듈 내부의 변수가 변경되더라도 모듈 내부에만 영향을 미친다.<ul>
+<li>모듈 내부에 정의된 변수를 직접 참조하는 코드의 위치를 모듈 내부로 제한할 수 있다. </li>
+</ul>
+</li>
+<li>비즈니스 로직과 사용자 인터페이스에 대한 관심사를 분리한다.<ul>
+<li>모듈은 비즈니스 로직과 관련된 관심사만 담당하며. 사용자 인터페이스가 변경되더라도 비즈니스 로직은 변경되지 않는다.</li>
+</ul>
+</li>
+<li>전역 변수와 전역 함수를 제거함으로써 네임스페이스 오염을 방지한다.<ul>
+<li>변수와 함수를 모듈 내부에 포함시키기 때문에 다른 모듈에서도 동일한 이름을 사용할 수 있다. </li>
+</ul>
+</li>
+</ol>
+<p>모듈은 기능이 아니라 변경의 정도에 따라 시스템을 분해하게 한다.</p>
+<p>메인 함수를 정의하고 필요에 따라 더 세부적인 함수로 분해하는 하향힛 기능 분해와 달리 모듈은 감춰야 할 데이터를 결정하고 이 데이터를 조적하는데 필요한 함수를 결정한다.</p>
+<p><strong>모듈의 가장 큰 단점</strong>은 <code>인스턴스의 개념을 제공하지 않는다는 점</code>.</p>
+<h2 id="04-데이터-추상화와-추상-데이터-타입"><a href="#04-데이터-추상화와-추상-데이터-타입" class="headerlink" title="04. 데이터 추상화와 추상 데이터 타입"></a>04. 데이터 추상화와 추상 데이터 타입</h2><h3 id="추상-데이터-타입"><a href="#추상-데이터-타입" class="headerlink" title="추상 데이터 타입"></a>추상 데이터 타입</h3><p>추상데이터 타입을 구현하기 위한 프로그래밍 언어의 지원 사항</p>
+<ul>
+<li><p>타입의 정이를 선언할 수 있어야한다.</p>
+</li>
+<li><p>타입의 인스턴스를 다루기 위해 사용할 수 있는 오퍼레이션을정의할 수 있어야 한다.</p>
+</li>
+<li><p>제공된 오퍼레이션을 통해서만 조작할 수 있도록 데이터를 외부로부터 보호할 수 있어야한다.</p>
+</li>
+<li><p>타입에 대해 여러개의 인스턴스를 생성할 수 잇어야 한다. </p>
+</li>
+</ul>
+<h2 id="05-클래스"><a href="#05-클래스" class="headerlink" title="05.클래스"></a>05.클래스</h2><h3 id="클래스는-추상-데이터-타입인가"><a href="#클래스는-추상-데이터-타입인가" class="headerlink" title="클래스는 추상 데이터 타입인가?"></a>클래스는 추상 데이터 타입인가?</h3><p><strong>클래스와 추상데이터 타입의 차이</strong></p>
+<p>클래스는 상속과 다형성을 지원하는데 비해 추상 데이터 타입은 지원하지 못한다 는 점</p>
+<h3 id="변경을-기준으로-선택하라"><a href="#변경을-기준으로-선택하라" class="headerlink" title="변경을 기준으로 선택하라"></a>변경을 기준으로 선택하라</h3><p>객체지향에서는 타입 변수를 이용한 조건문을 다형성으로 대체한다.</p>
+<p>클라이언트가 객체의 타입을 확인 한 후 적절한 메서드를 호출하는 것이 아니라 객체가 메시지를 처리할 적절한 메서드를 선택하도록 한다.</p>
+<p><strong>개방폐쇄원칙</strong></p>
+<blockquote>
+<p>기존 코드에 아무런 영향도 미치지 않고 새로운 객체 유형과 행위를 추가할 수 있는 객체지향의 특성</p>
+</blockquote>
+<p>새로운 타입을 빈번하게 추가해야한다면 -&gt; 객체지향의 클래스가 유용</p>
+<p>새로운 오퍼레이션을 빈번하게 추가해야한다면 -&gt; 추상 데이터 타입</p>
+<h3 id="협력이-중요하다"><a href="#협력이-중요하다" class="headerlink" title="협력이 중요하다"></a>협력이 중요하다</h3><p>객체지향에서 중요한 것은 역할, 책임, 협력이다. </p>
+<p>협력이라는 문맥을 고려하지 않고  객체를 고립시킨 ㅂ 계층과 다형성은 ㅎ채 오퍼레이션의 구현 방식을 타입별로 분배하는 것은 옳은 방법이 아니다. </p>
+<p>객체가 참여할 협력을 결정하고 협력에 필요한 책임을 수행하기 위해 어떤 객체가 필요한지에 관해 고민하고 , 그 책임을 다양한 방식으로 수행해야 할 때만 타입 계층 안에 각 절차를 추상화 하라. 타입 계층과 다형성은 협력이라는 문맥 안에서 책임을 수행하는 방법에 관해 고민한 결과물이어야 하며 그 자체가 목적이 되서는 안된다.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/object/" rel="tag"><i class="fa fa-tag"></i> object</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/18/objects-06/" rel="next" title="chapter 06. 메시지와 인터페이스">
+                  <i class="fa fa-chevron-left"></i> chapter 06. 메시지와 인터페이스
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/03/10/objects-08/" rel="prev" title="chapter 08. 의존성 관리하기">
+                  chapter 08. 의존성 관리하기 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2020/03/03/objects-07/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-07-객체-분해"><span class="nav-number">1.</span> <span class="nav-text">chapter 07. 객체 분해</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-프로시저-추상화와-데이터-추상화"><span class="nav-number">1.1.</span> <span class="nav-text">01. 프로시저 추상화와 데이터 추상화</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-프로시저-추상화와-기능-분해"><span class="nav-number">1.2.</span> <span class="nav-text">02. 프로시저 추상화와 기능 분해</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#메인-함수로서의-시스템"><span class="nav-number">1.2.1.</span> <span class="nav-text">메인 함수로서의 시스템</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#급여-관리-시스템"><span class="nav-number">1.2.2.</span> <span class="nav-text">급여 관리 시스템</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#급여-관리-시스템-구현"><span class="nav-number">1.2.3.</span> <span class="nav-text">급여 관리 시스템 구현</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#하향식-기능-분해의-문제점"><span class="nav-number">1.2.4.</span> <span class="nav-text">하향식 기능 분해의 문제점</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#하나의-메인-함수라는-비현실적인-아이디어"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">하나의 메인 함수라는 비현실적인 아이디어</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#메인-함수의-빈번한-재설계"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">메인 함수의 빈번한 재설계</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#비즈니스-로직과-사용자-인터페이스의-결합"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">비즈니스 로직과 사용자 인터페이스의 결합</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#성급하게-결정된-실행-순서"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">성급하게 결정된 실행 순서</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#언제-하향식-분해가-유용한가"><span class="nav-number">1.2.5.</span> <span class="nav-text">언제 하향식 분해가 유용한가?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-모듈"><span class="nav-number">1.3.</span> <span class="nav-text">03. 모듈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#정보-은닉과-모듈"><span class="nav-number">1.3.1.</span> <span class="nav-text">정보 은닉과 모듈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#모듈의-장점과-한계"><span class="nav-number">1.3.2.</span> <span class="nav-text">모듈의 장점과 한계</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-데이터-추상화와-추상-데이터-타입"><span class="nav-number">1.4.</span> <span class="nav-text">04. 데이터 추상화와 추상 데이터 타입</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#추상-데이터-타입"><span class="nav-number">1.4.1.</span> <span class="nav-text">추상 데이터 타입</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-클래스"><span class="nav-number">1.5.</span> <span class="nav-text">05.클래스</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#클래스는-추상-데이터-타입인가"><span class="nav-number">1.5.1.</span> <span class="nav-text">클래스는 추상 데이터 타입인가?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변경을-기준으로-선택하라"><span class="nav-number">1.5.2.</span> <span class="nav-text">변경을 기준으로 선택하라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#협력이-중요하다"><span class="nav-number">1.5.3.</span> <span class="nav-text">협력이 중요하다</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

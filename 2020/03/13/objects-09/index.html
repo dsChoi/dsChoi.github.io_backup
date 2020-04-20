@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="chapter 09. 유연한 설계01. 개방-폐쇄 원칙개방-폐쇄 원칙(Open-Closed Principle) 소프트웨어 개체(클래스, 모듈, 함수 등등)는 확장에 대해 열려있어야 하고 수정에 대해서는 닫혀 있어야한다. 확장, 수정 확장에 대해 열려 있다 : 애플리케이션의 요구사항이 변경될 때 이 변경에 맞게 새로운 ‘동작’을 추가해서 애플리케이션의 기능을">
+<meta name="keywords" content="object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chapter-09. 유연한 설계">
+<meta property="og:url" content="https://dschoi.github.io/2020/03/13/objects-09/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="chapter 09. 유연한 설계01. 개방-폐쇄 원칙개방-폐쇄 원칙(Open-Closed Principle) 소프트웨어 개체(클래스, 모듈, 함수 등등)는 확장에 대해 열려있어야 하고 수정에 대해서는 닫혀 있어야한다. 확장, 수정 확장에 대해 열려 있다 : 애플리케이션의 요구사항이 변경될 때 이 변경에 맞게 새로운 ‘동작’을 추가해서 애플리케이션의 기능을">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317195733991.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317195958014.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317202647786.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317202949066.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317203406593.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200324162319854.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200324162332623.png">
+<meta property="og:updated_time" content="2020-04-20T12:38:51.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chapter-09. 유연한 설계">
+<meta name="twitter:description" content="chapter 09. 유연한 설계01. 개방-폐쇄 원칙개방-폐쇄 원칙(Open-Closed Principle) 소프트웨어 개체(클래스, 모듈, 함수 등등)는 확장에 대해 열려있어야 하고 수정에 대해서는 닫혀 있어야한다. 확장, 수정 확장에 대해 열려 있다 : 애플리케이션의 요구사항이 변경될 때 이 변경에 맞게 새로운 ‘동작’을 추가해서 애플리케이션의 기능을">
+<meta name="twitter:image" content="https://dschoi.github.io/2020/03/13/objects-09/image-20200317195733991.png">
+
+<link rel="canonical" href="https://dschoi.github.io/2020/03/13/objects-09/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>chapter-09. 유연한 설계 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/03/13/objects-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chapter-09. 유연한 설계
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-03-13 17:26:59" itemprop="dateCreated datePublished" datetime="2020-03-13T17:26:59+09:00">2020-03-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-20 21:38:51" itemprop="dateModified" datetime="2020-04-20T21:38:51+09:00">2020-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2020/03/13/objects-09/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/03/13/objects-09/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="chapter-09-유연한-설계"><a href="#chapter-09-유연한-설계" class="headerlink" title="chapter 09. 유연한 설계"></a>chapter 09. 유연한 설계</h1><h2 id="01-개방-폐쇄-원칙"><a href="#01-개방-폐쇄-원칙" class="headerlink" title="01. 개방-폐쇄 원칙"></a>01. 개방-폐쇄 원칙</h2><p><strong>개방-폐쇄 원칙(Open-Closed Principle)</strong></p><blockquote>
+<p>소프트웨어 개체(클래스, 모듈, 함수 등등)는 확장에 대해 열려있어야 하고 수정에 대해서는 닫혀 있어야한다.</p>
+</blockquote><p>확장, 수정</p><ul>
+<li>확장에 대해 열려 있다 : 애플리케이션의 요구사항이 변경될 때 이 변경에 맞게 새로운 ‘동작’을 추가해서 애플리케이션의 기능을 확장할 수 있다.<ul>
+<li>수정에 대해 닫혀 있다 : 기존의 ‘코드’를 수정하지 않고도 애플리케이션의 동작을 추가하거나 변경할 수 있다.</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+
+
+
+<h3 id="컴파일타임-의존성을-고정시키고-런타임-의존성을-변경하라"><a href="#컴파일타임-의존성을-고정시키고-런타임-의존성을-변경하라" class="headerlink" title="컴파일타임 의존성을 고정시키고 런타임 의존성을 변경하라"></a>컴파일타임 의존성을 고정시키고 런타임 의존성을 변경하라</h3><p><img src="/2020/03/13/objects-09/image-20200317195733991.png" alt="image-20200317195733991"></p>
+<p><strong>확장에는 열려있고 수정에는 열려있는 할인 정책 설계</strong></p>
+<p><img src="/2020/03/13/objects-09/image-20200317195958014.png" alt="image-20200317195958014"></p>
+<h3 id="추상화가-핵심이다"><a href="#추상화가-핵심이다" class="headerlink" title="추상화가 핵심이다."></a>추상화가 핵심이다.</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">DiscountPolicy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> List&lt;DiscountCondition&gt; conditions = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DiscountPolicy</span><span class="params">(List&lt;DiscountCondition&gt; conditions)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.conditions = conditions;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Money <span class="title">calculateDiscountAmount</span><span class="params">(Screening screening)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (DiscountCondition condition : conditions) &#123;</span><br><span class="line">			<span class="keyword">if</span>(condition.isSatisfiedBy(screening))&#123;</span><br><span class="line">				<span class="keyword">return</span> getDiscountedFee(screening);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> screening.getMovie().getFee();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">protected</span> Money <span class="title">getDiscountedFee</span><span class="params">(Screening screening)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Movie</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> DiscountPolicy discountPolicy;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Money fee;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Movie</span><span class="params">(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.discountPolicy = discountPolicy;</span><br><span class="line">		<span class="keyword">this</span>.fee = fee;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Money <span class="title">calucateMovieFee</span><span class="params">(Screening screening)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fee.minus(discountPolicy.calculateDiscountAmount(screening));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>어떤 개념을 추상화했다고 해서 수정에 대해 닫혀 있는 설계를 만들수 있는 것은 아니다. 개방-폐쇄 원칙에서 폐쇄를 가능하게 하는 것은 의존성 방향이다. <code>수정에 대한 영향을 최소화하기 위해서는 모든 요소가 추상화에 의존해야 한다.</code></p>
+</li>
+<li><p>Movie는 할인 정책을 추상화한 DiscountPolicy에 대해서만 의존한다. 의존성은 변경의 영향을 의미하고 DiscountPolicy는 변하지 않는 추상화라는 사실에 주목하라. Movie는 안정된 추상화인 DiscountPolicy에 의존하기 때문에 할인 정책을 추가하기 위해 DiscountPolicy의 자식 클래스를 추가하더라도 영향을 받지 않는다. </p>
+</li>
+<li><p>따라서 Movie 와 DiscountPolicy 는 <code>수정에 닫혀있다.</code></p>
+</li>
+</ul>
+<h2 id="02-생성-사용-분리"><a href="#02-생성-사용-분리" class="headerlink" title="02. 생성 사용 분리"></a>02. 생성 사용 분리</h2><p>*<em>예제 *</em></p>
+<ul>
+<li>아래 예제에서 <strong>AmountDiscountPolicy</strong>에서 <strong>PercentDiscountPolicy</strong>로 변경할수 있는 방법은 코드를 직접 수정하는 것뿐이다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Movie</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> DiscountPolicy discountPolicy;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Money fee;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Movie</span><span class="params">(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.discountPolicy = <span class="keyword">new</span> AmountDiscountPolicy(....);</span><br><span class="line">		<span class="keyword">this</span>.fee = fee;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Money <span class="title">calucateMovieFee</span><span class="params">(Screening screening)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fee.minus(discountPolicy.calculateDiscountAmount(screening));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>결합도가 높아질수록 개방-폐쇄 원칙을 따르는 구조를 설계하기가 어려워진다. </li>
+<li>객체생성을 피할수는 없다. 하지만 부적절한 곳에서 객체를 생성하는 것이 문제다. </li>
+</ul>
+<p><img src="/2020/03/13/objects-09/image-20200317202647786.png" alt="image-20200317202647786"></p>
+<p><strong>객체에 대한 생성과 사용을 분리</strong></p>
+<blockquote>
+<p>소프트웨어 시스템은 (응용 프로그램 객체를 제작하고 의존성을 서로 “연결” 하는) 시작 단계와 ( 시작 단계 이후에 이어지는) 실행단계를 분리해야 한다. [Martin08]</p>
+</blockquote>
+<p><strong>Client 에게 생성을 위임하고 Movie는 DiscountPolicy의 사용만 해야한다.</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> Money <span class="title">getAvatarFee</span><span class="params">()</span></span>&#123;</span><br><span class="line">      Movie avatar = <span class="keyword">new</span> Movie(<span class="string">"아바타"</span>, </span><br><span class="line">                               Duration.ofMinutes(<span class="number">120</span>), </span><br><span class="line">                               Money.wons(<span class="number">10000</span>),</span><br><span class="line">                               <span class="keyword">new</span> AmountDiscountPolicy(...));</span><br><span class="line">      <span class="keyword">return</span> avatar.getFee();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/03/13/objects-09/image-20200317202949066.png" alt="image-20200317202949066"></p>
+<h3 id="FACTORY-추가하기"><a href="#FACTORY-추가하기" class="headerlink" title="FACTORY 추가하기"></a>FACTORY 추가하기</h3><p><strong>객체 생성을 전담하는 Factory를 추가한 후의 의존성</strong></p>
+<p><img src="/2020/03/13/objects-09/image-20200317203406593.png" alt="image-20200317203406593"></p>
+<h3 id="순수한-가공물에게-책임-할당하기"><a href="#순수한-가공물에게-책임-할당하기" class="headerlink" title="순수한 가공물에게 책임 할당하기"></a>순수한 가공물에게 책임 할당하기</h3><p><strong>PURE FABRICATION 패턴</strong></p>
+<p>객체지향 설계는 문제 도메인 상의 개념을 소프트웨어 객체로 구현하고 책임을 할당한다. 하지만 만약 도메인 객체에 대한 책임을 할당할 경우  High Choosen, Low Coupling, 재사용성 등의 목적을 위반한다면 어떻게 해야 하는가?</p>
+<p>문제 도메인 개념을 표현하지 않는 인위적으로 또는 편의상 만든 클래스에 매우 응집된 책임을 할당하라. 이들 클래스는 문제 도메인 상에는 존재하지 않지만 순수하게 전체 설계의 품질을 높이기 위해 설계자의 임의에 따라 추가한 상상 속의 가공물이다.</p>
+<p>Pure Fabirication은 Information Expert 패턴에 따라 책임을 할당한 결과가 바람직하지 않을 경우 대안으로 사용된다. 어떤 객체가 책임을 수행하는데 필요한 많은 정보를 가졌지만 해당 책임을 할당할 경우 응집도가 낮아지고 결합도가 높아진다면 가공의 객체를 추가해서 책임을 옮기는 것을 고민하라. 순수한 가공물이라는 표현은 적절한 대안이 없을 때 사람들이 창조적인 무언가를 만들어낸다는 것을 의미하는 관용적인 표현이다.</p>
+<h2 id="03-의존성-주입"><a href="#03-의존성-주입" class="headerlink" title="03. 의존성 주입"></a>03. 의존성 주입</h2><p><strong>의존성 주입(Dependency Injection)</strong></p>
+<blockquote>
+<p>사용하는 객체가 아닌 외부의 독립적인 객체가 인스턴스를 생성한 후 이를 전달해서 의존성을 해결하는 방법</p>
+</blockquote>
+<p><strong>의존성을 해결하는 세가지 방법</strong></p>
+<ul>
+<li>생성자 주입(constructor injection): 객체를 생성하는 시점에 생성자를 통해 의존성 해결</li>
+<li>Setter 주입(setter injection) : 객체 생성 후 setter 메서드를 통한 의존성 해결</li>
+<li>메서드 주입(method injection) : 메서드 실행 시 인자를 이용한 의존성 해결</li>
+</ul>
+<h3 id="숨겨진-의존성은-나쁘다"><a href="#숨겨진-의존성은-나쁘다" class="headerlink" title="숨겨진 의존성은 나쁘다"></a>숨겨진 의존성은 나쁘다</h3><p><strong>Service Locator 패턴</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceLocator</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> ServiceLocator soleInstance = <span class="keyword">new</span> ServiceLocator();</span><br><span class="line">	<span class="keyword">private</span> DiscountPolicy discountPolicy;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">ServiceLocator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DiscountPolicy <span class="title">discountPolicy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> soleInstance.discountPolicy;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">provide</span><span class="params">(DiscountPolicy discountPolicy)</span> </span>&#123;</span><br><span class="line">		soleInstance.discountPolicy = discountPolicy;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ServiceLocator.provie(<span class="keyword">new</span> AmountDiscountPolicy(...));</span><br><span class="line">Movie avatar = <span class="keyword">new</span> Movie(<span class="string">"아바타"</span>, </span><br><span class="line">                        Duration.ofMinutes(<span class="number">120</span>), </span><br><span class="line">                        Money.wons(<span class="number">1000</span>));</span><br><span class="line"></span><br><span class="line">ServiceLocator.provie(<span class="keyword">new</span> PercentDiscountPolicy(...));</span><br><span class="line">Movie avatar = <span class="keyword">new</span> Movie(<span class="string">"아바타"</span>, </span><br><span class="line">                        Duration.ofMinutes(<span class="number">120</span>), </span><br><span class="line">                        Money.wons(<span class="number">1000</span>));</span><br></pre></td></tr></table></figure>
+
+<p>Avatar Movie 생성 코드는 의존성이 감추어져 있다. </p>
+<p>문제의 원인은 숨겨진 의존성이 캡슐화를 위반했기 때문이다. 단순히 인스턴스 변수의 가시성을 private로 선언하고 변경되는 내용을 숨겼다고해서 캡슐화가 지켜지는 것은 아니다. </p>
+<p>캡슐화는 코드를 읽고이해하는 행위와 관련이 있다. 클래스의 퍼블릭 인터페이스만으로 사용 방법을 이해할 수 있는 코드가 캡술화의 관점에서 훌륭한 코드다. 클래스의 사용법을 익히기 위해 구현 내부를 샅샅이 뒤져야 한다면 그 클래스의 캡슐화는 무너질 것이다.</p>
+<h2 id="04-의존성-역전-원칙"><a href="#04-의존성-역전-원칙" class="headerlink" title="04. 의존성 역전 원칙"></a>04. 의존성 역전 원칙</h2><h3 id="추상화와-의존성-역전"><a href="#추상화와-의존성-역전" class="headerlink" title="추상화와 의존성 역전"></a>추상화와 의존성 역전</h3><ol>
+<li>상위 수준의 모듈은 하위 수준의 모듈에 의존해서는 안된다. 둘 모두 추상화에 의존해야 한다.</li>
+<li>추상화는 구체적인 사항에 의존해서는 안된다. 구체적인 사항은 추상화에 의존해야한다.</li>
+</ol>
+<h3 id="의존성-역전-원칙과-패키지"><a href="#의존성-역전-원칙과-패키지" class="headerlink" title="의존성 역전 원칙과 패키지"></a>의존성 역전 원칙과 패키지</h3><p><img src="/2020/03/13/objects-09/image-20200324162319854.png" alt="image-20200324162319854"></p>
+<p><img src="/2020/03/13/objects-09/image-20200324162332623.png" alt="image-20200324162332623"></p>
+<h2 id="05-유연성에-대한-조언"><a href="#05-유연성에-대한-조언" class="headerlink" title="05. 유연성에 대한 조언"></a>05. 유연성에 대한 조언</h2><h3 id="유연한-설계는-유연성이-필요할-때만-옳다"><a href="#유연한-설계는-유연성이-필요할-때만-옳다" class="headerlink" title="유연한 설계는 유연성이 필요할 때만 옳다"></a>유연한 설계는 유연성이 필요할 때만 옳다</h3><blockquote>
+<p>유연하고 재사용 가능한 설계란 런타임 의존성과 컴파일 타임 의존성의 차이를 인식하고 동일한 컴파일 타임 의존성으로부터 다양한 런타임 의존성을 만들 수 있는 코드를 가지는 설계를 의미한다.</p>
+</blockquote>
+<ul>
+<li>설계의 미덕 = <code>단순함</code>,<code>명확함</code></li>
+<li>미래의 변경이 일어날지도 모른다는 막연한 불안감을 불필요하게 복잡한 설계를 낳음</li>
+</ul>
+<blockquote>
+<p>아직 일어나지 않는 변경은 변경이 아니다.</p>
+</blockquote>
+<ul>
+<li>유연함은 단순성과 명확성의 희생 위에서 자라남</li>
+<li>불필요한 유연성은 불필요한 복잡성을 낳음</li>
+<li>유연성은 코드를 읽는 사람들이 복잡함을 수용할 수 있을 때만 가치가 있음</li>
+<li>프로그램(텍스트 공간에 흩뿌려진) 과 진행 과정 사이를 가능한 한 일치시켜야 함</li>
+</ul>
+<h3 id="협력과-책임이-중요하다"><a href="#협력과-책임이-중요하다" class="headerlink" title="협력과 책임이 중요하다"></a>협력과 책임이 중요하다</h3><ul>
+<li>객체의 협력과 책임이 중요</li>
+<li>설계를 유연하게 만들기 위헤서는 <code>역할</code>, <code>책임</code>, <code>협력</code>에 초점을 맞춰야함</li>
+<li>객체를 생성하는 방법에 대한 결정은 모든 책임이 자리 잡은 후 마지막 시점에 내리는 것이 적절</li>
+<li>객체가 무엇이 되고 싶은지를 알게 될 때까지 객체들은 어떻게 인스턴스화 할 것인지에 대해 전혀 신경 쓰지 않음</li>
+<li>너무 일찍 결정하는 것은 비생산적임</li>
+</ul>
+<blockquote>
+<p>역할, 책임, 협력에 먼저 집중하라.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/object/" rel="tag"><i class="fa fa-tag"></i> object</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/03/10/objects-08/" rel="next" title="chapter 08. 의존성 관리하기">
+                  <i class="fa fa-chevron-left"></i> chapter 08. 의존성 관리하기
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/03/24/objects-11/" rel="prev" title="chapter-11. 합성과 유연한 설계">
+                  chapter-11. 합성과 유연한 설계 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2020/03/13/objects-09/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-09-유연한-설계"><span class="nav-number">1.</span> <span class="nav-text">chapter 09. 유연한 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-개방-폐쇄-원칙"><span class="nav-number">1.1.</span> <span class="nav-text">01. 개방-폐쇄 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#컴파일타임-의존성을-고정시키고-런타임-의존성을-변경하라"><span class="nav-number">1.1.1.</span> <span class="nav-text">컴파일타임 의존성을 고정시키고 런타임 의존성을 변경하라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#추상화가-핵심이다"><span class="nav-number">1.1.2.</span> <span class="nav-text">추상화가 핵심이다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-생성-사용-분리"><span class="nav-number">1.2.</span> <span class="nav-text">02. 생성 사용 분리</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FACTORY-추가하기"><span class="nav-number">1.2.1.</span> <span class="nav-text">FACTORY 추가하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순수한-가공물에게-책임-할당하기"><span class="nav-number">1.2.2.</span> <span class="nav-text">순수한 가공물에게 책임 할당하기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-의존성-주입"><span class="nav-number">1.3.</span> <span class="nav-text">03. 의존성 주입</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#숨겨진-의존성은-나쁘다"><span class="nav-number">1.3.1.</span> <span class="nav-text">숨겨진 의존성은 나쁘다</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-의존성-역전-원칙"><span class="nav-number">1.4.</span> <span class="nav-text">04. 의존성 역전 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#추상화와-의존성-역전"><span class="nav-number">1.4.1.</span> <span class="nav-text">추상화와 의존성 역전</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#의존성-역전-원칙과-패키지"><span class="nav-number">1.4.2.</span> <span class="nav-text">의존성 역전 원칙과 패키지</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-유연성에-대한-조언"><span class="nav-number">1.5.</span> <span class="nav-text">05. 유연성에 대한 조언</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#유연한-설계는-유연성이-필요할-때만-옳다"><span class="nav-number">1.5.1.</span> <span class="nav-text">유연한 설계는 유연성이 필요할 때만 옳다</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#협력과-책임이-중요하다"><span class="nav-number">1.5.2.</span> <span class="nav-text">협력과 책임이 중요하다</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

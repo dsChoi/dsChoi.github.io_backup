@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '복사',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="chapter 10. 상속과 코드 재사용01. 상속과 중복코드DRY 원칙Don’t Repet Yourself 반복하지 마라  중복 여부를 판단하는 것은 변경이다. 요구사항이 변경되었을때 같이 수정되어야 하면 중복이다.  모양이 유사하다고 중복은 아니다. 중복과 변경중복 코드 살펴보기">
+<meta name="keywords" content="object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chapter-10. 상속과 코드 재사용">
+<meta property="og:url" content="https://dschoi.github.io/2020/03/24/objects-10/index.html">
+<meta property="og:site_name" content="Object Oriented Programmer">
+<meta property="og:description" content="chapter 10. 상속과 코드 재사용01. 상속과 중복코드DRY 원칙Don’t Repet Yourself 반복하지 마라  중복 여부를 판단하는 것은 변경이다. 요구사항이 변경되었을때 같이 수정되어야 하면 중복이다.  모양이 유사하다고 중복은 아니다. 중복과 변경중복 코드 살펴보기">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/24/objects-10/image-20200324183934409.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/03/24/objects-10/image-20200324185205652.png">
+<meta property="og:updated_time" content="2020-04-20T12:38:51.102Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chapter-10. 상속과 코드 재사용">
+<meta name="twitter:description" content="chapter 10. 상속과 코드 재사용01. 상속과 중복코드DRY 원칙Don’t Repet Yourself 반복하지 마라  중복 여부를 판단하는 것은 변경이다. 요구사항이 변경되었을때 같이 수정되어야 하면 중복이다.  모양이 유사하다고 중복은 아니다. 중복과 변경중복 코드 살펴보기">
+<meta name="twitter:image" content="https://dschoi.github.io/2020/03/24/objects-10/image-20200324183934409.png">
+
+<link rel="canonical" href="https://dschoi.github.io/2020/03/24/objects-10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>chapter-10. 상속과 코드 재사용 | Object Oriented Programmer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Object Oriented Programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">To Improve My Life</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/dschoi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/03/24/objects-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chapter-10. 상속과 코드 재사용
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-03-24 16:30:43" itemprop="dateCreated datePublished" datetime="2020-03-24T16:30:43+09:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-20 21:38:51" itemprop="dateModified" datetime="2020-04-20T21:38:51+09:00">2020-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/도서/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2020/03/24/objects-10/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/03/24/objects-10/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="chapter-10-상속과-코드-재사용"><a href="#chapter-10-상속과-코드-재사용" class="headerlink" title="chapter 10. 상속과 코드 재사용"></a>chapter 10. 상속과 코드 재사용</h1><h2 id="01-상속과-중복코드"><a href="#01-상속과-중복코드" class="headerlink" title="01. 상속과 중복코드"></a>01. 상속과 중복코드</h2><h3 id="DRY-원칙"><a href="#DRY-원칙" class="headerlink" title="DRY 원칙"></a>DRY 원칙</h3><p><strong>Don’t Repet Yourself</strong></p><ul>
+<li>반복하지 마라 </li>
+<li>중복 여부를 판단하는 것은 변경이다. 요구사항이 변경되었을때 같이 수정되어야 하면 중복이다. </li>
+<li>모양이 유사하다고 중복은 아니다.</li>
+</ul><h3 id="중복과-변경"><a href="#중복과-변경" class="headerlink" title="중복과 변경"></a>중복과 변경</h3><h4 id="중복-코드-살펴보기"><a href="#중복-코드-살펴보기" class="headerlink" title="중복 코드 살펴보기"></a>중복 코드 살펴보기</h4><a id="more"></a>
+
+<h4 id="중복-코드-수정하기"><a href="#중복-코드-수정하기" class="headerlink" title="중복 코드 수정하기"></a>중복 코드 수정하기</h4><h4 id="타입-코드-사용하기"><a href="#타입-코드-사용하기" class="headerlink" title="타입 코드 사용하기"></a>타입 코드 사용하기</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> PhoneType &#123;REGULAR, NIGHTLY&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Money calculateFee &#123;</span><br><span class="line">  <span class="keyword">if</span>(type === PhoneType.REGULAR) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="상속을-이용해서-중복-코드-제거하기"><a href="#상속을-이용해서-중복-코드-제거하기" class="headerlink" title="상속을 이용해서 중복 코드 제거하기"></a>상속을 이용해서 중복 코드 제거하기</h3><h3 id="강하게-결합된-Phone-과-NightlyDiscountPhone"><a href="#강하게-결합된-Phone-과-NightlyDiscountPhone" class="headerlink" title="강하게 결합된 Phone 과 NightlyDiscountPhone"></a>강하게 결합된 Phone 과 NightlyDiscountPhone</h3><p><strong>상속을 위한 경고1</strong></p>
+<blockquote>
+<p>자식 클래스의 메서드 안에서 super 참조를 이용해 부모 클래스의 메서드를 직접 호출할 경우 두 클래스는 강하게 결합된다. Super 호출을 제거할 수 있는 방법을 찾아 결합도를 제거하라.</p>
+</blockquote>
+<h2 id="02-취약한-기반-클래스-문제"><a href="#02-취약한-기반-클래스-문제" class="headerlink" title="02. 취약한 기반 클래스 문제"></a>02. 취약한 기반 클래스 문제</h2><ul>
+<li>상속은 자식 클래스와 부모 클래스의 결합도를 높인다. </li>
+<li>부모 클래스의 변경에 의해 자식 클래스가 영향을 받는 현상 : <code>취약한 기반 클래스 문제</code></li>
+</ul>
+<p>객체지향의 기반은 캡슐화를 통한 변경의 통제다. </p>
+<p>상속은 코드의 재사용을 위해 캡슐화의 장점을 희석시키고 구현에 대한 결합도를 높임으로써 객체지향이 가진 강력함을 반감시킨다.</p>
+<h3 id="불필요한-인터페이스-상속-문제"><a href="#불필요한-인터페이스-상속-문제" class="headerlink" title="불필요한 인터페이스 상속 문제"></a>불필요한 인터페이스 상속 문제</h3><p><strong>상속을 위한 경고2</strong></p>
+<blockquote>
+<p>상속받은 부모 클래스의 메서드가 자식 클래스의 내부 구조에 대한 규칙을 깨뜨릴 수 있다.</p>
+</blockquote>
+<h3 id="메서드-오버라이딩의-오작용-문제"><a href="#메서드-오버라이딩의-오작용-문제" class="headerlink" title="메서드 오버라이딩의 오작용 문제"></a>메서드 오버라이딩의 오작용 문제</h3><p><strong>상속을 위한 경고 3</strong></p>
+<blockquote>
+<p>자식 클래스가 부모 클래스의 메서들르 오버라이딩할 경우 부모 클래스가 자신의 메서드를 사용하는 방법에 자식 클래스가 결합될수 있다.</p>
+</blockquote>
+<h3 id="부모-클래스와-자식-클래스의-동시-수정-문제"><a href="#부모-클래스와-자식-클래스의-동시-수정-문제" class="headerlink" title="부모 클래스와 자식 클래스의 동시 수정 문제"></a>부모 클래스와 자식 클래스의 동시 수정 문제</h3><p><strong>상속을 위한 경고 4</strong></p>
+<blockquote>
+<p>클래스를 상속하면 결합도로 인해 자식 클래스와 부모 클래스의 구현을 영원히 변경하지 않거나, 자식 클래스와 부모 클래스를 동시에 변경하거나 둘 중 하나를 선택할 수 밖에 없다.</p>
+</blockquote>
+<h2 id="03-Phone-다시-살펴보기"><a href="#03-Phone-다시-살펴보기" class="headerlink" title="03. Phone 다시 살펴보기"></a>03. Phone 다시 살펴보기</h2><h3 id="추상화에-의존하자"><a href="#추상화에-의존하자" class="headerlink" title="추상화에 의존하자"></a>추상화에 의존하자</h3><p><strong>코드 중복을 제거하기 위해 상속을 도입할 떄 따르는 두가지 원칙</strong> </p>
+<ul>
+<li>두 메서드가 유사하게 보인다면 차이점을 메서드로 추출하라. 메서드 추출을 통해 두 메서드를 동일한 형태로 보이도록 만들수 있다.</li>
+<li>부모 클래스의 코드를 하위로 내리지 말고 자식 클래스의 코드를 상위로 올려라. 부모 클래스의 구체적인 메서드를 자식 클래스로 내리는 것 보다 자식 클래스의 추상적인 메서드를 부모 클래스로 올리는 것이 재사용성과 응집도 측면에서 더 뛰어난 결과를 얻을 수 있다.</li>
+</ul>
+<h3 id="차이를-메서드로-추출하라"><a href="#차이를-메서드로-추출하라" class="headerlink" title="차이를 메서드로 추출하라."></a>차이를 메서드로 추출하라.</h3><h3 id="중복-코드를-부모-클래스로-올려라"><a href="#중복-코드를-부모-클래스로-올려라" class="headerlink" title="중복 코드를 부모 클래스로 올려라"></a>중복 코드를 부모 클래스로 올려라</h3><p><strong>리팩토링 후 상속 계층</strong></p>
+<p><img src="/2020/03/24/objects-10/image-20200324183934409.png" alt="image-20200324183934409"></p>
+<h3 id="추상화가-핵심이다"><a href="#추상화가-핵심이다" class="headerlink" title="추상화가 핵심이다"></a>추상화가 핵심이다</h3><ul>
+<li><strong>AbstractPhone</strong> 은 전체 통화 목록을 계산하는 방법이 바뀔 경우만 변경된다.</li>
+<li><strong>Phone</strong> 은 일반 요금제의 통화 한건을 계산하는 방법이 바뀔 경우 변경된다.</li>
+<li><strong>NightlyDiscountPhone</strong> 은 심야 할인 요금제의 통화 한건을 계산 하는 방법이 바뀔 경우 변경된다. </li>
+<li>세 클래스는 각각 하나의 변경 이유만을 가진다. <strong>단일 책임 원칙</strong>을 준수하기 때문이다.</li>
+</ul>
+<h3 id="의도를-드러내는-이름-선택하기"><a href="#의도를-드러내는-이름-선택하기" class="headerlink" title="의도를 드러내는 이름 선택하기"></a>의도를 드러내는 이름 선택하기</h3><p><strong>Phone -&gt; RegularPhone으로 이름 변경</strong> </p>
+<h3 id="세금-추가하기"><a href="#세금-추가하기" class="headerlink" title="세금 추가하기"></a>세금 추가하기</h3><p>객체 생성 로직의 변경에 대한 변경을 막기보다는 핵심 로직의 중복을 막아라. 핵심 로직은 한곳에 모아 놓고 조심스럽게 캡슐화 해야한다.</p>
+<h2 id="04-차이에-의한-프로그래밍"><a href="#04-차이에-의한-프로그래밍" class="headerlink" title="04. 차이에 의한 프로그래밍"></a>04. 차이에 의한 프로그래밍</h2><p>기존 코드와 다른 부분만을 추가함으로써 애플리케이션의 기능을 확장하는 방법을 <strong>차이에 의한 프로그래밍</strong> 이라고 한다.</p>
+<p>차이에 의한 프로그래밍의 목표</p>
+<ul>
+<li>중복 코드를 제거</li>
+<li>코드 재사용</li>
+</ul>
+<p><strong>재사용가능한 코드란?</strong></p>
+<ul>
+<li>심각한 버그가 존재하지 않는 코드. </li>
+<li>코드를 재사용 하면 코드의 품질은 유지하면서 코들르 작성하는 노력과 테스트는 줄일 수 있다. </li>
+</ul>
+<p><strong>중복 코드를 제거하고 재사용할수 있는 가장 유명한 방법은 상속이다.</strong> </p>
+<ol>
+<li>중복 코들르 하나의 클래스로 모은다.</li>
+<li>원 클래스에서 중복 코드를 제거한 후 옮겨진 클래스를 상속 관계로 연결한다. </li>
+</ol>
+<p><strong>상속을 이용한 중복 코드 제거 방법</strong></p>
+<p><img src="/2020/03/24/objects-10/image-20200324185205652.png" alt="image-20200324185205652"></p>
+<p>상속이 코드 재사용 측면에서 매우 강력한 도구이지만 잘못 사용할 경우 돌아오는 피해 역시 크다. </p>
+<p>상속의 오용과 남용은 애플리케이션을 이애하고 확장하기 어렵게 만든다. </p>
+<p><code>정말로 필요한 경우에만 상속을 사용하라.</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/object/" rel="tag"><i class="fa fa-tag"></i> object</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/03/24/objects-11/" rel="next" title="chapter-11. 합성과 유연한 설계">
+                  <i class="fa fa-chevron-left"></i> chapter-11. 합성과 유연한 설계
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/04/14/objects-12/" rel="prev" title="chapter-12. 다형성">
+                  chapter-12. 다형성 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div class="fb-comments"
+       data-href="https://dschoi.github.io/2020/03/24/objects-10/"
+       data-numposts="10"
+       data-width="100%"
+       data-colorscheme="light">
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-10-상속과-코드-재사용"><span class="nav-number">1.</span> <span class="nav-text">chapter 10. 상속과 코드 재사용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-상속과-중복코드"><span class="nav-number">1.1.</span> <span class="nav-text">01. 상속과 중복코드</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DRY-원칙"><span class="nav-number">1.1.1.</span> <span class="nav-text">DRY 원칙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#중복과-변경"><span class="nav-number">1.1.2.</span> <span class="nav-text">중복과 변경</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#중복-코드-살펴보기"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">중복 코드 살펴보기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#중복-코드-수정하기"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">중복 코드 수정하기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#타입-코드-사용하기"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">타입 코드 사용하기</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#상속을-이용해서-중복-코드-제거하기"><span class="nav-number">1.1.3.</span> <span class="nav-text">상속을 이용해서 중복 코드 제거하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#강하게-결합된-Phone-과-NightlyDiscountPhone"><span class="nav-number">1.1.4.</span> <span class="nav-text">강하게 결합된 Phone 과 NightlyDiscountPhone</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-취약한-기반-클래스-문제"><span class="nav-number">1.2.</span> <span class="nav-text">02. 취약한 기반 클래스 문제</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#불필요한-인터페이스-상속-문제"><span class="nav-number">1.2.1.</span> <span class="nav-text">불필요한 인터페이스 상속 문제</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메서드-오버라이딩의-오작용-문제"><span class="nav-number">1.2.2.</span> <span class="nav-text">메서드 오버라이딩의 오작용 문제</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#부모-클래스와-자식-클래스의-동시-수정-문제"><span class="nav-number">1.2.3.</span> <span class="nav-text">부모 클래스와 자식 클래스의 동시 수정 문제</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Phone-다시-살펴보기"><span class="nav-number">1.3.</span> <span class="nav-text">03. Phone 다시 살펴보기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#추상화에-의존하자"><span class="nav-number">1.3.1.</span> <span class="nav-text">추상화에 의존하자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#차이를-메서드로-추출하라"><span class="nav-number">1.3.2.</span> <span class="nav-text">차이를 메서드로 추출하라.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#중복-코드를-부모-클래스로-올려라"><span class="nav-number">1.3.3.</span> <span class="nav-text">중복 코드를 부모 클래스로 올려라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#추상화가-핵심이다"><span class="nav-number">1.3.4.</span> <span class="nav-text">추상화가 핵심이다</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#의도를-드러내는-이름-선택하기"><span class="nav-number">1.3.5.</span> <span class="nav-text">의도를 드러내는 이름 선택하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#세금-추가하기"><span class="nav-number">1.3.6.</span> <span class="nav-text">세금 추가하기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-차이에-의한-프로그래밍"><span class="nav-number">1.4.</span> <span class="nav-text">04. 차이에 의한 프로그래밍</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Stones"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Stones</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stones</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+  <script>
+    function fbAsyncInit() {
+      FB.init({
+        appId  : '',
+        xfbml  : true,
+        version: 'v3.3'
+      });
+    }
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ko/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
