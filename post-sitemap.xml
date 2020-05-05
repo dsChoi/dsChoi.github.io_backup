@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://dschoi.github.io/2020/05/05/objects-14/</loc>
-        <lastmod>2020-05-05T13:26:37.087Z</lastmod>
+        <lastmod>2020-05-05T13:30:17.731Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -152,14 +152,6 @@
     </url>
 
     <url>
-        <loc>https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/</loc>
-        <lastmod>2020-02-23T16:18:47.176Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://dschoi.github.io/2019/04/01/2019-04-02-logrotate/</loc>
         <lastmod>2020-02-23T16:18:47.176Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -176,6 +168,14 @@
     </url>
 
     <url>
+        <loc>https://dschoi.github.io/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/</loc>
+        <lastmod>2020-02-23T16:18:47.176Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://dschoi.github.io/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/</loc>
         <lastmod>2020-02-23T16:18:47.176Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -184,7 +184,7 @@
     </url>
 
     <url>
-        <loc>https://dschoi.github.io/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/</loc>
+        <loc>https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/</loc>
         <lastmod>2020-02-23T16:18:47.176Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
