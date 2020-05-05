@@ -50,22 +50,22 @@
   };
 </script>
 
-  <meta name="description" content="14. 일관성 있는 협력객체는 협력을 위해 존재한다.협력은 객체가 존재하는 이유와 문맥을 제공한다.객체지향 설계의 목표는 적절한 책임을 수행하는 객체들의 협력을 기반으로 결합도가 낮고 재사용 가능한 코드 구조를 창조하는 것객체지향 패러다임의 장점은 설계를 재사용할 수 있다는 것.">
+  <meta name="description" content="14장에 해당하는 소스코드 부분은 아래 링크에 추가해 놓았으니 확인 부탁드립니다.https://github.com/dsChoi/study/tree/master/src/main/java/com/setin/study/objects/chapter14 14. 일관성 있는 협력">
 <meta name="keywords" content="objects">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chapter-14. 일관성 있는 협력">
 <meta property="og:url" content="https://dschoi.github.io/2020/05/05/objects-14/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:description" content="14. 일관성 있는 협력객체는 협력을 위해 존재한다.협력은 객체가 존재하는 이유와 문맥을 제공한다.객체지향 설계의 목표는 적절한 책임을 수행하는 객체들의 협력을 기반으로 결합도가 낮고 재사용 가능한 코드 구조를 창조하는 것객체지향 패러다임의 장점은 설계를 재사용할 수 있다는 것.">
+<meta property="og:description" content="14장에 해당하는 소스코드 부분은 아래 링크에 추가해 놓았으니 확인 부탁드립니다.https://github.com/dsChoi/study/tree/master/src/main/java/com/setin/study/objects/chapter14 14. 일관성 있는 협력">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="https://dschoi.github.io/2020/05/05/objects-14/image-20200505155944636.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/05/05/objects-14/image-20200505165834142.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/05/05/objects-14/image-20200505220235597.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/05/05/objects-14/image-20200505220752427.png">
-<meta property="og:updated_time" content="2020-05-05T13:30:17.731Z">
+<meta property="og:updated_time" content="2020-05-05T13:32:28.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chapter-14. 일관성 있는 협력">
-<meta name="twitter:description" content="14. 일관성 있는 협력객체는 협력을 위해 존재한다.협력은 객체가 존재하는 이유와 문맥을 제공한다.객체지향 설계의 목표는 적절한 책임을 수행하는 객체들의 협력을 기반으로 결합도가 낮고 재사용 가능한 코드 구조를 창조하는 것객체지향 패러다임의 장점은 설계를 재사용할 수 있다는 것.">
+<meta name="twitter:description" content="14장에 해당하는 소스코드 부분은 아래 링크에 추가해 놓았으니 확인 부탁드립니다.https://github.com/dsChoi/study/tree/master/src/main/java/com/setin/study/objects/chapter14 14. 일관성 있는 협력">
 <meta name="twitter:image" content="https://dschoi.github.io/2020/05/05/objects-14/image-20200505155944636.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2020/05/05/objects-14/">
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-05-05 15:31:24 / Updated at: 22:30:17" itemprop="dateCreated datePublished" datetime="2020-05-05T15:31:24+09:00">2020-05-05</time>
+              <time title="Post created: 2020-05-05 15:31:24 / Updated at: 22:32:28" itemprop="dateCreated datePublished" datetime="2020-05-05T15:31:24+09:00">2020-05-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,10 +264,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="14-일관성-있는-협력"><a href="#14-일관성-있는-협력" class="headerlink" title="14. 일관성 있는 협력"></a>14. 일관성 있는 협력</h1><p>객체는 협력을 위해 존재한다.</p><p>협력은 객체가 존재하는 이유와 문맥을 제공한다.</p><p>객체지향 설계의 목표는 적절한 책임을 수행하는 객체들의 협력을 기반으로 결합도가 낮고 재사용 가능한 코드 구조를 창조하는 것</p><p>객체지향 패러다임의 장점은 설계를 재사용할 수 있다는 것. </p><a id="more"></a>
-
-
-
+        <blockquote>
+<p>14장에 해당하는 소스코드 부분은 아래 링크에 추가해 놓았으니 확인 부탁드립니다.<br><a href="https://github.com/dsChoi/study/tree/master/src/main/java/com/setin/study/objects/chapter14" target="_blank" rel="noopener">https://github.com/dsChoi/study/tree/master/src/main/java/com/setin/study/objects/chapter14</a></p>
+</blockquote><h1 id="14-일관성-있는-협력"><a href="#14-일관성-있는-협력" class="headerlink" title="14. 일관성 있는 협력"></a>14. 일관성 있는 협력</h1><a id="more"></a>
+<p>객체는 협력을 위해 존재한다.</p>
+<p>협력은 객체가 존재하는 이유와 문맥을 제공한다.</p>
+<p>객체지향 설계의 목표는 적절한 책임을 수행하는 객체들의 협력을 기반으로 결합도가 낮고 재사용 가능한 코드 구조를 창조하는 것</p>
+<p>객체지향 패러다임의 장점은 설계를 재사용할 수 있다는 것. </p>
 <p>재사용을 위해서는 객체들의 협력 방식을 일관성 있게 만들어야 한다. </p>
 <p>일관성 있는 설계가 주는 큰 이익은 코드가 이해하기 쉬워진다는 것. </p>
 <p>특정한 문제를 유사한 방법으로 해결하고 있다는 사실을 이해하는 것만으로도 코드의 구조를 예상할수 있다.</p>
