@@ -1,6 +1,7 @@
 ---
 title: chapter 06. 메시지와 인터페이스
 tags:
+  - objects
   - object
 categories: 도서
 date: 2020-02-18 22:26:34

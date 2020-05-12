@@ -2,6 +2,7 @@
 title: chapter 05. 책임 할당하기.
 date: 2020-02-11 22:58:34
 tags:
+  - objects
   - object
 categories: 도서
 ---

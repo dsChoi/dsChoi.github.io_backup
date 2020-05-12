@@ -2,6 +2,7 @@
 title: chapter 01. 객체 , 설계 
 date: 2020-01-27 16:17:36
 tags:
+  - objects
   - object
 categories: 도서
 

@@ -2,6 +2,7 @@
 title: chapter 04. 설계 품질과 트레이드오프
 date: 2020-02-10 01:05:07
 tags:
+  - objects
   - object
 categories: 도서
 ---

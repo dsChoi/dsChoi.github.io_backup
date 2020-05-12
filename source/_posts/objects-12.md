@@ -160,7 +160,7 @@ Lecture lecture = new GradeLecture("객체지향 프로그래밍", 70,
 
 ### 업캐스팅
 
-<img src="/Users/setin82/git/dsChoi/source/_posts/objects-12/image-20200420222051550.png" alt="image-20200420222051550" style="zoom:50%;" />
+<img src="objects-12/image-20200420222051550.png" alt="image-20200420222051550" style="zoom:50%;" />
 
 ### 동적 바인딩
 
@@ -215,11 +215,11 @@ Lecture lecture = new GradeLecture("객체지향 프로그래밍", 70,
 
 **self 전송을 통한 메서드 탐색**
 
-<img src="/Users/setin82/git/dsChoi/source/_posts/objects-12/image-20200420223146042.png" alt="image-20200420223146042" style="zoom:50%;" />
+<img src="objects-12/image-20200420223146042.png" alt="image-20200420223146042" style="zoom:50%;" />
 
 **self 전송은 self 참조로부터 탐색을 다시 한다.**
 
-<img src="/Users/setin82/git/dsChoi/source/_posts/objects-12/image-20200420222852982.png" alt="image-20200420222852982" style="zoom:50%;" />
+<img src="objects-12/image-20200420222852982.png" alt="image-20200420222852982" style="zoom:50%;" />
 
 ### 이해할 수 없는 메시지
 

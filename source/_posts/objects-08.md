@@ -1,6 +1,7 @@
 ---
 title: chapter 08. 의존성 관리하기
 tags:
+  - objects
   - object
 categories: 도서
 date: 2020-03-10 23:57:34

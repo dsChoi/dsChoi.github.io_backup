@@ -2,6 +2,7 @@
 title: chapter-09. 유연한 설계
 date: 2020-03-13 17:26:59
 tags:
+  - objects
   - object
 categories: 도서
 ---

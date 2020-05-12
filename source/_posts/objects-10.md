@@ -2,6 +2,7 @@
 title: chapter-10. 상속과 코드 재사용
 date: 2020-03-24 16:30:43
 tags:
+  - objects
   - object
 categories: 도서
 ---

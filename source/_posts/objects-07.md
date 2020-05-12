@@ -1,6 +1,7 @@
 ---
 title: chapter 07. 객체 분해
 tags:
+  - objects
   - object
 categories: 도서
 date: 2020-03-03 18:26:34
