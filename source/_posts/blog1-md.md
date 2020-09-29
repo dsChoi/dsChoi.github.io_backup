@@ -14,7 +14,7 @@ API 개발을 끝낸 후 성능테스트를 해야해서 ngrinder 설치 후 테
 
 cpu 사용률 100% / cpu load 10.
 
-<img src="../_posts/blog1-md/blog_01.png" alt="blog_01" style="zoom:50%;" />
+<img src="./blog1-md/blog_01.png" alt="blog_01" style="zoom:50%;" />
 
 
 
@@ -35,7 +35,7 @@ cpu 사용률 100% / cpu load 10.
 
 
 
-![blog_02](../_posts/blog1-md/blog_02.png)
+![blog_02](./blog1-md/blog_02.png)
 
 
 
@@ -51,7 +51,7 @@ JAVA DDB client 풀을 늘려야 하나? mybatis 의 db 커넥션풀같은게 �
 
 파격적으로 maxConnection 100으로 설정했다.
 
-![blog03](../_posts/blog1-md/blog03.png)
+![blog03](./blog1-md/blog03.png)
 
 **하지만 결과는 변하지 않았다. ㅠㅜ (2)**
 
@@ -59,7 +59,7 @@ JAVA DDB client 풀을 늘려야 하나? mybatis 의 db 커넥션풀같은게 �
 
 Spring data dyanmodb 요 아이가 성능이 안나오나? 그러면 그냥 aws에서 제공하는 sdk 를 사용해서 해보자.
 
-![blog04](../_posts/blog1-md/blog04.png)
+![blog04](./blog1-md/blog04.png)
 
 **하지만 결과는 변하지 않았다. ㅠㅜ (3)**
 
@@ -85,7 +85,7 @@ Spring data dyanmodb 요 아이가 성능이 안나오나? 그러면 그냥 aws�
 
 cpu 도 75% 사용. 그래도 높지만 기존 아이들 생각하면 엄청난 차이다. 좋네 이렇게 할까..? 
 
-![blog05](../_posts/blog1-md/blog05.png)
+![blog05](./blog1-md/blog05.png)
 
 
 
@@ -111,7 +111,7 @@ cpu 도 75% 사용. 그래도 높지만 기존 아이들 생각하면 엄청난 
 
 
 
-![blog06](../_posts/blog1-md/blog06.png)
+![blog06](./blog1-md/blog06.png)
 
 
 
@@ -130,7 +130,7 @@ cpu 도 75% 사용. 그래도 높지만 기존 아이들 생각하면 엄청난 
 
 
 
-![blog07](../_posts/blog1-md/blog07.png)
+![blog07](./blog1-md/blog07.png)
 
 DDB RCU
 
@@ -140,7 +140,7 @@ DDB RCU
 
 최대 30개까지 썼으니 운영에서 사용할땐 적어도 30이상으로 사용을 해야겠다.
 
-<img src="../_posts/blog1-md/blog08.png" alt="blog08" style="zoom:50%;" />
+<img src="./blog1-md/blog08.png" alt="blog08" style="zoom:50%;" />
 
 ## 결론. 
 
