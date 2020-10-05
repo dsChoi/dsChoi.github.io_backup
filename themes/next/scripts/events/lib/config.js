@@ -6,7 +6,7 @@ module.exports = hexo => {
   var data = hexo.locals.get('data');
   if (!data) return;
 
-  const merge = require(hexo.base_dir + 'node_modules/lodash/merge');
+  const merge = require(hexo.base_dir + 'node_modules/lodash.merge');
 
   /**
    * Merge configs from _data/next.yml into hexo.theme.config.
