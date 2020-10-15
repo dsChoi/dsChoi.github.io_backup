@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,22 +51,22 @@
 </script>
 
   <meta name="description" content="5부 아키텍처18장 경계 해부학 시스템 아키텍처는 일련의 소프트웨어 컴포넌트와 그 컴포넌트들을 분리하는 경계에 의해 정의된다. 경계횡단하기‘런타임에 경계를 횡단한다’ 함은 경계 한쪽에 있는 기능에서 반대편 기능을 호출하여 데이터를 전달하는 일에 불과하다.적절한 위치에서 경계를 횡단하게 하는 비결은 소스 코드 의존성 관리">
-<meta name="keywords" content="clean architecture">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5부 아키텍처 18장 ~ 21장">
 <meta property="og:url" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="5부 아키텍처18장 경계 해부학 시스템 아키텍처는 일련의 소프트웨어 컴포넌트와 그 컴포넌트들을 분리하는 경계에 의해 정의된다. 경계횡단하기‘런타임에 경계를 횡단한다’ 함은 경계 한쪽에 있는 기능에서 반대편 기능을 호출하여 데이터를 전달하는 일에 불과하다.적절한 위치에서 경계를 횡단하게 하는 비결은 소스 코드 의존성 관리">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103183037474.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103183819797.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103203651980.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103204202662.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103204717586.png">
-<meta property="og:updated_time" content="2020-02-23T16:18:47.301Z">
+<meta property="article:published_time" content="2019-11-03T09:07:19.000Z">
+<meta property="article:modified_time" content="2020-02-23T16:18:47.301Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="clean architecture">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5부 아키텍처 18장 ~ 21장">
-<meta name="twitter:description" content="5부 아키텍처18장 경계 해부학 시스템 아키텍처는 일련의 소프트웨어 컴포넌트와 그 컴포넌트들을 분리하는 경계에 의해 정의된다. 경계횡단하기‘런타임에 경계를 횡단한다’ 함은 경계 한쪽에 있는 기능에서 반대편 기능을 호출하여 데이터를 전달하는 일에 불과하다.적절한 위치에서 경계를 횡단하게 하는 비결은 소스 코드 의존성 관리">
 <meta name="twitter:image" content="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/image-20191103183037474.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2019/11/03/clean-architecture-18-20/">
@@ -240,7 +240,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -311,7 +311,7 @@
 <p>컴포넌트를 dll, jar 파일 형태로 배포하면 따로 컴파일 하지 않아도 사용가능하다. 이는 배포 수준 결합 분리 모드에 해당한다, 배포 작업은 단순히 이들 배포 가능한 단위를 좀 더 편안한 형태로 묶는 일에 지나지 않는다. War 파일이나 directory 형태.</p>
 <p>배포형 컴포넌트의 경계를 가로지르는 통신은 함수 호출이므로 매우 값싸다. 동적 링크와 런타임 로딩으로 인해 최초의 함수 호출은 오래 걸릴수 있지만 대체로 이들 경계를 가로지르는 통신은 매우 빈번할 수 있을것이다.</p>
 <h3 id="스레드"><a href="#스레드" class="headerlink" title="스레드"></a>스레드</h3><p>단일체와 배포형 컴포넌트 모두 스레드를 활용할 수 있다. 스레드는 실행 계획과 순서를 체계화 하는 방법에 가깝다. </p>
-<p><a href="https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html" target="_blank" rel="noopener">https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html">https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html</a></p>
 <h3 id="로컬-프로세스"><a href="#로컬-프로세스" class="headerlink" title="로컬 프로세스"></a>로컬 프로세스</h3><p>물리적 형태를 띄는 아키텍처 경계로 로컬 프로세스가 있다. </p>
 <p><strong>로컬 프로세스간 통신</strong></p>
 <ul>
@@ -353,6 +353,8 @@
 <p><strong>주목할 점</strong><br>데이터 흐름과 소스 코드 의존성이 항상 같은 방향을 가르키지는 않는다는 사실.</p>
 <p><strong><em>잘못된 아키텍처</em></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encrypt</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">		writeChar(translate(readChar()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <p><strong>개선된 시스템 아키텍처</strong></p>
 <img src="/2019/11/03/clean-architecture-18-20/image-20191103203651980.png" alt="image-20191103203651980" style="zoom:50%;">
@@ -533,7 +535,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5부-아키텍처"><span class="nav-number">1.</span> <span class="nav-text">5부 아키텍처</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#18장-경계-해부학"><span class="nav-number">1.1.</span> <span class="nav-text">18장 경계 해부학</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#경계횡단하기"><span class="nav-number">1.1.1.</span> <span class="nav-text">경계횡단하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#두려운-단일체"><span class="nav-number">1.1.2.</span> <span class="nav-text">두려운 단일체</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#배포형-컴포넌트"><span class="nav-number">1.1.3.</span> <span class="nav-text">배포형 컴포넌트</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#스레드"><span class="nav-number">1.1.4.</span> <span class="nav-text">스레드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#로컬-프로세스"><span class="nav-number">1.1.5.</span> <span class="nav-text">로컬 프로세스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#서비스"><span class="nav-number">1.1.6.</span> <span class="nav-text">서비스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론"><span class="nav-number">1.1.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19장-정책과-수준"><span class="nav-number">1.2.</span> <span class="nav-text">19장. 정책과 수준</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#수준-level"><span class="nav-number">1.2.1.</span> <span class="nav-text">수준 (level)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20장-업무-규칙"><span class="nav-number">1.3.</span> <span class="nav-text">20장. 업무 규칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#엔티티-Entity"><span class="nav-number">1.3.1.</span> <span class="nav-text">엔티티(Entity)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#유스케이스"><span class="nav-number">1.3.2.</span> <span class="nav-text">유스케이스</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#유스케이스-예제"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">유스케이스 예제</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#요청-및-응답-모델"><span class="nav-number">1.3.3.</span> <span class="nav-text">요청 및 응답 모델</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21장-소리치는-아키텍처"><span class="nav-number">1.4.</span> <span class="nav-text">21장. 소리치는 아키텍처</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#아키텍처의-테마"><span class="nav-number">1.4.1.</span> <span class="nav-text">아키텍처의 테마</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#아키텍처의-목적"><span class="nav-number">1.4.2.</span> <span class="nav-text">아키텍처의 목적</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#하지만-웹은"><span class="nav-number">1.4.3.</span> <span class="nav-text">하지만 웹은?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#프레임워크는-도구일뿐-삶의-방식은-아니다"><span class="nav-number">1.4.4.</span> <span class="nav-text">프레임워크는 도구일뿐, 삶의 방식은 아니다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#테스트하기-쉬운-아키텍처"><span class="nav-number">1.4.5.</span> <span class="nav-text">테스트하기 쉬운 아키텍처</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론-3"><span class="nav-number">1.4.6.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5%EB%B6%80-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98"><span class="nav-number">1.</span> <span class="nav-text">5부 아키텍처</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#18%EC%9E%A5-%EA%B2%BD%EA%B3%84-%ED%95%B4%EB%B6%80%ED%95%99"><span class="nav-number">1.1.</span> <span class="nav-text">18장 경계 해부학</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%BD%EA%B3%84%ED%9A%A1%EB%8B%A8%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">경계횡단하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%91%90%EB%A0%A4%EC%9A%B4-%EB%8B%A8%EC%9D%BC%EC%B2%B4"><span class="nav-number">1.1.2.</span> <span class="nav-text">두려운 단일체</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B0%B0%ED%8F%AC%ED%98%95-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="nav-number">1.1.3.</span> <span class="nav-text">배포형 컴포넌트</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%8A%A4%EB%A0%88%EB%93%9C"><span class="nav-number">1.1.4.</span> <span class="nav-text">스레드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A1%9C%EC%BB%AC-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4"><span class="nav-number">1.1.5.</span> <span class="nav-text">로컬 프로세스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%84%9C%EB%B9%84%EC%8A%A4"><span class="nav-number">1.1.6.</span> <span class="nav-text">서비스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0"><span class="nav-number">1.1.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19%EC%9E%A5-%EC%A0%95%EC%B1%85%EA%B3%BC-%EC%88%98%EC%A4%80"><span class="nav-number">1.2.</span> <span class="nav-text">19장. 정책과 수준</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%88%98%EC%A4%80-level"><span class="nav-number">1.2.1.</span> <span class="nav-text">수준 (level)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20%EC%9E%A5-%EC%97%85%EB%AC%B4-%EA%B7%9C%EC%B9%99"><span class="nav-number">1.3.</span> <span class="nav-text">20장. 업무 규칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%97%94%ED%8B%B0%ED%8B%B0-Entity"><span class="nav-number">1.3.1.</span> <span class="nav-text">엔티티(Entity)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4"><span class="nav-number">1.3.2.</span> <span class="nav-text">유스케이스</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4-%EC%98%88%EC%A0%9C"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">유스케이스 예제</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9A%94%EC%B2%AD-%EB%B0%8F-%EC%9D%91%EB%8B%B5-%EB%AA%A8%EB%8D%B8"><span class="nav-number">1.3.3.</span> <span class="nav-text">요청 및 응답 모델</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21%EC%9E%A5-%EC%86%8C%EB%A6%AC%EC%B9%98%EB%8A%94-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98"><span class="nav-number">1.4.</span> <span class="nav-text">21장. 소리치는 아키텍처</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98-%ED%85%8C%EB%A7%88"><span class="nav-number">1.4.1.</span> <span class="nav-text">아키텍처의 테마</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98-%EB%AA%A9%EC%A0%81"><span class="nav-number">1.4.2.</span> <span class="nav-text">아키텍처의 목적</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%98%EC%A7%80%EB%A7%8C-%EC%9B%B9%EC%9D%80"><span class="nav-number">1.4.3.</span> <span class="nav-text">하지만 웹은?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC%EB%8A%94-%EB%8F%84%EA%B5%AC%EC%9D%BC%EB%BF%90-%EC%82%B6%EC%9D%98-%EB%B0%A9%EC%8B%9D%EC%9D%80-%EC%95%84%EB%8B%88%EB%8B%A4"><span class="nav-number">1.4.4.</span> <span class="nav-text">프레임워크는 도구일뿐, 삶의 방식은 아니다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0-%EC%89%AC%EC%9A%B4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98"><span class="nav-number">1.4.5.</span> <span class="nav-text">테스트하기 쉬운 아키텍처</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0-3"><span class="nav-number">1.4.6.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -549,7 +551,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -569,10 +571,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -601,10 +603,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -629,9 +631,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -54,9 +54,9 @@
 <meta property="og:title" content="Object Oriented Programmer">
 <meta property="og:url" content="https://dschoi.github.io/page/3/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="Stones">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object Oriented Programmer">
 
 <link rel="canonical" href="https://dschoi.github.io/page/3/">
 
@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/10/10/2019-10-10-2부_프로그래밍_패러다임/">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -205,7 +205,139 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/10/2019-10-10-2부_프로그래밍_패러다임/" class="post-title-link" itemprop="url">클린아키텍처-2부 벽돌부터 시작하기: 프로그래밍 패러다임</a>
+            <a href="/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/" class="post-title-link" itemprop="url">클린아키텍처 3부 설계원칙</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-10-12 21:00:50" itemprop="dateCreated datePublished" datetime="2019-10-12T21:00:50+09:00">2019-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-02-24 01:18:47" itemprop="dateModified" datetime="2020-02-24T01:18:47+09:00">2020-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">도서</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Facebook: </span>
+    
+    <a title="facebook comments" href="/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/" itemprop="commentCount">0</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="3부-설계-원칙"><a href="#3부-설계-원칙" class="headerlink" title="3부 설계 원칙"></a>3부 설계 원칙</h1><p>좋은 소프트웨어는 깔끔한 코드<code>clean code</code> 에서 시작한다.</p>
+<p>좋은 벽돌로 좋은 아키텍처를 정의하는 원칙이 필요함. 그것이  <code>SOLID</code></p>
+<p>SOLID 원칙의 목적은 중간 수준의 소프트웨어 구조가 아래와 같도록 만드는데 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">변경에 유연하다.</span><br><span class="line">이해하기 쉽다.</span><br><span class="line">많은 소프트웨어 시스템에 사용될 수 있는 컴포넌트의 기반이 된다.</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="중간-수준이란"><a href="#중간-수준이란" class="headerlink" title="중간 수준이란?"></a>중간 수준이란?</h5><p>프로그래머가 이들 원칙을 모듈 수준에서 작업할 때 적용할 수 있다는 뜻.</p>
+<p>코드 수준보다 조금 상위에서 적용되며 모듈과 컴포넌트 내부에서 사용되는 소프트웨어 구조를 정의</p>
+<h4 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h4><ul>
+<li><p>SRP : 단일 책임의 원칙</p>
+<ul>
+<li>소트트웨어 모듈은 변경의 이유가 하나여야한다.</li>
+</ul>
+</li>
+<li><p>OCP : 개방-폐쇄 원칙</p>
+<ul>
+<li>기존 코드를 수정하기보다는 새로운 코드를 추가하는 방식으로 시스템을 설계.</li>
+</ul>
+</li>
+<li><p>LSP : 리스코프 치환 원칙</p>
+<ul>
+<li>상호 대체 가능한 구성요소를 이용해 소프트웨어 시스템을 만들수 있으려면, 이들 구성요소는 서로 치환 가능해야한다.</li>
+</ul>
+</li>
+<li><p>ISP: 인터페이스 분리 원칙</p>
+<ul>
+<li>사용하지 않는 것에 의존하지 않아야한다.</li>
+</ul>
+</li>
+<li><p>DIP: 의존성 역전 원칙</p>
+<ul>
+<li>고수준 정책을 구현하는 코드는 저수준 세부사항을 구현하는 코드에 의존해서는 안된다.</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/#more" rel="contents">
+                더 읽어보기 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Stones">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Object Oriented Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/" class="post-title-link" itemprop="url">클린아키텍처-2부 벽돌부터 시작하기: 프로그래밍 패러다임</a>
         </h1>
 
         <div class="post-meta">
@@ -230,7 +362,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -245,8 +377,8 @@
       </span>
       <span class="post-meta-item-text">Facebook: </span>
     
-    <a title="facebook comments" href="/2019/10/10/2019-10-10-2부_프로그래밍_패러다임/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/10/10/2019-10-10-2부_프로그래밍_패러다임/" itemprop="commentCount">0</span>
+    <a title="facebook comments" href="/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/" itemprop="commentCount">0</span>
     </a>
   </span>
   
@@ -328,7 +460,7 @@
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/10/2019-10-10-2부_프로그래밍_패러다임/#more" rel="contents">
+              <a class="btn" href="/2019/10/10/2019-10-10-2%EB%B6%80_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D_%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -352,7 +484,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/10/08/2019-10-08-클린아키텍처_목차/">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -366,7 +498,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/08/2019-10-08-클린아키텍처_목차/" class="post-title-link" itemprop="url">클린아키텍처 1부 목차</a>
+            <a href="/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/" class="post-title-link" itemprop="url">클린아키텍처 1부 목차</a>
         </h1>
 
         <div class="post-meta">
@@ -391,7 +523,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -406,8 +538,8 @@
       </span>
       <span class="post-meta-item-text">Facebook: </span>
     
-    <a title="facebook comments" href="/2019/10/08/2019-10-08-클린아키텍처_목차/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/10/08/2019-10-08-클린아키텍처_목차/" itemprop="commentCount">0</span>
+    <a title="facebook comments" href="/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/" itemprop="commentCount">0</span>
     </a>
   </span>
   
@@ -467,7 +599,7 @@
 <hr>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/08/2019-10-08-클린아키텍처_목차/#more" rel="contents">
+              <a class="btn" href="/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/#more" rel="contents">
                 더 읽어보기 &raquo;
               </a>
             </div>
@@ -530,7 +662,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -627,7 +759,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/운영/" itemprop="url" rel="index">
+                  <a href="/categories/%EC%9A%B4%EC%98%81/" itemprop="url" rel="index">
                     <span itemprop="name">운영</span>
                   </a>
                 </span>
@@ -669,7 +801,7 @@
 <hr>
 <p>* logrotate란? </p>
 <p>로그 파일(시스템 로그)을 rotates, compresses, and mails 을 할 수 있다.<br>설정 파일을 변경해도 관련 프로세스를 새로 시작할 필요 없이 cron 데몬이 주기적으로 실행 시켜준다.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> vi /etc/cron.daily</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi /etc/cron.daily </span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/04/01/2019-04-02-logrotate/#more" rel="contents">
@@ -735,7 +867,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -870,7 +1002,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -890,10 +1022,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -922,10 +1054,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -950,9 +1082,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

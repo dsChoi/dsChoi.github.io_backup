@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,19 +51,20 @@
 </script>
 
   <meta name="description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
-<meta name="keywords" content="objects,object">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chapter 06. 메시지와 인터페이스">
 <meta property="og:url" content="https://dschoi.github.io/2020/02/18/objects-06/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223211641253.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223212722901.png">
-<meta property="og:updated_time" content="2020-04-28T12:47:28.248Z">
+<meta property="article:published_time" content="2020-02-18T13:26:34.000Z">
+<meta property="article:modified_time" content="2020-04-28T12:47:28.248Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="objects">
+<meta property="article:tag" content="object">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chapter 06. 메시지와 인터페이스">
-<meta name="twitter:description" content="chapter 06. 메시지와 인터페이스객체지향 프로그래밍에 대한 가장 흔한 오해  애플리케이션은 클래스의 집합으로 구성된다.   애플리케이션은 클래스로 구성되지만메시지를 통해 정의된다. 01. 협력과 메시지클라이언트-서버 모델 협력안에서 메시지를 전송하는 객체를 클라이언트 메세지를 수신하는 객체를 서버">
 <meta name="twitter:image" content="https://dschoi.github.io/2020/02/18/objects-06/image-20200223211641253.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2020/02/18/objects-06/">
@@ -237,7 +238,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -359,6 +360,8 @@
 <p><strong>디미터 법칙과 캡슐화</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">screening.getMovie().getDiscountConditions(); <span class="comment">//디미터 법칙을 위반하는 전형적인 코드</span></span><br><span class="line"><span class="comment">// 기차 충돌(train wreck)</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  screening.calculateFee(audienceCount); <span class="comment">// 디미터 법칙을 따르도록 코드를 개선하여 메시지 수신자의 내부 구조에 관해 묻지 않게 된다.</span></span><br></pre></td></tr></table></figure>
 
+
+
 <h3 id="묻지말고-시켜라"><a href="#묻지말고-시켜라" class="headerlink" title="묻지말고 시켜라"></a>묻지말고 시켜라</h3><p>훌륭한 메시지는 객체의 상태에 관해 묻지 말고 원하는 것을 시켜야 한다는 것을 강조한다.</p>
 <blockquote>
 <p> 절차적인 코드는 정보를 얻은 후에 결정한다. 객체지향 코드는 객체에게 그것을 하도록 시킨다.</p>
@@ -391,6 +394,8 @@
 <p><code>객체에게 묻지 말고 시키되 구현 방법이 아닌 클라이언트의 의도를 드러내야 한다.</code></p>
 <h3 id="함께-모으기"><a href="#함께-모으기" class="headerlink" title="함께 모으기"></a>함께 모으기</h3><p><strong>디미터 법칙을 위반하는 티켓 판매 도메인</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Theater</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TicketSeller ticketSeller;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Theater</span><span class="params">(TicketSeller ticketSeller)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ticketSeller = ticketSeller;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Audience audience)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (audience.getBag().hasInvitation()) &#123;</span><br><span class="line">			Ticket ticket = ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			Ticket ticket =ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().minusAmount(ticket.getFee());</span><br><span class="line">			ticketSeller.getTicketOffice().plusAmount(ticket.getFee());</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="03-원칙의-함정"><a href="#03-원칙의-함정" class="headerlink" title="03. 원칙의 함정"></a>03. 원칙의 함정</h2><h3 id="디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다"><a href="#디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다" class="headerlink" title="디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다."></a>디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다.</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IntStream.of(<span class="number">1</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">3</span>,<span class="number">9</span>).filter(x -&gt; x &gt; <span class="number">10</span>).distinct().count();</span><br></pre></td></tr></table></figure>
 
@@ -438,7 +443,13 @@
 <hr>
 <h3 id="반복-일정의-명령과-쿼리-분리하기"><a href="#반복-일정의-명령과-쿼리-분리하기" class="headerlink" title="반복 일정의 명령과 쿼리 분리하기"></a>반복 일정의 명령과 쿼리 분리하기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String subject;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime from;</span><br><span class="line">    <span class="keyword">private</span> Duration duration;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String subject, LocalDateTime from, Duration duration)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subject = subject;</span><br><span class="line">        <span class="keyword">this</span>.from = from;</span><br><span class="line">        <span class="keyword">this</span>.duration = duration;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfied</span><span class="params">(RecurringSchedule schedule)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (from.getDayOfWeek() != schedule.getDayOfWeek() ||</span><br><span class="line">                !from.toLocalTime().equals(schedule.getFrom()) ||</span><br><span class="line">                !duration.equals(schedule.getDuration())</span><br><span class="line">        ) &#123;</span><br><span class="line">            reschedule(schedule);</span><br><span class="line">            <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reschedule</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;</span><br><span class="line">        from = LocalDateTime.of</span><br><span class="line">                (from.toLocalDate().plusDays(daysDistance(schedule)), schedule.getFrom());</span><br><span class="line">        duration = schedule.getDuration();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">daysDistance</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> schedule.getDayOfWeek().getValue() - from.getDayOfWeek().getValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSatisfied</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;...&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reschedule</span><span class="params">(RecurringSchedule schedule)</span> </span>&#123;  ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">..... </span><br><span class="line">  </span><br><span class="line">  <span class="comment">/** client 호출 **/</span></span><br><span class="line">  <span class="keyword">if</span>(!event.isSatisfied(schedule))&#123;</span><br><span class="line">    event.reschedule(schedule);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <ul>
 <li>명령과 쿼리를 분리함으로써 예측가능하고 이해하기 쉬우며 디버깅이 용이한 동시에 유지보수가 수월해졌다.</li>
@@ -540,7 +551,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-06-메시지와-인터페이스"><span class="nav-number">1.</span> <span class="nav-text">chapter 06. 메시지와 인터페이스</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-협력과-메시지"><span class="nav-number">1.1.</span> <span class="nav-text">01. 협력과 메시지</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#클라이언트-서버-모델"><span class="nav-number">1.1.1.</span> <span class="nav-text">클라이언트-서버 모델</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메시지와-메시지-전송"><span class="nav-number">1.1.2.</span> <span class="nav-text">메시지와 메시지 전송</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#메시지와-메서드"><span class="nav-number">1.1.3.</span> <span class="nav-text">메시지와 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#퍼블릭-인터페이스와-오퍼레이션"><span class="nav-number">1.1.4.</span> <span class="nav-text">퍼블릭 인터페이스와 오퍼레이션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#시그니처"><span class="nav-number">1.1.5.</span> <span class="nav-text">시그니처</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-인터페이스와-설계-품질"><span class="nav-number">1.2.</span> <span class="nav-text">02. 인터페이스와 설계 품질</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#디미터-법칙"><span class="nav-number">1.2.1.</span> <span class="nav-text">디미터 법칙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#묻지말고-시켜라"><span class="nav-number">1.2.2.</span> <span class="nav-text">묻지말고 시켜라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#의도를-드러내는-인터페이스"><span class="nav-number">1.2.3.</span> <span class="nav-text">의도를 드러내는 인터페이스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#함께-모으기"><span class="nav-number">1.2.4.</span> <span class="nav-text">함께 모으기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-원칙의-함정"><span class="nav-number">1.3.</span> <span class="nav-text">03. 원칙의 함정</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#디미터-법칙은-하나의-도트-를-강제하는-규칙이-아닌다"><span class="nav-number">1.3.1.</span> <span class="nav-text">디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결합도와-응집도의-충돌"><span class="nav-number">1.3.2.</span> <span class="nav-text">결합도와 응집도의 충돌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-명령-쿼리-분리-원칙"><span class="nav-number">1.4.</span> <span class="nav-text">04. 명령-쿼리 분리 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#반복-일정의-명령과-쿼리-분리하기"><span class="nav-number">1.4.1.</span> <span class="nav-text">반복 일정의 명령과 쿼리 분리하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#명령-쿼리-분리와-참조-투명성"><span class="nav-number">1.4.2.</span> <span class="nav-text">명령-쿼리 분리와 참조 투명성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#책임에-초점을-맞춰라"><span class="nav-number">1.4.3.</span> <span class="nav-text">책임에 초점을 맞춰라</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-06-%EB%A9%94%EC%8B%9C%EC%A7%80%EC%99%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4"><span class="nav-number">1.</span> <span class="nav-text">chapter 06. 메시지와 인터페이스</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%ED%98%91%EB%A0%A5%EA%B3%BC-%EB%A9%94%EC%8B%9C%EC%A7%80"><span class="nav-number">1.1.</span> <span class="nav-text">01. 협력과 메시지</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%84%9C%EB%B2%84-%EB%AA%A8%EB%8D%B8"><span class="nav-number">1.1.1.</span> <span class="nav-text">클라이언트-서버 모델</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A9%94%EC%8B%9C%EC%A7%80%EC%99%80-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%A0%84%EC%86%A1"><span class="nav-number">1.1.2.</span> <span class="nav-text">메시지와 메시지 전송</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A9%94%EC%8B%9C%EC%A7%80%EC%99%80-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="nav-number">1.1.3.</span> <span class="nav-text">메시지와 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8D%BC%EB%B8%94%EB%A6%AD-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98"><span class="nav-number">1.1.4.</span> <span class="nav-text">퍼블릭 인터페이스와 오퍼레이션</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98"><span class="nav-number">1.1.5.</span> <span class="nav-text">시그니처</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%99%80-%EC%84%A4%EA%B3%84-%ED%92%88%EC%A7%88"><span class="nav-number">1.2.</span> <span class="nav-text">02. 인터페이스와 설계 품질</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%AF%B8%ED%84%B0-%EB%B2%95%EC%B9%99"><span class="nav-number">1.2.1.</span> <span class="nav-text">디미터 법칙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AC%BB%EC%A7%80%EB%A7%90%EA%B3%A0-%EC%8B%9C%EC%BC%9C%EB%9D%BC"><span class="nav-number">1.2.2.</span> <span class="nav-text">묻지말고 시켜라</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9D%98%EB%8F%84%EB%A5%BC-%EB%93%9C%EB%9F%AC%EB%82%B4%EB%8A%94-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4"><span class="nav-number">1.2.3.</span> <span class="nav-text">의도를 드러내는 인터페이스</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EA%BB%98-%EB%AA%A8%EC%9C%BC%EA%B8%B0"><span class="nav-number">1.2.4.</span> <span class="nav-text">함께 모으기</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%EC%9B%90%EC%B9%99%EC%9D%98-%ED%95%A8%EC%A0%95"><span class="nav-number">1.3.</span> <span class="nav-text">03. 원칙의 함정</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%AF%B8%ED%84%B0-%EB%B2%95%EC%B9%99%EC%9D%80-%ED%95%98%EB%82%98%EC%9D%98-%EB%8F%84%ED%8A%B8-%EB%A5%BC-%EA%B0%95%EC%A0%9C%ED%95%98%EB%8A%94-%EA%B7%9C%EC%B9%99%EC%9D%B4-%EC%95%84%EB%8B%8C%EB%8B%A4"><span class="nav-number">1.3.1.</span> <span class="nav-text">디미터 법칙은 하나의 도트(.) 를 강제하는 규칙이 아닌다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%ED%95%A9%EB%8F%84%EC%99%80-%EC%9D%91%EC%A7%91%EB%8F%84%EC%9D%98-%EC%B6%A9%EB%8F%8C"><span class="nav-number">1.3.2.</span> <span class="nav-text">결합도와 응집도의 충돌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%EB%AA%85%EB%A0%B9-%EC%BF%BC%EB%A6%AC-%EB%B6%84%EB%A6%AC-%EC%9B%90%EC%B9%99"><span class="nav-number">1.4.</span> <span class="nav-text">04. 명령-쿼리 분리 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B0%98%EB%B3%B5-%EC%9D%BC%EC%A0%95%EC%9D%98-%EB%AA%85%EB%A0%B9%EA%B3%BC-%EC%BF%BC%EB%A6%AC-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">반복 일정의 명령과 쿼리 분리하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AA%85%EB%A0%B9-%EC%BF%BC%EB%A6%AC-%EB%B6%84%EB%A6%AC%EC%99%80-%EC%B0%B8%EC%A1%B0-%ED%88%AC%EB%AA%85%EC%84%B1"><span class="nav-number">1.4.2.</span> <span class="nav-text">명령-쿼리 분리와 참조 투명성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B1%85%EC%9E%84%EC%97%90-%EC%B4%88%EC%A0%90%EC%9D%84-%EB%A7%9E%EC%B6%B0%EB%9D%BC"><span class="nav-number">1.4.3.</span> <span class="nav-text">책임에 초점을 맞춰라</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -556,7 +567,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -576,10 +587,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -608,10 +619,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -636,9 +647,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

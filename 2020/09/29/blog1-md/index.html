@@ -50,21 +50,29 @@
   };
 </script>
 
-  <meta name="description" content="1. 객체 , 설계책임의 이동(Shift of responsibility)절차 지향책임이 Theater에 집중되어 있는 것.객체지향 설계제어의 흐름이 각 객체에 적절하게 분산. 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다. 그 결과가 변경에 취약한 설계.">
+  <meta name="description" content="상품통계 범례 API 개발 완료 후 성능테스트API 개발을 끝낸 후 성능테스트를 해야해서 ngrinder 설치 후 테스트 수행을 시작했다. 목표 성능 수치 : 180tps - 서버가 두대니 한대에 100정도만 나오면 좋겠다처참한 성능cpu 사용률 100% &#x2F; cpu load 10.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="객체, 설계">
-<meta property="og:url" content="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/index.html">
+<meta property="og:title" content="성능테스트 삽질기">
+<meta property="og:url" content="https://dschoi.github.io/2020/09/29/blog1-md/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:description" content="1. 객체 , 설계책임의 이동(Shift of responsibility)절차 지향책임이 Theater에 집중되어 있는 것.객체지향 설계제어의 흐름이 각 객체에 적절하게 분산. 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다. 그 결과가 변경에 취약한 설계.">
+<meta property="og:description" content="상품통계 범례 API 개발 완료 후 성능테스트API 개발을 끝낸 후 성능테스트를 해야해서 ngrinder 설치 후 테스트 수행을 시작했다. 목표 성능 수치 : 180tps - 서버가 두대니 한대에 100정도만 나오면 좋겠다처참한 성능cpu 사용률 100% &#x2F; cpu load 10.">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2019-08-18T13:00:50.000Z">
-<meta property="article:modified_time" content="2020-02-23T16:18:47.176Z">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog_01.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog_02.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog03.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog04.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog05.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog06.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog07.png">
+<meta property="og:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog08.png">
+<meta property="og:image" content="https://wiki.musinsa.com/s/ko_KR/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/help_16.svg">
+<meta property="article:published_time" content="2020-09-29T06:52:51.000Z">
+<meta property="article:modified_time" content="2020-10-15T14:58:15.223Z">
 <meta property="article:author" content="Stones">
-<meta property="article:tag" content="objects">
-<meta property="article:tag" content="오브젝트">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dschoi.github.io/2020/09/29/blog1-md/blog_01.png">
 
-<link rel="canonical" href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/">
+<link rel="canonical" href="https://dschoi.github.io/2020/09/29/blog1-md/">
 
 
 <script id="page-configurations">
@@ -78,7 +86,7 @@
   };
 </script>
 
-  <title>객체, 설계 | Object Oriented Programmer</title>
+  <title>성능테스트 삽질기 | Object Oriented Programmer</title>
   
 
 
@@ -197,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/">
+    <link itemprop="mainEntityOfPage" href="https://dschoi.github.io/2020/09/29/blog1-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -210,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          객체, 설계
+          성능테스트 삽질기
         </h1>
 
         <div class="post-meta">
@@ -220,26 +228,15 @@
               </span>
               <span class="post-meta-item-text">작성일</span>
 
-              <time title="Post created: 2019-08-18 22:00:50" itemprop="dateCreated datePublished" datetime="2019-08-18T22:00:50+09:00">2019-08-18</time>
+              <time title="Post created: 2020-09-29 15:52:51" itemprop="dateCreated datePublished" datetime="2020-09-29T15:52:51+09:00">2020-09-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-02-24 01:18:47" itemprop="dateModified" datetime="2020-02-24T01:18:47+09:00">2020-02-24</time>
+                <time title="Updated at: 2020-10-15 23:58:15" itemprop="dateModified" datetime="2020-10-15T23:58:15+09:00">2020-10-15</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">도서</span>
-                  </a>
-                </span>
-            </span>
 
           
   
@@ -250,8 +247,8 @@
       </span>
       <span class="post-meta-item-text">Facebook: </span>
     
-    <a title="facebook comments" href="/2019/08/18/2019-08-18-objects-01/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/" itemprop="commentCount">0</span>
+    <a title="facebook comments" href="/2020/09/29/blog1-md/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count fb-comments-count" data-href="https://dschoi.github.io/2020/09/29/blog1-md/" itemprop="commentCount">0</span>
     </a>
   </span>
   
@@ -266,22 +263,143 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-객체-설계"><a href="#1-객체-설계" class="headerlink" title="1. 객체 , 설계"></a>1. 객체 , 설계</h1><h3 id="책임의-이동-Shift-of-responsibility"><a href="#책임의-이동-Shift-of-responsibility" class="headerlink" title="책임의 이동(Shift of responsibility)"></a>책임의 이동(Shift of responsibility)</h3><h4 id="절차-지향"><a href="#절차-지향" class="headerlink" title="절차 지향"></a>절차 지향</h4><p><strong>책임이 Theater에 집중되어 있는 것.</strong></p><h4 id="객체지향-설계"><a href="#객체지향-설계" class="headerlink" title="객체지향 설계"></a>객체지향 설계</h4><p>제어의 흐름이 각 객체에 적절하게 분산.</p><p> 변경 전의 코드에서는 모든 책임이 Thearter에 존재하기에 Thearter가 모든 객체에 의존하고 있다.<br> 그 결과가 변경에 취약한 설계.</p><a id="more"></a>
+        <h1 id="상품통계-범례-API-개발-완료-후-성능테스트"><a href="#상품통계-범례-API-개발-완료-후-성능테스트" class="headerlink" title="상품통계 범례 API 개발 완료 후 성능테스트"></a>상품통계 범례 API 개발 완료 후 성능테스트</h1><p>API 개발을 끝낸 후 성능테스트를 해야해서 ngrinder 설치 후 테스트 수행을 시작했다. </p><p>목표 성능 수치 : 180tps - 서버가 두대니 한대에 100정도만 나오면 좋겠다</p><p><strong>처참한 성능</strong></p><p>cpu 사용률 100% / cpu load 10.</p><a id="more"></a>
 
 
-<p> 개선된 코드에서는 각 객체에 책임이 분산되고 더욱 중요한 점은 코드를 이해하기가 더 <strong>쉬워짐</strong>.</p>
-<p>설계를 어렵게 만드는 것은 <strong>의존성</strong></p>
-<p>의존성을 제거하여 객체 사이의 <strong>결합도</strong>를 낮춰야함. </p>
-<h3 id="객체지향-설계-1"><a href="#객체지향-설계-1" class="headerlink" title="객체지향 설계"></a>객체지향 설계</h3><p>좋은 설계란 무엇인가?</p>
-<ul>
-<li>좋은 설계란 오늘 요구하는 기능을 온전히 수행하면서 내일의 변경을 매끄럽게 수용할 수 있는 설계.</li>
-</ul>
-<p>변경을 수용할 수 있는 설계가 중요한 이유?</p>
-<ul>
-<li>요구사항이 항상 변경되기 때문이다.</li>
-</ul>
-<p>우리가 진정으로 원하는 것은 변경에 유연하게 대응할 수 있는 코드.</p>
-<h1 id="2-객체-지향-프로그래밍"><a href="#2-객체-지향-프로그래밍" class="headerlink" title="2. 객체 지향 프로그래밍"></a>2. 객체 지향 프로그래밍</h1>
+
+<img src="/2020/09/29/blog1-md/blog_01.png" alt="blog_01" style="zoom:50%;">
+
+
+
+<p><strong>성능테스트 결과</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">TPS</th>
+<th><strong>46.3</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Peak TPS</td>
+<td><strong>54.5</strong></td>
+</tr>
+<tr>
+<td align="left">Mean Test Time</td>
+<td>173.42  <code>ms</code></td>
+</tr>
+<tr>
+<td align="left">Executed Tests</td>
+<td>13,698</td>
+</tr>
+<tr>
+<td align="left">Successful Tests</td>
+<td>13,698</td>
+</tr>
+</tbody></table>
+<h4 id="문제가-무엇일까"><a href="#문제가-무엇일까" class="headerlink" title="문제가 무엇일까?"></a><strong>문제가 무엇일까?</strong></h4><h5 id="첫번째-의심"><a href="#첫번째-의심" class="headerlink" title="첫번째 의심."></a><strong>첫번째 의심.</strong></h5><p>스카우터 xlog 를 확인해보았는데 DDB( dynamodb response 시간이 1.5초나 걸리는것을 확인.)</p>
+<p><img src="/2020/09/29/blog1-md/blog_02.png" alt="blog_02"></p>
+<p>ddb 설정 및 rcu(읽기 용량) 설정을 늘렸다.</p>
+<p><strong>하지만 결과는 변하지 않았다. ㅠㅜ (1)</strong></p>
+<h5 id="두번째-의심"><a href="#두번째-의심" class="headerlink" title="두번째 의심"></a><strong>두번째 의심</strong></h5><p>JAVA DDB client 풀을 늘려야 하나? mybatis 의 db 커넥션풀같은게 있으니 해당 풀에 접근하고 해제하는데 오래걸려서 문제가 생기지 않을까? 하는 의심을 했다.</p>
+<p>파격적으로 maxConnection 100으로 설정했다.</p>
+<p><img src="/2020/09/29/blog1-md/blog03.png" alt="blog03"></p>
+<p><strong>하지만 결과는 변하지 않았다. ㅠㅜ (2)</strong></p>
+<h5 id="세번째-의심"><a href="#세번째-의심" class="headerlink" title="세번째 의심."></a><strong>세번째 의심.</strong></h5><p>Spring data dyanmodb 요 아이가 성능이 안나오나? 그러면 그냥 aws에서 제공하는 sdk 를 사용해서 해보자.</p>
+<p><img src="/2020/09/29/blog1-md/blog04.png" alt="blog04"></p>
+<p><strong>하지만 결과는 변하지 않았다. ㅠㅜ (3)</strong></p>
+<h5 id="포기-서버-성능을-높이자"><a href="#포기-서버-성능을-높이자" class="headerlink" title="포기. 서버 성능을 높이자"></a><strong>포기. 서버 성능을 높이자</strong></h5><p><strong>t3.small → c5.xlarge</strong></p>
+<p>무려 cpu 4코어 짜리다. </p>
+<p>역시 돈이다! 기존 t3.small 보다 무려 2배 </p>
+<table>
+<thead>
+<tr>
+<th align="left">TPS</th>
+<th><strong>99</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Peak TPS</td>
+<td><strong>132</strong></td>
+</tr>
+<tr>
+<td align="left">Mean Test Time</td>
+<td>40.19  <code>ms</code></td>
+</tr>
+<tr>
+<td align="left">Executed Tests</td>
+<td>59,027</td>
+</tr>
+<tr>
+<td align="left">Successful Tests</td>
+<td>59,023</td>
+</tr>
+<tr>
+<td align="left">Errors</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>cpu 도 75% 사용. 그래도 높지만 기존 아이들 생각하면 엄청난 차이다. 좋네 이렇게 할까..? </p>
+<p><img src="/2020/09/29/blog1-md/blog05.png" alt="blog05"></p>
+<h5 id="다시-한번-더-코드를-확인-해보자"><a href="#다시-한번-더-코드를-확인-해보자" class="headerlink" title="다시 한번 더 코드를 확인 해보자."></a><strong>다시 한번 더 코드를 확인 해보자.</strong></h5><p>유환성 팀장님 같이 코드를 보면서 의심되는 부분을 하나씩 확인해보았다. </p>
+<p>유 : 정확하게 무슨 일을 할까요? 나: 이런 저런 일을 하고 있어요. 유: 그럼 이건 무슨 일을 할까요? 나: 이건 이런 저런 일을 해요. 유: 혹시 로그 레벨은 info 인가요? 나: …… debug 네요..</p>
+<p>한가지 자기 변호를 해보자면 기존 회사에서는 alpha 는 개발이었다. 알파의 log level 을 debug 로 해놓은 상태였다.</p>
+<table>
+<thead>
+<tr>
+<th align="left">무신사</th>
+<th align="left">기존회사</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">devel</td>
+<td align="left">alpha</td>
+</tr>
+<tr>
+<td align="left">alpha</td>
+<td align="left">beta</td>
+</tr>
+<tr>
+<td align="left">prod</td>
+<td align="left">release</td>
+</tr>
+</tbody></table>
+<h4 id="마지막-결과"><a href="#마지막-결과" class="headerlink" title="마지막 결과."></a>마지막 결과.</h4><p><img src="/2020/09/29/blog1-md/blog06.png" alt="blog06"></p>
+<table>
+<thead>
+<tr>
+<th align="left">TPS</th>
+<th><strong>158.5</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Peak TPS</td>
+<td><strong>179</strong></td>
+</tr>
+<tr>
+<td align="left">Mean Test Time</td>
+<td>12.43  <code>ms</code></td>
+</tr>
+<tr>
+<td align="left">Executed Tests</td>
+<td>23,774</td>
+</tr>
+<tr>
+<td align="left">Successful Tests</td>
+<td>23,772</td>
+</tr>
+</tbody></table>
+<p><strong>cpu 사용률</strong></p>
+<p><strong>50프로 미만 정상동작 한다. ㅠㅜ 기쁘다..</strong></p>
+<p><img src="/2020/09/29/blog1-md/blog07.png" alt="blog07"></p>
+<p>DDB RCU</p>
+<p>여섯시쯤에 파랗게 뾰족하게 뒤어나온 아이가 테스트 했을때의 그래프이다. </p>
+<p>최대 30개까지 썼으니 운영에서 사용할땐 적어도 30이상으로 사용을 해야겠다.</p>
+<img src="/2020/09/29/blog1-md/blog08.png" alt="blog08" style="zoom:50%;">
+
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론."></a>결론.</h2><p>허무하지만.. 그래도 소스코드 문제가 아니어서 다행이었다.</p>
+<p>여기서 얻은 교훈은 문제가 없다고 생각되면 설정부터 차근차근 하나씩 보면서 확인을 하자<img src="https://wiki.musinsa.com/s/ko_KR/8100/5084f018d64a97dc638ca9a178856f851ea353ff/_/images/icons/emoticons/help_16.svg" alt="(질문)"> </p>
+<p><strong>로그 설정 DEBUG는 운영에 나가면 안된다.</strong> </p>
+
     </div>
 
     
@@ -289,27 +407,19 @@
     
 
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/objects/" rel="tag"><i class="fa fa-tag"></i> objects</a>
-              <a href="/tags/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/" rel="tag"><i class="fa fa-tag"></i> 오브젝트</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/04/01/2019-04-02-logrotate/" rel="next" title="logrotate를 활용한 로그관리(compress, lotate)">
-                  <i class="fa fa-chevron-left"></i> logrotate를 활용한 로그관리(compress, lotate)
+                <a href="/2020/05/07/objects-15/" rel="next" title="chapter-15. 일관성 있는 협력">
+                  <i class="fa fa-chevron-left"></i> chapter-15. 일관성 있는 협력
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/10/08/2019-10-08-%ED%81%B4%EB%A6%B0%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%AA%A9%EC%B0%A8/" rel="prev" title="클린아키텍처 1부 목차">
-                  클린아키텍처 1부 목차 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -327,7 +437,7 @@
     
   <div class="comments" id="comments">
     <div class="fb-comments"
-       data-href="https://dschoi.github.io/2019/08/18/2019-08-18-objects-01/"
+       data-href="https://dschoi.github.io/2020/09/29/blog1-md/"
        data-numposts="10"
        data-width="100%"
        data-colorscheme="light">
@@ -358,7 +468,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84"><span class="nav-number">1.</span> <span class="nav-text">1. 객체 , 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B1%85%EC%9E%84%EC%9D%98-%EC%9D%B4%EB%8F%99-Shift-of-responsibility"><span class="nav-number">1.0.1.</span> <span class="nav-text">책임의 이동(Shift of responsibility)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%A0%88%EC%B0%A8-%EC%A7%80%ED%96%A5"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">절차 지향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-1"><span class="nav-number">1.0.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D"><span class="nav-number">2.</span> <span class="nav-text">2. 객체 지향 프로그래밍</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%83%81%ED%92%88%ED%86%B5%EA%B3%84-%EB%B2%94%EB%A1%80-API-%EA%B0%9C%EB%B0%9C-%EC%99%84%EB%A3%8C-%ED%9B%84-%EC%84%B1%EB%8A%A5%ED%85%8C%EC%8A%A4%ED%8A%B8"><span class="nav-number">1.</span> <span class="nav-text">상품통계 범례 API 개발 완료 후 성능테스트</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%AC%B8%EC%A0%9C%EA%B0%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">문제가 무엇일까?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EC%B2%AB%EB%B2%88%EC%A7%B8-%EC%9D%98%EC%8B%AC"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">첫번째 의심.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EB%91%90%EB%B2%88%EC%A7%B8-%EC%9D%98%EC%8B%AC"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">두번째 의심</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EC%84%B8%EB%B2%88%EC%A7%B8-%EC%9D%98%EC%8B%AC"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">세번째 의심.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%ED%8F%AC%EA%B8%B0-%EC%84%9C%EB%B2%84-%EC%84%B1%EB%8A%A5%EC%9D%84-%EB%86%92%EC%9D%B4%EC%9E%90"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">포기. 서버 성능을 높이자</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EB%8B%A4%EC%8B%9C-%ED%95%9C%EB%B2%88-%EB%8D%94-%EC%BD%94%EB%93%9C%EB%A5%BC-%ED%99%95%EC%9D%B8-%ED%95%B4%EB%B3%B4%EC%9E%90"><span class="nav-number">1.0.0.1.5.</span> <span class="nav-text">다시 한번 더 코드를 확인 해보자.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%A7%88%EC%A7%80%EB%A7%89-%EA%B2%B0%EA%B3%BC"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">마지막 결과.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0"><span class="nav-number">1.1.</span> <span class="nav-text">결론.</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,19 +51,19 @@
 </script>
 
   <meta name="description" content="chapter 11. 합성과 유연한 설계 상속관계 : is - a 관계 합성관계 : has -a 관계 상속 : 구현은 간단하나 자식과 부모 클래스 사이의 결합도가 높아짐. 클래스 사이의 정적인 관계 합성: 객체의 구현이 아닌 퍼블릭 인터페이스에 의존. 포함된 객체의 내부 구현이 변경되더라도 영향을 최소화 할 수 있다.">
-<meta name="keywords" content="objects">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chapter-11. 합성과 유연한 설계">
 <meta property="og:url" content="https://dschoi.github.io/2020/03/24/objects-11/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="chapter 11. 합성과 유연한 설계 상속관계 : is - a 관계 합성관계 : has -a 관계 상속 : 구현은 간단하나 자식과 부모 클래스 사이의 결합도가 높아짐. 클래스 사이의 정적인 관계 합성: 객체의 구현이 아닌 퍼블릭 인터페이스에 의존. 포함된 객체의 내부 구현이 변경되더라도 영향을 최소화 할 수 있다.">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2020/03/24/objects-11/image-20200407212827263.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/03/24/objects-11/image-20200407223448312.png">
-<meta property="og:updated_time" content="2020-04-28T12:33:42.626Z">
+<meta property="article:published_time" content="2020-03-24T07:30:43.000Z">
+<meta property="article:modified_time" content="2020-04-28T12:33:42.626Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="objects">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chapter-11. 합성과 유연한 설계">
-<meta name="twitter:description" content="chapter 11. 합성과 유연한 설계 상속관계 : is - a 관계 합성관계 : has -a 관계 상속 : 구현은 간단하나 자식과 부모 클래스 사이의 결합도가 높아짐. 클래스 사이의 정적인 관계 합성: 객체의 구현이 아닌 퍼블릭 인터페이스에 의존. 포함된 객체의 내부 구현이 변경되더라도 영향을 최소화 할 수 있다.">
 <meta name="twitter:image" content="https://dschoi.github.io/2020/03/24/objects-11/image-20200407212827263.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2020/03/24/objects-11/">
@@ -237,7 +237,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -285,6 +285,10 @@
 <h2 id="01-상속을-합성으로-변경하기"><a href="#01-상속을-합성으로-변경하기" class="headerlink" title="01. 상속을 합성으로 변경하기"></a>01. 상속을 합성으로 변경하기</h2><p><strong>기존 10장 에서 보았던 코드에서 상속관계 제거 후 합성관계로 변경</strong> </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Properties</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> HashsTable&lt;String, String&gt; properties = <span class="keyword">new</span> HashTable&lt;&gt; ();</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getProperty</span><span class="params">(String key, String value)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> properties.get(key, value);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProperty</span><span class="params">(String key, String value)</span></span>&#123;</span><br><span class="line">    properties.put(key, value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
 <blockquote>
 <p>몽키 패치란 현재 실행중인 환경에만 영향을 미치도록 지역적으로 코드를 수정하거나 확장하는 것을 가리킨다. </p>
 <p>자바는 언어 차원에서 몽키 패치를 지원하지 않기 때문에 바이트 코드를 직접 변환하거나 AOP를 이용해 몽키 패치를 구현하고 있다.</p>
@@ -311,7 +315,11 @@
 <p><strong>합성 관계를 사용한 기분 정책의 전체적인 구조</strong></p>
 <p><img src="/2020/03/24/objects-11/image-20200407223448312.png" alt="image-20200407223448312"></p>
 <p><strong>기본 정책과 부가 정책 합성하기</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 일반 요금제에 세금 정책을 조합할 경우</span></span><br><span class="line">Phone phone = <span class="keyword">new</span> Phone(</span><br><span class="line">										<span class="keyword">new</span> TaxablePolicy(<span class="number">0.05</span>), </span><br><span class="line">  											<span class="keyword">new</span> RegualarPolicy(...));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반 요금제에 기본 요금 할인 정책을 조합한 결과에 세금 정책을 조합할 경우</span></span><br><span class="line">Phone phone = <span class="keyword">new</span> Phone(</span><br><span class="line">										<span class="keyword">new</span> TaxablePolicy(<span class="number">0.05</span>), </span><br><span class="line">  											<span class="keyword">new</span> RateDiscountablePolicy(Money.wons(<span class="number">1000</span>), </span><br><span class="line">  											<span class="keyword">new</span> RegualarPolicy(...));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 일반 요금제에 세금 정책을 조합할 경우</span></span><br><span class="line">Phone phone = <span class="keyword">new</span> Phone(</span><br><span class="line">										<span class="keyword">new</span> TaxablePolicy(<span class="number">0.05</span>), </span><br><span class="line">  											<span class="keyword">new</span> RegualarPolicy(...));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반 요금제에 기본 요금 할인 정책을 조합한 결과에 세금 정책을 조합할 경우</span></span><br><span class="line">Phone phone = <span class="keyword">new</span> Phone(</span><br><span class="line">										<span class="keyword">new</span> TaxablePolicy(<span class="number">0.05</span>), </span><br><span class="line">  											<span class="keyword">new</span> RateDiscountablePolicy(Money.wons(<span class="number">1000</span>), </span><br><span class="line">  											<span class="keyword">new</span> RegualarPolicy(...));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
 
 <p><strong>객체 합성이 클래스 상속보다 더 좋은 방법이다.</strong></p>
 <p>코드를 재사용 하면서 건전한 결합도를 유지할 수 있는 더 좋은 방법은 합성이다. </p>
@@ -404,7 +412,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-11-합성과-유연한-설계"><span class="nav-number">1.</span> <span class="nav-text">chapter 11. 합성과 유연한 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-상속을-합성으로-변경하기"><span class="nav-number">1.1.</span> <span class="nav-text">01. 상속을 합성으로 변경하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-상속으로-인한-조합의-폭발적인-증가"><span class="nav-number">1.2.</span> <span class="nav-text">02. 상속으로 인한 조합의 폭발적인 증가</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-합성-관계로-변경하기"><span class="nav-number">1.3.</span> <span class="nav-text">03. 합성 관계로 변경하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-믹스인"><span class="nav-number">1.4.</span> <span class="nav-text">04. 믹스인</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-11-%ED%95%A9%EC%84%B1%EA%B3%BC-%EC%9C%A0%EC%97%B0%ED%95%9C-%EC%84%A4%EA%B3%84"><span class="nav-number">1.</span> <span class="nav-text">chapter 11. 합성과 유연한 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%EC%83%81%EC%86%8D%EC%9D%84-%ED%95%A9%EC%84%B1%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.</span> <span class="nav-text">01. 상속을 합성으로 변경하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%EC%83%81%EC%86%8D%EC%9C%BC%EB%A1%9C-%EC%9D%B8%ED%95%9C-%EC%A1%B0%ED%95%A9%EC%9D%98-%ED%8F%AD%EB%B0%9C%EC%A0%81%EC%9D%B8-%EC%A6%9D%EA%B0%80"><span class="nav-number">1.2.</span> <span class="nav-text">02. 상속으로 인한 조합의 폭발적인 증가</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%ED%95%A9%EC%84%B1-%EA%B4%80%EA%B3%84%EB%A1%9C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0"><span class="nav-number">1.3.</span> <span class="nav-text">03. 합성 관계로 변경하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%EB%AF%B9%EC%8A%A4%EC%9D%B8"><span class="nav-number">1.4.</span> <span class="nav-text">04. 믹스인</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -420,7 +428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -440,10 +448,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -472,10 +480,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -500,9 +508,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

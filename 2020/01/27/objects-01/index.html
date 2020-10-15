@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,13 +51,12 @@
 </script>
 
   <meta name="description" content="chapter 01. 객체 , 설계티켓 판매 애플리케이션 구현하기애플리케이션의 핵심 클래스무엇이 문제인가로버트 마틴은 클린 소프트웨어에서 소프트웨어 모듈이 가져야 하는 세가지 기능에 관해 설명한다.  모든 소프트웨어 모듈에는 세 가지의 목적이 있다. 첫번째 목적은 실행 중에 제대로 동작하는 것이다. 이것은 모듈의 존재 이유. 두번째 목적은 변경을 위해 존재">
-<meta name="keywords" content="objects,object">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chapter 01. 객체 , 설계">
 <meta property="og:url" content="https://dschoi.github.io/2020/01/27/objects-01/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="chapter 01. 객체 , 설계티켓 판매 애플리케이션 구현하기애플리케이션의 핵심 클래스무엇이 문제인가로버트 마틴은 클린 소프트웨어에서 소프트웨어 모듈이 가져야 하는 세가지 기능에 관해 설명한다.  모든 소프트웨어 모듈에는 세 가지의 목적이 있다. 첫번째 목적은 실행 중에 제대로 동작하는 것이다. 이것은 모듈의 존재 이유. 두번째 목적은 변경을 위해 존재">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200127225843873.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128221434324.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128222326792.png">
@@ -67,10 +66,12 @@
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128224905609.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128225638397.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200128225532157.png">
-<meta property="og:updated_time" content="2020-04-28T12:46:44.055Z">
+<meta property="article:published_time" content="2020-01-27T07:17:36.000Z">
+<meta property="article:modified_time" content="2020-04-28T12:46:44.055Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="objects">
+<meta property="article:tag" content="object">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chapter 01. 객체 , 설계">
-<meta name="twitter:description" content="chapter 01. 객체 , 설계티켓 판매 애플리케이션 구현하기애플리케이션의 핵심 클래스무엇이 문제인가로버트 마틴은 클린 소프트웨어에서 소프트웨어 모듈이 가져야 하는 세가지 기능에 관해 설명한다.  모든 소프트웨어 모듈에는 세 가지의 목적이 있다. 첫번째 목적은 실행 중에 제대로 동작하는 것이다. 이것은 모듈의 존재 이유. 두번째 목적은 변경을 위해 존재">
 <meta name="twitter:image" content="https://dschoi.github.io/2020/01/27/objects-01/image-20200127225843873.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2020/01/27/objects-01/">
@@ -244,7 +245,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -298,7 +299,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Theater</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TicketSeller ticketSeller;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Theater</span><span class="params">(TicketSeller ticketSeller)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ticketSeller = ticketSeller;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Audience audience)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (audience.getBag().hasInvitation()) &#123;</span><br><span class="line">			Ticket ticket = ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			Ticket ticket =ticketSeller.getTicketOffice().getTicket();</span><br><span class="line">			audience.getBag().minusAmount(ticket.getFee());</span><br><span class="line">			ticketSeller.getTicketOffice().plusAmount(ticket.getFee());</span><br><span class="line">			audience.getBag().setTicket(ticket);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>변경후</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Theater</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TicketSeller ticketSeller;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Theater</span><span class="params">(TicketSeller ticketSeller)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ticketSeller = ticketSeller;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Audience audience)</span> </span>&#123;</span><br><span class="line">		ticketSeller.sellTo(audience);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Theater</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> TicketSeller ticketSeller;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Theater</span><span class="params">(TicketSeller ticketSeller)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ticketSeller = ticketSeller;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Audience audience)</span> </span>&#123;</span><br><span class="line">		ticketSeller.sellTo(audience);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
 
 <p><strong>Theater의 결합도를 낮춘 설계</strong></p>
 <img src="/2020/01/27/objects-01/image-20200128222326792.png" alt="image-20200128222326792" style="zoom:50%;">
@@ -351,7 +354,9 @@
 <ol start="2">
 <li>변경후 코드</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketSeller</span></span>&#123;	</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sellTicketTo</span><span class="params">(Audience audience)</span></span>&#123;</span><br><span class="line">    plusAmount(audience.buy(getTicket()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TicketSeller</span></span>&#123;	</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sellTicketTo</span><span class="params">(Audience audience)</span></span>&#123;</span><br><span class="line">    plusAmount(audience.buy(getTicket()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
 
 <p>변경을 하지만 TicketOffice -&gt; Audience로 통하는 의존성이 추가되었다.</p>
 <img src="/2020/01/27/objects-01/image-20200128225638397.png" alt="image-20200128225638397" style="zoom:50%;">
@@ -447,7 +452,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-01-객체-설계"><span class="nav-number">1.</span> <span class="nav-text">chapter 01. 객체 , 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#티켓-판매-애플리케이션-구현하기"><span class="nav-number">1.1.</span> <span class="nav-text">티켓 판매 애플리케이션 구현하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#무엇이-문제인가"><span class="nav-number">1.2.</span> <span class="nav-text">무엇이 문제인가</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#예상을-빗나가는-코드"><span class="nav-number">1.2.1.</span> <span class="nav-text">예상을 빗나가는 코드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#변경에-취약한-코드"><span class="nav-number">1.2.2.</span> <span class="nav-text">변경에 취약한 코드</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#설계-개선하기"><span class="nav-number">1.3.</span> <span class="nav-text">설계 개선하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#자율성을-높이자"><span class="nav-number">1.3.1.</span> <span class="nav-text">자율성을 높이자.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#무엇이-개선됐는가"><span class="nav-number">1.3.2.</span> <span class="nav-text">무엇이 개선됐는가?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#어떻게-한-것인가"><span class="nav-number">1.3.3.</span> <span class="nav-text">어떻게 한 것인가?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#캡슐화와-응집도"><span class="nav-number">1.3.4.</span> <span class="nav-text">캡슐화와 응집도</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#절차지향과-객체지향"><span class="nav-number">1.3.5.</span> <span class="nav-text">절차지향과 객체지향</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#책임의-이동"><span class="nav-number">1.3.6.</span> <span class="nav-text">책임의 이동</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.3.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#더-개선할-수-있다"><span class="nav-number">1.3.8.</span> <span class="nav-text">더 개선할 수 있다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체지향-설계"><span class="nav-number">1.4.</span> <span class="nav-text">객체지향 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#설계가-왜-필요한가"><span class="nav-number">1.4.1.</span> <span class="nav-text">설계가 왜 필요한가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#객체지향-설계-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-01-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84"><span class="nav-number">1.</span> <span class="nav-text">chapter 01. 객체 , 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8B%B0%EC%BC%93-%ED%8C%90%EB%A7%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.</span> <span class="nav-text">티켓 판매 애플리케이션 구현하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%AC%B4%EC%97%87%EC%9D%B4-%EB%AC%B8%EC%A0%9C%EC%9D%B8%EA%B0%80"><span class="nav-number">1.2.</span> <span class="nav-text">무엇이 문제인가</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%98%88%EC%83%81%EC%9D%84-%EB%B9%97%EB%82%98%EA%B0%80%EB%8A%94-%EC%BD%94%EB%93%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">예상을 빗나가는 코드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%80%EA%B2%BD%EC%97%90-%EC%B7%A8%EC%95%BD%ED%95%9C-%EC%BD%94%EB%93%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">변경에 취약한 코드</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%A4%EA%B3%84-%EA%B0%9C%EC%84%A0%ED%95%98%EA%B8%B0"><span class="nav-number">1.3.</span> <span class="nav-text">설계 개선하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%90%EC%9C%A8%EC%84%B1%EC%9D%84-%EB%86%92%EC%9D%B4%EC%9E%90"><span class="nav-number">1.3.1.</span> <span class="nav-text">자율성을 높이자.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AC%B4%EC%97%87%EC%9D%B4-%EA%B0%9C%EC%84%A0%EB%90%90%EB%8A%94%EA%B0%80"><span class="nav-number">1.3.2.</span> <span class="nav-text">무엇이 개선됐는가?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%9C-%EA%B2%83%EC%9D%B8%EA%B0%80"><span class="nav-number">1.3.3.</span> <span class="nav-text">어떻게 한 것인가?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%BA%A1%EC%8A%90%ED%99%94%EC%99%80-%EC%9D%91%EC%A7%91%EB%8F%84"><span class="nav-number">1.3.4.</span> <span class="nav-text">캡슐화와 응집도</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A0%88%EC%B0%A8%EC%A7%80%ED%96%A5%EA%B3%BC-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5"><span class="nav-number">1.3.5.</span> <span class="nav-text">절차지향과 객체지향</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B1%85%EC%9E%84%EC%9D%98-%EC%9D%B4%EB%8F%99"><span class="nav-number">1.3.6.</span> <span class="nav-text">책임의 이동</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.7.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%94-%EA%B0%9C%EC%84%A0%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8B%A4"><span class="nav-number">1.3.8.</span> <span class="nav-text">더 개선할 수 있다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84"><span class="nav-number">1.4.</span> <span class="nav-text">객체지향 설계</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%84%A4%EA%B3%84%EA%B0%80-%EC%99%9C-%ED%95%84%EC%9A%94%ED%95%9C%EA%B0%80"><span class="nav-number">1.4.1.</span> <span class="nav-text">설계가 왜 필요한가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">객체지향 설계</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -463,7 +468,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -483,10 +488,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -515,10 +520,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -543,9 +548,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

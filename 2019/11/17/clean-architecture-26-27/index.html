@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -50,22 +50,22 @@
   };
 </script>
 
-  <meta name="description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
-<meta name="keywords" content="clean architecture">
+  <meta name="description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints &#x3D; 10;  private static final List&lt;String&amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="clean-architecture-26-28">
 <meta property="og:url" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
-<meta property="og:description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
-<meta property="og:locale" content="ko">
+<meta property="og:description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints &#x3D; 10;  private static final List&lt;String&amp;gt">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231103861.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231028826.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117230927372.png">
-<meta property="og:updated_time" content="2020-02-23T16:18:47.313Z">
+<meta property="article:published_time" content="2019-11-17T13:10:29.000Z">
+<meta property="article:modified_time" content="2020-02-23T16:18:47.313Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="clean architecture">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="clean-architecture-26-28">
-<meta name="twitter:description" content="26 메인 컴포넌트궁극전인 세부사항문자열 초기화123456789public class Mian implements HtwMessageReceiver &amp;#123;	private static HuntTheWumpus game;  private static int hitPoints = 10;  private static final List&amp;lt;String&amp;gt">
 <meta name="twitter:image" content="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/image-20191117231451657.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2019/11/17/clean-architecture-26-27/">
@@ -239,7 +239,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -270,14 +270,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><p><strong>문자열 초기화</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mian</span> <span class="keyword">implements</span> <span class="title">HtwMessageReceiver</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> HuntTheWumpus game;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> hitPoints = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; caverns = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] environments = <span class="keyword">new</span> String[] &#123;<span class="string">"bright"</span>, <span class="string">"humid"</span>, <span class="string">"dry"</span>, <span class="string">"creepy"</span>, <span class="string">"ugly"</span>, <span class="string">"foggy"</span>, <span class="string">"hot"</span>, <span class="string">"cold"</span>, <span class="string">"drafty"</span>, <span class="string">"dreadful"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] shapes = <span class="keyword">new</span> String[] &#123;<span class="string">"round"</span>, <span class="string">"square"</span>, <span class="string">"oval"</span>, <span class="string">"irregualar"</span>, <span class="string">"long"</span>, <span class="string">"craggy"</span>, <span class="string">"rough"</span>, <span class="string">"tall"</span>, <span class="string">"narrow"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] cavernTypes = <span class="keyword">new</span> String[] &#123;<span class="string">"cavern"</span>, <span class="string">"room"</span>, <span class="string">"chamber"</span>. <span class="string">"catacomb"</span>, <span class="string">"crevasse"</span>, <span class="string">"cell"</span>, <span class="string">"tunnel"</span>, <span class="string">"passageway"</span>, <span class="string">"hall"</span>, <span class="string">"expanse"</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] adornments = <span class="keyword">new</span> String[] &#123;<span class="string">"smelling of sulfur"</span>, <span class="string">"with engravings on the walls"</span>, <span class="string">""</span>, <span class="string">"littered with garbage"</span> ... &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h1 id="26-메인-컴포넌트"><a href="#26-메인-컴포넌트" class="headerlink" title="26 메인 컴포넌트"></a>26 메인 컴포넌트</h1><h2 id="궁극전인-세부사항"><a href="#궁극전인-세부사항" class="headerlink" title="궁극전인 세부사항"></a>궁극전인 세부사항</h2><p><strong>문자열 초기화</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mian</span> <span class="keyword">implements</span> <span class="title">HtwMessageReceiver</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> HuntTheWumpus game;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> hitPoints = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; caverns = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] environments = <span class="keyword">new</span> String[] &#123;<span class="string">&quot;bright&quot;</span>, <span class="string">&quot;humid&quot;</span>, <span class="string">&quot;dry&quot;</span>, <span class="string">&quot;creepy&quot;</span>, <span class="string">&quot;ugly&quot;</span>, <span class="string">&quot;foggy&quot;</span>, <span class="string">&quot;hot&quot;</span>, <span class="string">&quot;cold&quot;</span>, <span class="string">&quot;drafty&quot;</span>, <span class="string">&quot;dreadful&quot;</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] shapes = <span class="keyword">new</span> String[] &#123;<span class="string">&quot;round&quot;</span>, <span class="string">&quot;square&quot;</span>, <span class="string">&quot;oval&quot;</span>, <span class="string">&quot;irregualar&quot;</span>, <span class="string">&quot;long&quot;</span>, <span class="string">&quot;craggy&quot;</span>, <span class="string">&quot;rough&quot;</span>, <span class="string">&quot;tall&quot;</span>, <span class="string">&quot;narrow&quot;</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] cavernTypes = <span class="keyword">new</span> String[] &#123;<span class="string">&quot;cavern&quot;</span>, <span class="string">&quot;room&quot;</span>, <span class="string">&quot;chamber&quot;</span>. <span class="string">&quot;catacomb&quot;</span>, <span class="string">&quot;crevasse&quot;</span>, <span class="string">&quot;cell&quot;</span>, <span class="string">&quot;tunnel&quot;</span>, <span class="string">&quot;passageway&quot;</span>, <span class="string">&quot;hall&quot;</span>, <span class="string">&quot;expanse&quot;</span>&#125;;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] adornments = <span class="keyword">new</span> String[] &#123;<span class="string">&quot;smelling of sulfur&quot;</span>, <span class="string">&quot;with engravings on the walls&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;littered with garbage&quot;</span> ... &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
 
 
 <p>*<em>Factory를 사용하여 게임을 생성 *</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	game = HtwFactory.makeGame(<span class="string">"htw.game.HuntTheWumpusFacade"</span>, <span class="keyword">new</span> Main()); <span class="comment">//factory 로 main 생성</span></span><br><span class="line">  </span><br><span class="line">  createMap(); <span class="comment">//지도 생성</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    </span><br><span class="line">    HuntTheWumps.Command c = game.makeRestCommand(); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    	동서남북 등 키 를 받아스  행위 맵핑</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    c.execute(); <span class="comment">// 실행</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	game = HtwFactory.makeGame(<span class="string">&quot;htw.game.HuntTheWumpusFacade&quot;</span>, <span class="keyword">new</span> Main()); <span class="comment">//factory 로 main 생성</span></span><br><span class="line">  </span><br><span class="line">  createMap(); <span class="comment">//지도 생성</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    </span><br><span class="line">    HuntTheWumps.Command c = game.makeRestCommand(); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    	동서남북 등 키 를 받아스  행위 맵핑</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    c.execute(); <span class="comment">// 실행</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <p> <strong>맵 생성</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createMap</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">int</span> nCaverns = (<span class="keyword">int</span>) (Math.random() * <span class="number">30.0</span> + <span class="number">10.0</span>);</span><br><span class="line">  <span class="keyword">while</span>(nCaverns-- &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    caverns.add(makeName());</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ....</span><br><span class="line">    </span><br><span class="line">  game.addPitCavern(...);</span><br><span class="line">  game.setQuiver(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <p><strong>메인은 클린 아키텍처의 가장 바깥 원이다.</strong></p>
 <h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>메인을 플러그인 컴포넌트로 여기고 , 아키텍처 경계 바깥에 위치하나다고 보면 설정 관련 문제를 쉽게 해결 할 수 있다.</p>
@@ -356,12 +362,12 @@
 <li>인수테스트</li>
 <li>기능테스트</li>
 <li>cucumber 테스트<ul>
-<li><a href="https://velog.io/@clarekang/cucumber-kr-login" target="_blank" rel="noopener">https://velog.io/@clarekang/cucumber-kr-login</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@clarekang/cucumber-kr-login">https://velog.io/@clarekang/cucumber-kr-login</a></li>
 </ul>
 </li>
 <li>TDD 테스트 (Test Driven Development)</li>
 <li>BDD 테스트 (Behavior-Driven Development)<ul>
-<li><a href="https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/" target="_blank" rel="noopener">https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/">https://blog.aliencube.org/ko/2014/04/02/differences-between-bdd-and-tdd/</a></li>
 </ul>
 </li>
 <li>컴포넌트 테스트</li>
@@ -486,7 +492,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#26-메인-컴포넌트"><span class="nav-number">1.</span> <span class="nav-text">26 메인 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#궁극전인-세부사항"><span class="nav-number">1.1.</span> <span class="nav-text">궁극전인 세부사항</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론"><span class="nav-number">1.2.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-‘크고-작은-모든’-서비스들"><span class="nav-number">2.</span> <span class="nav-text">27 ‘크고 작은 모든’ 서비스들</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-아키텍처"><span class="nav-number">2.1.</span> <span class="nav-text">서비스 아키텍처?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스의-이점"><span class="nav-number">2.2.</span> <span class="nav-text">서비스의 이점?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#결합-분리의-오류"><span class="nav-number">2.2.1.</span> <span class="nav-text">결합 분리의 오류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#개발-및-배포-독립성의-오류"><span class="nav-number">2.2.2.</span> <span class="nav-text">개발 및 배포 독립성의 오류</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#야옹이-문제"><span class="nav-number">2.3.</span> <span class="nav-text">야옹이 문제</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체가-구출하다"><span class="nav-number">2.4.</span> <span class="nav-text">객체가 구출하다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#컴포넌트-기반-서비스"><span class="nav-number">2.5.</span> <span class="nav-text">컴포넌트 기반 서비스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#횡단-관심사"><span class="nav-number">2.6.</span> <span class="nav-text">횡단 관심사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-1"><span class="nav-number">2.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-테스트-경계"><span class="nav-number">3.</span> <span class="nav-text">28. 테스트 경계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#시스템-컴포넌트의-테스트"><span class="nav-number">3.1.</span> <span class="nav-text">시스템 컴포넌트의 테스트</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#테스트를-고려한-설계"><span class="nav-number">3.2.</span> <span class="nav-text">테스트를 고려한 설계</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#테스트-API"><span class="nav-number">3.3.</span> <span class="nav-text">테스트 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#결론-2"><span class="nav-number">3.4.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#26-%EB%A9%94%EC%9D%B8-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="nav-number">1.</span> <span class="nav-text">26 메인 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B6%81%EA%B7%B9%EC%A0%84%EC%9D%B8-%EC%84%B8%EB%B6%80%EC%82%AC%ED%95%AD"><span class="nav-number">1.1.</span> <span class="nav-text">궁극전인 세부사항</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0"><span class="nav-number">1.2.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-%E2%80%98%ED%81%AC%EA%B3%A0-%EC%9E%91%EC%9D%80-%EB%AA%A8%EB%93%A0%E2%80%99-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%93%A4"><span class="nav-number">2.</span> <span class="nav-text">27 ‘크고 작은 모든’ 서비스들</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98"><span class="nav-number">2.1.</span> <span class="nav-text">서비스 아키텍처?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%84%9C%EB%B9%84%EC%8A%A4%EC%9D%98-%EC%9D%B4%EC%A0%90"><span class="nav-number">2.2.</span> <span class="nav-text">서비스의 이점?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%ED%95%A9-%EB%B6%84%EB%A6%AC%EC%9D%98-%EC%98%A4%EB%A5%98"><span class="nav-number">2.2.1.</span> <span class="nav-text">결합 분리의 오류</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%9C%EB%B0%9C-%EB%B0%8F-%EB%B0%B0%ED%8F%AC-%EB%8F%85%EB%A6%BD%EC%84%B1%EC%9D%98-%EC%98%A4%EB%A5%98"><span class="nav-number">2.2.2.</span> <span class="nav-text">개발 및 배포 독립성의 오류</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%95%BC%EC%98%B9%EC%9D%B4-%EB%AC%B8%EC%A0%9C"><span class="nav-number">2.3.</span> <span class="nav-text">야옹이 문제</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B0%9D%EC%B2%B4%EA%B0%80-%EA%B5%AC%EC%B6%9C%ED%95%98%EB%8B%A4"><span class="nav-number">2.4.</span> <span class="nav-text">객체가 구출하다</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EA%B8%B0%EB%B0%98-%EC%84%9C%EB%B9%84%EC%8A%A4"><span class="nav-number">2.5.</span> <span class="nav-text">컴포넌트 기반 서비스</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%9A%A1%EB%8B%A8-%EA%B4%80%EC%8B%AC%EC%82%AC"><span class="nav-number">2.6.</span> <span class="nav-text">횡단 관심사</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0-1"><span class="nav-number">2.7.</span> <span class="nav-text">결론</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B2%BD%EA%B3%84"><span class="nav-number">3.</span> <span class="nav-text">28. 테스트 경계</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-%ED%85%8C%EC%8A%A4%ED%8A%B8"><span class="nav-number">3.1.</span> <span class="nav-text">시스템 컴포넌트의 테스트</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EA%B3%A0%EB%A0%A4%ED%95%9C-%EC%84%A4%EA%B3%84"><span class="nav-number">3.2.</span> <span class="nav-text">테스트를 고려한 설계</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-API"><span class="nav-number">3.3.</span> <span class="nav-text">테스트 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0-2"><span class="nav-number">3.4.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -502,7 +508,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -522,10 +528,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -554,10 +560,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -582,9 +588,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

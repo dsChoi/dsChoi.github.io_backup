@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,23 +51,23 @@
 </script>
 
   <meta name="description" content="chapter 12 . 다형성상속의 목적 상속은 타입 계층을 구조화하기 위해 사용해야한다. 코드 재사용을 위해 사용해서는 안된다. 상속을 사용하려는 목적 단순히 코드를 재사용하기 위해서? 상속을 사용하면 안된다.   클라이언트 관점에서 인스턴스들을 동일하게 행동하는 그룹으로 묶기 위해서?">
-<meta name="keywords" content="objects">
 <meta property="og:type" content="article">
 <meta property="og:title" content="chapter-12. 다형성">
 <meta property="og:url" content="https://dschoi.github.io/2020/04/14/objects-12/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="chapter 12 . 다형성상속의 목적 상속은 타입 계층을 구조화하기 위해 사용해야한다. 코드 재사용을 위해 사용해서는 안된다. 상속을 사용하려는 목적 단순히 코드를 재사용하기 위해서? 상속을 사용하면 안된다.   클라이언트 관점에서 인스턴스들을 동일하게 행동하는 그룹으로 묶기 위해서?">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200414103748874.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200414125010481.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200414125041366.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200420222051550.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200420223146042.png">
 <meta property="og:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200420222852982.png">
-<meta property="og:updated_time" content="2020-04-28T12:28:15.384Z">
+<meta property="article:published_time" content="2020-04-14T01:10:57.000Z">
+<meta property="article:modified_time" content="2020-04-28T12:28:15.384Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="objects">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chapter-12. 다형성">
-<meta name="twitter:description" content="chapter 12 . 다형성상속의 목적 상속은 타입 계층을 구조화하기 위해 사용해야한다. 코드 재사용을 위해 사용해서는 안된다. 상속을 사용하려는 목적 단순히 코드를 재사용하기 위해서? 상속을 사용하면 안된다.   클라이언트 관점에서 인스턴스들을 동일하게 행동하는 그룹으로 묶기 위해서?">
 <meta name="twitter:image" content="https://dschoi.github.io/2020/04/14/objects-12/image-20200414103748874.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2020/04/14/objects-12/">
@@ -241,7 +241,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -329,7 +329,6 @@
 
 
 
-
 </li>
 </ul>
 <h2 id="02-상속의-양면성"><a href="#02-상속의-양면성" class="headerlink" title="02. 상속의 양면성"></a>02. 상속의 양면성</h2><p>객체지향 패러다임의 근간을 이루는 아이디어는 데이터와 행동을 객체라고 불리는 하나의 실행 단위안으로 통합한은 것.</p>
@@ -342,9 +341,11 @@
 <li>self 참조</li>
 <li>super 참조</li>
 </ul>
-<h3 id="상속을-위한-강의-평가"><a href="#상속을-위한-강의-평가" class="headerlink" title="상속을 위한 강의 평가"></a>상속을 위한 강의 평가</h3><h3 id="데이터-관점의-상속"><a href="#데이터-관점의-상속" class="headerlink" title="데이터 관점의 상속"></a>데이터 관점의 상속</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lecture lecture = <span class="keyword">new</span> Lecture(<span class="string">"객체지향 프로그래밍"</span>, <span class="number">70</span>, Arrays.asList(<span class="number">81</span>,<span class="number">95</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">45</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="상속을-위한-강의-평가"><a href="#상속을-위한-강의-평가" class="headerlink" title="상속을 위한 강의 평가"></a>상속을 위한 강의 평가</h3><h3 id="데이터-관점의-상속"><a href="#데이터-관점의-상속" class="headerlink" title="데이터 관점의 상속"></a>데이터 관점의 상속</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lecture lecture = <span class="keyword">new</span> Lecture(<span class="string">&quot;객체지향 프로그래밍&quot;</span>, <span class="number">70</span>, Arrays.asList(<span class="number">81</span>,<span class="number">95</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">45</span>));</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Lecture lecture = <span class="keyword">new</span> GradeLecture(<span class="string">"객체지향 프로그래밍"</span>, <span class="number">70</span>, </span><br><span class="line">                                   Arryas.asList(<span class="keyword">new</span> Grade(<span class="string">"A"</span>, <span class="number">100</span>, <span class="number">95</span>), </span><br><span class="line">                                                <span class="keyword">new</span> Grade(<span class="string">"B"</span>, <span class="number">94</span>, <span class="number">80</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">"C"</span>, <span class="number">79</span>, <span class="number">70</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">"D"</span>, <span class="number">69</span>, <span class="number">50</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">"F"</span>, <span class="number">49</span>, <span class="number">0</span>),</span><br><span class="line">                                                )</span><br><span class="line">                                   Arrays.asList(<span class="number">81</span>,<span class="number">95</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">45</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Lecture lecture = <span class="keyword">new</span> GradeLecture(<span class="string">&quot;객체지향 프로그래밍&quot;</span>, <span class="number">70</span>, </span><br><span class="line">                                   Arryas.asList(<span class="keyword">new</span> Grade(<span class="string">&quot;A&quot;</span>, <span class="number">100</span>, <span class="number">95</span>), </span><br><span class="line">                                                <span class="keyword">new</span> Grade(<span class="string">&quot;B&quot;</span>, <span class="number">94</span>, <span class="number">80</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">&quot;C&quot;</span>, <span class="number">79</span>, <span class="number">70</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">&quot;D&quot;</span>, <span class="number">69</span>, <span class="number">50</span>),</span><br><span class="line">                                                 <span class="keyword">new</span> Grade(<span class="string">&quot;F&quot;</span>, <span class="number">49</span>, <span class="number">0</span>),</span><br><span class="line">                                                )</span><br><span class="line">                                   Arrays.asList(<span class="number">81</span>,<span class="number">95</span>, <span class="number">75</span>, <span class="number">50</span>, <span class="number">45</span>));</span><br></pre></td></tr></table></figure>
+
+
 
 <p><strong>부모 클래스의 인스턴스를 포함하는 자식 클래스</strong></p>
 <img src="/2020/04/14/objects-12/image-20200414125010481.png" alt="image-20200414125010481" style="zoom:50%;">
@@ -408,6 +409,8 @@
 <h3 id="이해할-수-없는-메시지"><a href="#이해할-수-없는-메시지" class="headerlink" title="이해할 수 없는 메시지"></a>이해할 수 없는 메시지</h3><p><strong>정적 타입 언어와 이해할 수 없는 메시지</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Lecture lecture = <span class="keyword">new</span> GradeLecture(...);</span><br><span class="line">lecture.unknownMessage(); <span class="comment">//컴파일 에러</span></span><br></pre></td></tr></table></figure>
 
+
+
 <h3 id="self-대-super"><a href="#self-대-super" class="headerlink" title="self 대 super"></a>self 대 super</h3><p><strong>super 참조의 문법</strong></p>
 <blockquote>
 <p>대부분의 객체지향 언어는 부모 클래스에서부터 메서드 탐색이 시작하게 하는 super 참조를 위한 의사변수를 제공한다. 자바에서는 이 의사 변수를 가리키기 위해 super라는 예약어를 사용하고 c#은 base라는 예약어를 사용한다. c++의 경우 부모 클래스 이름과 범위 지정연산자인 “::” 를 조합해서 부모 클래스에서부터 메서드 탐색을 시작하게 할수 있다. </p>
@@ -421,7 +424,9 @@
 <p>객체가 다른 객체에게 요청을 처리할 때 인자로 self를 전달하지 않을 수도 있다. 이것은 요청을 전달받은 최초의 객체에 다시 메세지를 전송할 필요는 없고 단순히 코드를 재사용하고 싶은 경우라고 할 수 있다. 이처럼 처리를 요청할 때 self참조를 전달하지 않는 경우를 포워딩이라고 부른다. 이와 달리 self 참조를 전달하는 경우에는 위임이라고 부른다. 위임의 정확한 용도는 클래스를 이용한 상속 관계를 객체 사이의 합성 관계로 대체해서 다형성을 구현하는 것이다. </p>
 </blockquote>
 <h3 id="프로토타입-기반의-객체지향-언어"><a href="#프로토타입-기반의-객체지향-언어" class="headerlink" title="프로토타입 기반의 객체지향 언어"></a>프로토타입 기반의 객체지향 언어</h3><p>클래스 기반의 객체지향 언어들이 상속을 이요해 클래스 사이에 self 참조를 자동으로 전달하는 것처럼 프로토타입 기반의 객체지향 언어들 역시 위임을 이용해 객체 사이에 self 참조를 자동으로 전달한다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Lecture</span>(<span class="params">name, scores</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.scores = scores;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lecture.prototype.stats = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Name: "</span> + <span class="keyword">this</span>.name + <span class="string">" , Evaluation Method : "</span> + <span class="keyword">this</span>.getEvaluationMethod(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lecture.prototpye.getEvaluationMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Pass or Fail"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GradeLecture</span>(<span class="params">name,canceld, scores</span>)</span>&#123;</span><br><span class="line">  Lecture.call(<span class="keyword">this</span>, name, scores);</span><br><span class="line">  <span class="keyword">this</span>.canceld = canceld;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GradeLecture.prototype = <span class="keyword">new</span> Lecture();</span><br><span class="line">GradeLecture.prototype.constructor = GradeLecture;</span><br><span class="line"></span><br><span class="line">LgradeLecture.prototype.getEvaluationMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"Grade"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Lecture</span>(<span class="params">name, scores</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.scores = scores;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lecture.prototype.stats = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;Name: &quot;</span> + <span class="built_in">this</span>.name + <span class="string">&quot; , Evaluation Method : &quot;</span> + <span class="built_in">this</span>.getEvaluationMethod(); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Lecture.prototpye.getEvaluationMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;Pass or Fail&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GradeLecture</span>(<span class="params">name,canceld, scores</span>)</span>&#123;</span><br><span class="line">  Lecture.call(<span class="built_in">this</span>, name, scores);</span><br><span class="line">  <span class="built_in">this</span>.canceld = canceld;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GradeLecture.prototype = <span class="keyword">new</span> Lecture();</span><br><span class="line">GradeLecture.prototype.constructor = GradeLecture;</span><br><span class="line"></span><br><span class="line">LgradeLecture.prototype.getEvaluationMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;Grade&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <p>객체지향은 객체를 지향하는 것.</p>
 <p>클래스는 캑체를 편리하게 정의하고 생성하기 위해 제공되는 프로그래밍 구성 요소일 뿐이며 중요한 것은 메시지와의 협력이다.</p>
@@ -502,7 +507,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-12-다형성"><span class="nav-number">1.</span> <span class="nav-text">chapter 12 . 다형성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-다형성"><span class="nav-number">1.1.</span> <span class="nav-text">01 다형성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-상속의-양면성"><span class="nav-number">1.2.</span> <span class="nav-text">02. 상속의 양면성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#상속을-위한-강의-평가"><span class="nav-number">1.2.1.</span> <span class="nav-text">상속을 위한 강의 평가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#데이터-관점의-상속"><span class="nav-number">1.2.2.</span> <span class="nav-text">데이터 관점의 상속</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#행동-관점의-상속"><span class="nav-number">1.2.3.</span> <span class="nav-text">행동 관점의 상속</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-업캐스팅과-동적-바인딩"><span class="nav-number">1.3.</span> <span class="nav-text">03. 업캐스팅과 동적 바인딩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#같은-메시지-다른-메서드"><span class="nav-number">1.3.1.</span> <span class="nav-text">같은 메시지, 다른 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#업캐스팅"><span class="nav-number">1.3.2.</span> <span class="nav-text">업캐스팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#동적-바인딩"><span class="nav-number">1.3.3.</span> <span class="nav-text">동적 바인딩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-동적-메서드-탐색과-다형성"><span class="nav-number">1.4.</span> <span class="nav-text">04. 동적 메서드 탐색과 다형성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#자동적인-메시지-위임"><span class="nav-number">1.4.1.</span> <span class="nav-text">자동적인 메시지 위임</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#동적인-문맥"><span class="nav-number">1.4.2.</span> <span class="nav-text">동적인 문맥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#이해할-수-없는-메시지"><span class="nav-number">1.4.3.</span> <span class="nav-text">이해할 수 없는 메시지</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-대-super"><span class="nav-number">1.4.4.</span> <span class="nav-text">self 대 super</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-상속-대-위임"><span class="nav-number">1.5.</span> <span class="nav-text">05. 상속 대 위임</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#위임와-self-참조"><span class="nav-number">1.5.1.</span> <span class="nav-text">위임와 self 참조</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#프로토타입-기반의-객체지향-언어"><span class="nav-number">1.5.2.</span> <span class="nav-text">프로토타입 기반의 객체지향 언어</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-12-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="nav-number">1.</span> <span class="nav-text">chapter 12 . 다형성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="nav-number">1.1.</span> <span class="nav-text">01 다형성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%EC%83%81%EC%86%8D%EC%9D%98-%EC%96%91%EB%A9%B4%EC%84%B1"><span class="nav-number">1.2.</span> <span class="nav-text">02. 상속의 양면성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%81%EC%86%8D%EC%9D%84-%EC%9C%84%ED%95%9C-%EA%B0%95%EC%9D%98-%ED%8F%89%EA%B0%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">상속을 위한 강의 평가</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B4%80%EC%A0%90%EC%9D%98-%EC%83%81%EC%86%8D"><span class="nav-number">1.2.2.</span> <span class="nav-text">데이터 관점의 상속</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%96%89%EB%8F%99-%EA%B4%80%EC%A0%90%EC%9D%98-%EC%83%81%EC%86%8D"><span class="nav-number">1.2.3.</span> <span class="nav-text">행동 관점의 상속</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%EC%97%85%EC%BA%90%EC%8A%A4%ED%8C%85%EA%B3%BC-%EB%8F%99%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="nav-number">1.3.</span> <span class="nav-text">03. 업캐스팅과 동적 바인딩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B0%99%EC%9D%80-%EB%A9%94%EC%8B%9C%EC%A7%80-%EB%8B%A4%EB%A5%B8-%EB%A9%94%EC%84%9C%EB%93%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">같은 메시지, 다른 메서드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%97%85%EC%BA%90%EC%8A%A4%ED%8C%85"><span class="nav-number">1.3.2.</span> <span class="nav-text">업캐스팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8F%99%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="nav-number">1.3.3.</span> <span class="nav-text">동적 바인딩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%EB%8F%99%EC%A0%81-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%83%90%EC%83%89%EA%B3%BC-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="nav-number">1.4.</span> <span class="nav-text">04. 동적 메서드 탐색과 다형성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%90%EB%8F%99%EC%A0%81%EC%9D%B8-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%9C%84%EC%9E%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">자동적인 메시지 위임</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8F%99%EC%A0%81%EC%9D%B8-%EB%AC%B8%EB%A7%A5"><span class="nav-number">1.4.2.</span> <span class="nav-text">동적인 문맥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9D%B4%ED%95%B4%ED%95%A0-%EC%88%98-%EC%97%86%EB%8A%94-%EB%A9%94%EC%8B%9C%EC%A7%80"><span class="nav-number">1.4.3.</span> <span class="nav-text">이해할 수 없는 메시지</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self-%EB%8C%80-super"><span class="nav-number">1.4.4.</span> <span class="nav-text">self 대 super</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%EC%83%81%EC%86%8D-%EB%8C%80-%EC%9C%84%EC%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">05. 상속 대 위임</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9C%84%EC%9E%84%EC%99%80-self-%EC%B0%B8%EC%A1%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">위임와 self 참조</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85-%EA%B8%B0%EB%B0%98%EC%9D%98-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%96%B8%EC%96%B4"><span class="nav-number">1.5.2.</span> <span class="nav-text">프로토타입 기반의 객체지향 언어</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +523,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -538,10 +543,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -570,10 +575,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -598,9 +603,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 

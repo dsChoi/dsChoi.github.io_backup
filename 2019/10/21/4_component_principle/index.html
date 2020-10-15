@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
@@ -51,23 +51,23 @@
 </script>
 
   <meta name="description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
-<meta name="keywords" content="clean architecture">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4부 컴포넌트 원칙">
 <meta property="og:url" content="https://dschoi.github.io/2019/10/21/4_component_principle/index.html">
 <meta property="og:site_name" content="Object Oriented Programmer">
 <meta property="og:description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
-<meta property="og:locale" content="ko">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/13_1.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023225916783.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023225931530.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231323243.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023231412985.png">
 <meta property="og:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/image-20191023233656788.png">
-<meta property="og:updated_time" content="2020-02-23T16:18:47.177Z">
+<meta property="article:published_time" content="2019-10-21T09:34:32.000Z">
+<meta property="article:modified_time" content="2020-02-23T16:18:47.177Z">
+<meta property="article:author" content="Stones">
+<meta property="article:tag" content="clean architecture">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4부 컴포넌트 원칙">
-<meta name="twitter:description" content="12. 컴포넌트정의 컴포넌트는 배포단위 시스템의 구성 요소로 배포할 수 있는 가장 작은 단위 Ex) java - jar, 루비 - gem, 닷넷 - dll, 인터프리터형 언어 - 소스 파일의 결합체, 모든 언어  컴포넌트의 간략한 역사1234567891011					* 200					TLS  START, 	CLA  				TAD BUFR  				JMS G">
 <meta name="twitter:image" content="https://dschoi.github.io/2019/10/21/4_component_principle/13_1.png">
 
 <link rel="canonical" href="https://dschoi.github.io/2019/10/21/4_component_principle/">
@@ -241,7 +241,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/도서/" itemprop="url" rel="index">
+                  <a href="/categories/%EB%8F%84%EC%84%9C/" itemprop="url" rel="index">
                     <span itemprop="name">도서</span>
                   </a>
                 </span>
@@ -302,7 +302,7 @@
 <li>CRP: 공통 재사용 원칙(Common-Reuse Principle)</li>
 </ul>
 <h2 id="REP-재사용-릴리즈-등가-원칙"><a href="#REP-재사용-릴리즈-등가-원칙" class="headerlink" title="REP: 재사용/릴리즈 등가 원칙"></a>REP: 재사용/릴리즈 등가 원칙</h2><p><code>재사용의 단위는 릴리즈 단위와 같다.</code></p>
-<p>릴리즈 단위 <a href="https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855" target="_blank" rel="noopener">https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855</a></p>
+<p>릴리즈 단위 <a target="_blank" rel="noopener" href="https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855">https://docs.oracle.com/middleware/1212/core/MAVEN/maven_version.htm#MAVEN8855</a></p>
 <ul>
 <li>패키지의 모든 클래스가 재사용 가능하든지, 모두 그렇지 않던지 해야한다.</li>
 </ul>
@@ -423,7 +423,7 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/12/2019-10-12-3부_설계원칙/" rel="next" title="클린아키텍처 3부 설계원칙">
+                <a href="/2019/10/12/2019-10-12-3%EB%B6%80_%EC%84%A4%EA%B3%84%EC%9B%90%EC%B9%99/" rel="next" title="클린아키텍처 3부 설계원칙">
                   <i class="fa fa-chevron-left"></i> 클린아키텍처 3부 설계원칙
                 </a>
             </div>
@@ -482,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#12-컴포넌트"><span class="nav-number">1.</span> <span class="nav-text">12. 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#컴포넌트의-간략한-역사"><span class="nav-number">1.1.</span> <span class="nav-text">컴포넌트의 간략한 역사</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#재배치성"><span class="nav-number">1.1.1.</span> <span class="nav-text">재배치성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#링커"><span class="nav-number">1.1.2.</span> <span class="nav-text">링커</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#프로그램-크기와-관련된-머피의-법칙"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">프로그램 크기와 관련된 머피의 법칙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#결론"><span class="nav-number">1.1.3.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13장-컴포넌트-응집도"><span class="nav-number">2.</span> <span class="nav-text">13장. 컴포넌트 응집도</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#REP-재사용-릴리즈-등가-원칙"><span class="nav-number">2.1.</span> <span class="nav-text">REP: 재사용/릴리즈 등가 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCP-공통-폐쇄-원칙"><span class="nav-number">2.2.</span> <span class="nav-text">CCP: 공통 폐쇄 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRP-공통-재사용-원칙"><span class="nav-number">2.3.</span> <span class="nav-text">CRP: 공통 재사용 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#컴포넌트-응집도에-대한-균형-다이어그램"><span class="nav-number">2.3.1.</span> <span class="nav-text">컴포넌트 응집도에 대한 균형 다이어그램</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CCP-vs-CRP"><span class="nav-number">2.3.2.</span> <span class="nav-text">CCP vs CRP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-컴포넌트-결합"><span class="nav-number">3.</span> <span class="nav-text">14. 컴포넌트 결합</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ADP-의존성-비순환-원칙-Acycleic-Dependencies-Principle"><span class="nav-number">3.1.</span> <span class="nav-text">ADP : 의존성 비순환 원칙(Acycleic-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#주간-빌드"><span class="nav-number">3.1.1.</span> <span class="nav-text">주간 빌드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#순환-의존성-제거하기"><span class="nav-number">3.1.2.</span> <span class="nav-text">순환 의존성 제거하기</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#해결책"><span class="nav-number">3.1.2.0.1.</span> <span class="nav-text">해결책</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환이-컴포넌트-의존성-그래프에-미치는-영향"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">순환이 컴포넌트 의존성 그래프에 미치는 영향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#순환-끊기"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">순환 끊기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#흐트러짐-Jitters"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">흐트러짐(Jitters)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#하향식설계-top-down"><span class="nav-number">3.2.</span> <span class="nav-text">하향식설계(top-down)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDP-안정된-의존성-원칙-Stable-Dependencies-Principle"><span class="nav-number">3.3.</span> <span class="nav-text">SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#안정성"><span class="nav-number">3.3.1.</span> <span class="nav-text">안정성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#안정성-지표"><span class="nav-number">3.3.2.</span> <span class="nav-text">안정성 지표</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#모든-컴퍼넌트가-안정적이어야-하는-것은-아니다"><span class="nav-number">3.3.3.</span> <span class="nav-text">모든 컴퍼넌트가 안정적이어야 하는 것은 아니다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAP-안정된-추상화-원칙-Stable-Abstractions-Principle"><span class="nav-number">3.4.</span> <span class="nav-text">SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#주계열"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">주계열</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="nav-number">1.</span> <span class="nav-text">12. 컴포넌트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%9D%98-%EA%B0%84%EB%9E%B5%ED%95%9C-%EC%97%AD%EC%82%AC"><span class="nav-number">1.1.</span> <span class="nav-text">컴포넌트의 간략한 역사</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%AC%EB%B0%B0%EC%B9%98%EC%84%B1"><span class="nav-number">1.1.1.</span> <span class="nav-text">재배치성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A7%81%EC%BB%A4"><span class="nav-number">1.1.2.</span> <span class="nav-text">링커</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%ED%81%AC%EA%B8%B0%EC%99%80-%EA%B4%80%EB%A0%A8%EB%90%9C-%EB%A8%B8%ED%94%BC%EC%9D%98-%EB%B2%95%EC%B9%99"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">프로그램 크기와 관련된 머피의 법칙</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EA%B2%B0%EB%A1%A0"><span class="nav-number">1.1.3.</span> <span class="nav-text">결론</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13%EC%9E%A5-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%9D%91%EC%A7%91%EB%8F%84"><span class="nav-number">2.</span> <span class="nav-text">13장. 컴포넌트 응집도</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#REP-%EC%9E%AC%EC%82%AC%EC%9A%A9-%EB%A6%B4%EB%A6%AC%EC%A6%88-%EB%93%B1%EA%B0%80-%EC%9B%90%EC%B9%99"><span class="nav-number">2.1.</span> <span class="nav-text">REP: 재사용&#x2F;릴리즈 등가 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CCP-%EA%B3%B5%ED%86%B5-%ED%8F%90%EC%87%84-%EC%9B%90%EC%B9%99"><span class="nav-number">2.2.</span> <span class="nav-text">CCP: 공통 폐쇄 원칙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRP-%EA%B3%B5%ED%86%B5-%EC%9E%AC%EC%82%AC%EC%9A%A9-%EC%9B%90%EC%B9%99"><span class="nav-number">2.3.</span> <span class="nav-text">CRP: 공통 재사용 원칙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%9D%91%EC%A7%91%EB%8F%84%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B7%A0%ED%98%95-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8"><span class="nav-number">2.3.1.</span> <span class="nav-text">컴포넌트 응집도에 대한 균형 다이어그램</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CCP-vs-CRP"><span class="nav-number">2.3.2.</span> <span class="nav-text">CCP vs CRP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EA%B2%B0%ED%95%A9"><span class="nav-number">3.</span> <span class="nav-text">14. 컴포넌트 결합</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ADP-%EC%9D%98%EC%A1%B4%EC%84%B1-%EB%B9%84%EC%88%9C%ED%99%98-%EC%9B%90%EC%B9%99-Acycleic-Dependencies-Principle"><span class="nav-number">3.1.</span> <span class="nav-text">ADP : 의존성 비순환 원칙(Acycleic-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A3%BC%EA%B0%84-%EB%B9%8C%EB%93%9C"><span class="nav-number">3.1.1.</span> <span class="nav-text">주간 빌드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%88%9C%ED%99%98-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0"><span class="nav-number">3.1.2.</span> <span class="nav-text">순환 의존성 제거하기</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%ED%95%B4%EA%B2%B0%EC%B1%85"><span class="nav-number">3.1.2.0.1.</span> <span class="nav-text">해결책</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%88%9C%ED%99%98%EC%9D%B4-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%9D%98%EC%A1%B4%EC%84%B1-%EA%B7%B8%EB%9E%98%ED%94%84%EC%97%90-%EB%AF%B8%EC%B9%98%EB%8A%94-%EC%98%81%ED%96%A5"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">순환이 컴포넌트 의존성 그래프에 미치는 영향</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%88%9C%ED%99%98-%EB%81%8A%EA%B8%B0"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">순환 끊기</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%9D%90%ED%8A%B8%EB%9F%AC%EC%A7%90-Jitters"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">흐트러짐(Jitters)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%95%98%ED%96%A5%EC%8B%9D%EC%84%A4%EA%B3%84-top-down"><span class="nav-number">3.2.</span> <span class="nav-text">하향식설계(top-down)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDP-%EC%95%88%EC%A0%95%EB%90%9C-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%9B%90%EC%B9%99-Stable-Dependencies-Principle"><span class="nav-number">3.3.</span> <span class="nav-text">SDP: 안정된 의존성 원칙(Stable-Dependencies Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%88%EC%A0%95%EC%84%B1"><span class="nav-number">3.3.1.</span> <span class="nav-text">안정성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%95%88%EC%A0%95%EC%84%B1-%EC%A7%80%ED%91%9C"><span class="nav-number">3.3.2.</span> <span class="nav-text">안정성 지표</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AA%A8%EB%93%A0-%EC%BB%B4%ED%8D%BC%EB%84%8C%ED%8A%B8%EA%B0%80-%EC%95%88%EC%A0%95%EC%A0%81%EC%9D%B4%EC%96%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%80-%EC%95%84%EB%8B%88%EB%8B%A4"><span class="nav-number">3.3.3.</span> <span class="nav-text">모든 컴퍼넌트가 안정적이어야 하는 것은 아니다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAP-%EC%95%88%EC%A0%95%EB%90%9C-%EC%B6%94%EC%83%81%ED%99%94-%EC%9B%90%EC%B9%99-Stable-Abstractions-Principle"><span class="nav-number">3.4.</span> <span class="nav-text">SAP : 안정된 추상화 원칙(Stable-Abstractions Principle)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%A3%BC%EA%B3%84%EC%97%B4"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">주계열</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -498,7 +498,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -518,10 +518,10 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/dschoi" title="GitHub &rarr; https://github.com/dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/dschoi" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dschoi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:setin82@gmail.com" title="E-Mail &rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:setin82@gmail.com" title="E-Mail &amp;rarr; mailto:setin82@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -550,10 +550,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Stones</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1
   </div>
 
         
@@ -578,9 +578,17 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
-<script src="/js/schemes/pisces.js?v=7.4.1"></script>
-<script src="/js/next-boot.js?v=7.4.1"></script>
+
+<script src="/js/utils.js?v=7.4.1.js"></script>
+
+<script src="/js/motion.js?v=7.4.1.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.1.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.1.js"></script>
+
 
 
 
